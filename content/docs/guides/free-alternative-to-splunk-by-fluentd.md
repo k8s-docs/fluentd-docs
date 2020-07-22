@@ -1,3 +1,9 @@
+---
+title: ""
+linkTitle: ""
+weight: 1
+---
+
 # Free Alternative to Splunk Using Fluentd
 
 [Splunk](http://www.splunk.com/) is a great tool for searching logs, but
@@ -6,7 +12,6 @@ present a free and open source alternative to Splunk by combining three
 open source projects: Elasticsearch, Kibana, and Fluentd.
 
 ![](/images/kibana6-screenshot-visualize.png)
-
 
 [Elasticsearch](https://www.elastic.co/products/elasticsearch) is an
 open source search engine known for its ease of use.
@@ -20,14 +25,12 @@ that provides an open-source Splunk alternative, all for free.
 
 ![](/images/fluentd-elasticsearch-kibana.png)
 
-
 In this guide, we will go over installation, setup, and basic use of
 this combined log search solution. This article was tested on Ubuntu
 16.04 and CentOS 7.4. **If you're not familiar with Fluentd**, please
 learn more about Fluentd first.
 
 ## Prerequisites
-
 
 ### Java for Elasticsearch
 
@@ -42,7 +45,6 @@ OpenJDK 64-Bit Server VM (build 25.151-b12, mixed mode)
 
 Now that we've checked for prerequisites, we're now ready to install and
 set up the three open source tools.
-
 
 ## Set Up Elasticsearch
 
@@ -63,7 +65,6 @@ $ ./bin/elasticsearch
 
 Note: You can also install ElasticSearch (and Kibana) using RPM/DEB
 packages. For details, please refer to [the official instructions](https://www.elastic.co/downloads).
-
 
 ## Set Up Kibana
 
@@ -89,15 +90,14 @@ $ ./bin/kibana
 
 Access `http://localhost:5601` in your browser.
 
-
 ## Set Up Fluentd (td-agent)
 
 In this guide We'll install td-agent, the stable release of Fluentd.
 Please refer to the guides below for detailed installation steps.
 
--   [Debian Package](/install/install-by-deb.md)
--   [RPM Package](/install/install-by-rpm.md)
--   [Ruby gem](/install/install-by-gem.md)
+- [Debian Package](/install/install-by-deb.md)
+- [RPM Package](/install/install-by-rpm.md)
+- [Ruby gem](/install/install-by-gem.md)
 
 Next, we'll install the Elasticsearch plugin for Fluentd:
 fluent-plugin-elasticsearch. Then, install fluent-plugin-elasticsearch
@@ -133,7 +133,7 @@ below:
 </match>
 ```
 
-fluent-plugin-elasticsearch comes with a logstash\_format option that
+fluent-plugin-elasticsearch comes with a logstash_format option that
 allows Kibana to search stored event logs in Elasticsearch.
 
 Once everything has been set up and configured, we'll start td-agent.
@@ -144,7 +144,6 @@ $ sudo /etc/init.d/td-agent start
 # or systemd
 $ sudo systemctl start td-agent.service
 ```
-
 
 ## Set Up rsyslogd
 
@@ -166,15 +165,13 @@ $ sudo /etc/init.d/rsyslog restart
 $ sudo systemctl restart rsyslog
 ```
 
-
 ## Store and Search Event Logs
 
 Once Fluentd receives some event logs from `rsyslog` and has flushed them
 to Elasticsearch, you can view, search and visualize the log data using
 Kibana.
 
-For starters, let's access `http://localhost:5601` and click the `Set
-up index patters` button in the upper-right corner of the screen.
+For starters, let's access `http://localhost:5601` and click the `Set up index patters` button in the upper-right corner of the screen.
 
 ![kibana6-screenshot-topmenu.png](/images/kibana6-screenshot-topmenu.png)
 
@@ -214,7 +211,6 @@ including errors can be found at `/etc/td-agent/td-agent.log`.
 </match>
 ```
 
-
 ## Conclusion
 
 This article introduced the combination of Fluentd and Kibana (with
@@ -226,15 +222,13 @@ If you will be using these components in production, you may want to
 modify some of the configurations (e.g. JVM, Elasticsearch, Fluentd
 buffer, etc.) according to your needs.
 
-
 ## Learn More
 
--   [Fluentd Architecture](https://www.fluentd.org/architecture)
--   [Fluentd Get Started](/overview/quickstart.md)
--   [Downloading Fluentd](http://www.fluentd.org/download)
+- [Fluentd Architecture](https://www.fluentd.org/architecture)
+- [Fluentd Get Started](/overview/quickstart.md)
+- [Downloading Fluentd](http://www.fluentd.org/download)
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
 [Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.

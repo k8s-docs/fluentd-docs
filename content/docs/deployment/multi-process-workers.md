@@ -1,11 +1,16 @@
-# Multi Process Workers
+---
+title: "多进程工作"
+linkTitle: ""
+weight: 1
+---
+
+#
 
 This article describes how to use Fluentd's multi process workers
 feature for high traffic. This feature launches two or more fluentd
 workers to utilize multiple CPU powers.
 
 This feature can simply replace `fluent-plugin-multiprocess`.
-
 
 ## How It Works
 
@@ -19,9 +24,7 @@ process workers, so you can get multi process merits.
 
 ![multi-process-workers.png](/images/multi-process-workers.png)
 
-
 ## Configuration
-
 
 ### `workers` Parameter
 
@@ -35,7 +38,6 @@ of workers:
 ```
 
 With this configuration, fluentd launches four (4) workers.
-
 
 ### `<worker>` directive
 
@@ -68,7 +70,6 @@ the 4 workers configured in the `<system>` directive:
 
 With `<worker>` directive, non-multi-process-ready plugins can seamlessly be run
 along with multi-process-ready plugins.
-
 
 ### `<worker N-M>` directive
 
@@ -147,7 +148,6 @@ As of Fluentd v1.4.0, `<worker N-M>` syntax has been introduced:
 
 With this directive, you can specify multiple workers per worker directive.
 
-
 ### `root_dir/@id` parameter
 
 These parameters must be specified when you use the file buffer.
@@ -192,23 +192,20 @@ With this configuration, `forward` output buffer files are stored into
 `/var/log/fluentd/worker0/out_fwd/buffer` and
 `/var/log/fluentd/worker1/out_fwd/buffer` directories.
 
-
 ## Operation
 
 Each worker consumes memory and disk space separately. Take care while
 configuring buffer spaces and monitoring memory/disk consumption.
 
-
 ## Multi Process Workers and Plugins
-
 
 ### Input Plugin
 
 There are three (3) types of input plugins:
 
--   feature supported and server helper based plugin
--   feature supported and plain plugin
--   feature unsupported
+- feature supported and server helper based plugin
+- feature supported and plain plugin
+- feature unsupported
 
 #### feature supported and server helper based plugin
 
@@ -253,7 +250,6 @@ process.
 You can run these plugins with `<worker N>` directive. See "Configuration"
 section.
 
-
 ### Output Plugin
 
 By default, no additional changes are required but some plugins do need to
@@ -268,10 +264,10 @@ or some random string can be configured.
 
 <match pattern>
   @type s3
-  
+
   # Good
   path "logs/#{worker_id}/${tag}/%Y/%m/%d/"
-  
+
   # Bad on multi process worker!
   path logs/${tag}/%Y/%m/%d/
 </match>
@@ -280,9 +276,7 @@ or some random string can be configured.
 See [Configuration File](/configuration/config-file.md/#embedded-ruby-code)
 article for embedded Ruby code feature.
 
-
 ## FAQ
-
 
 ### Fluentd cannot start with multi process workers, why?
 
@@ -296,8 +290,7 @@ This means that the configured plugin does not support multi process worker. All
 configured plugins must support multi process workers. See "Multi Process Worker
 and Plugins" section above.
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
 [Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.

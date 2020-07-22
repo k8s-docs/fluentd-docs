@@ -1,4 +1,10 @@
-# Performance Tuning (Single Process)
+---
+title: "性能优化 (单一进程)"
+linkTitle: "性能优化"
+weight: 1
+---
+
+#
 
 This article describes how to optimize Fluentd performance within
 single process. If your traffic is up to 5,000 messages/sec, the
@@ -7,20 +13,17 @@ following techniques should be enough.
 With more traffic, Fluentd tends to be more CPU bound. In this case, consider
 using [`multi-worker`](/deployment/multi-process-workers.md) feature.
 
-
 ## Check your OS Configuration
 
 Follow the [Pre-installation Guide](/install/before-install.md) to configure
 your OS properly. This can drastically improve the performance, and
 prevent many unnecessary problems.
 
-
 ## Check `top` Command
 
 If Fluentd does not perform well as expected, check with the `top` command
 first. Try to identify which part of your system is becoming a bottleneck (CPU,
 Memory, Disk I/O, etc.).
-
 
 ## Avoid Extra Computations
 
@@ -29,7 +32,6 @@ computations inside Fluentd. Fluentd is flexible to do quite a bit internally,
 but adding too much logic to configuration file makes it difficult to read and
 maintain, while making it less robust. The configuration file should be as
 simple as possible.
-
 
 ## Use `flush_thread_count` Parameter
 
@@ -51,7 +53,6 @@ parameter is available for all output plugins.
 
 Note that this option does not improve the processing performance e.g. numerical
 computation, mutating record, etc.
-
 
 ## Use External `gzip` Command for S3/TD
 
@@ -92,7 +93,6 @@ While not a perfect solution to leverage multiple CPU cores, this can be
 effective for most Fluentd deployments. As before, you can run this with
 `flush_thread_count` option as well.
 
-
 ## Reduce Memory Usage
 
 Ruby has several GC parameters to tune GC performance and you can
@@ -120,7 +120,6 @@ See [Ruby 2.1 Garbage Collection: ready for production](https://samsaffron.com/a
 and [Watching and Understanding the Ruby 2.1 Garbage Collector at Work](https://thorstenball.com/blog/2014/03/12/watching-understanding-ruby-2.1-garbage-collector/)
 articles for more detail.
 
-
 ## Multi-workers
 
 The CPU is often the bottleneck for Fluentd instances that handle
@@ -135,8 +134,7 @@ recommend using `multi workers` feature.
 
 For more details on this feature, please read [multi process workers](/deployment/multi-process-workers.md) article.
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
 [Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.

@@ -1,4 +1,10 @@
-# Monitoring Fluentd (Prometheus)
+---
+title: "监控 Fluentd (Prometheus)"
+linkTitle: "监控(Prometheus)"
+weight: 1
+---
+
+#
 
 This article describes how to monitor Fluentd via
 [Prometheus](https://prometheus.io/).
@@ -6,7 +12,6 @@ This article describes how to monitor Fluentd via
 Since both Prometheus and Fluentd are under [CNCF (Cloud Native Computing
 Foundation)](https://www.cncf.io/), Fluentd project is recommending to use
 Prometheus by default to monitor Fluentd.
-
 
 ## Installation
 
@@ -25,15 +30,13 @@ $ sudo td-agent-gem install fluent-plugin-prometheus --version='~>1.6.1'
 This [GitHub repository](https://github.com/kzk/fluentd-prometheus-config-example)
 contains a fully working configuration for this article.
 
-
 ## Example Fluentd Configuration
 
 To expose Fluentd metrics to Prometheus, we need to configure three (3) parts:
 
--   Step 1: Counting Incoming Records by Prometheus Filter Plugin
--   Step 2: Counting Outgoing Records by Prometheus Output Plugin
--   Step 3: Expose Metrics by Prometheus Input Plugin via HTTP
-
+- Step 1: Counting Incoming Records by Prometheus Filter Plugin
+- Step 2: Counting Outgoing Records by Prometheus Output Plugin
+- Step 3: Expose Metrics by Prometheus Input Plugin via HTTP
 
 ### Step 1: Counting Incoming Records by Prometheus Filter Plugin
 
@@ -64,7 +67,6 @@ Configure the `<filter>` section to count the incoming records per tag:
 
 With this configuration, `prometheus` filter plugin starts adding the internal
 counter as the record comes in.
-
 
 ### Step 2: Counting Outgoing Records by Prometheus Output Plugin
 
@@ -105,7 +107,6 @@ records per tag:
 With this configuration, `prometheus` output plugin starts adding the internal
 counter as the record goes out.
 
-
 ### Step 3: Expose Metrics by Prometheus Input Plugin via HTTP
 
 Configure `prometheus` input plugin to expose internal counter information via
@@ -129,7 +130,6 @@ HTTP:
   </labels>
 </source>
 ```
-
 
 ### Check the Configuration
 
@@ -171,7 +171,6 @@ fluentd_output_status_buffer_queue_length{hostname="KZK.local",plugin_id="object
 ....
 ```
 
-
 ## Example Prometheus Configuration
 
 Prepare the configuration file (`prometheus.yml`):
@@ -196,9 +195,7 @@ $ ./prometheus --config.file="prometheus.yml"
 
 Now, open this URL `http://localhost:9090/` in your browser.
 
-
 ## How to use Prometheus to monitor Fluentd?
-
 
 ### List of Fluentd Nodes
 
@@ -207,7 +204,6 @@ status.
 
 ![prometheus-targets.png](/images/prometheus-targets.png)
 
-
 ### List of Fluentd Metrics
 
 Visit `http://localhost:9090/graph` to explore Fluentd's internal metrics.
@@ -215,20 +211,19 @@ You'll see eight (8) metrics in the metric list:
 
 ![prometheus-metrics.png](/images/prometheus-metrics.png)
 
--   `fluentd_input_status_num_records_total`
--   `fluentd_output_status_buffer_queue_length`
--   `fluentd_output_status_buffer_total_bytes`
--   `fluentd_output_status_emit_count`
--   `fluentd_output_status_num_errors`
--   `fluentd_output_status_num_records_total`
--   `fluentd_output_status_retry_count`
--   `fluentd_output_status_retry_wait`
+- `fluentd_input_status_num_records_total`
+- `fluentd_output_status_buffer_queue_length`
+- `fluentd_output_status_buffer_total_bytes`
+- `fluentd_output_status_emit_count`
+- `fluentd_output_status_num_errors`
+- `fluentd_output_status_num_records_total`
+- `fluentd_output_status_retry_count`
+- `fluentd_output_status_retry_wait`
 
 Pick `fluentd_input_status_num_records_total` and you'll see the total incoming
 records per tag.
 
 ![prometheus-graph.png](/images/prometheus-graph.png)
-
 
 ### Example Prometheus Queries
 
@@ -259,7 +254,6 @@ sum(rate(fluentd_output_status_num_records_total[1m])) by (tag)
 rate(fluentd_output_status_emit_count[1m])
 ```
 
-
 ### Metrics to Monitor
 
 In addition to the traffic metrics introduced above, it is important to
@@ -283,25 +277,22 @@ max_over_time(fluentd_output_status_retry_wait[1m])
 rate(fluentd_output_status_retry_count[1m])
 ```
 
-
 ## Grafana for Advanced Visualization / Alerting
 
 For more advanced visualization and alerting, we recommend
 [Grafana](https://grafana.com/) as a visualization frontend for Prometheus.
 
--   [Grafana Support for
-    Prometheus](https://prometheus.io/docs/visualization/grafana/)
+- [Grafana Support for
+  Prometheus](https://prometheus.io/docs/visualization/grafana/)
 
 ![prometheus-grafana.png](/images/prometheus-grafana.png)
 
-
 ## Further Readings
 
--   [Prometheus Documentation](https://prometheus.io/docs/introduction/overview/)
--   [Grafana Documentation](http://docs.grafana.org/)
+- [Prometheus Documentation](https://prometheus.io/docs/introduction/overview/)
+- [Grafana Documentation](http://docs.grafana.org/)
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
 [Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.

@@ -1,3 +1,8 @@
+---
+title: ""
+linkTitle: ""
+weight: 1
+---
 
 # Cloud Data Logger by Raspberry Pi
 
@@ -14,7 +19,6 @@ we'll use the [Treasure Data](http://www.fluentd.org/treasuredata)
 cloud data service as an example, but you can use any cloud service in
 its place.
 
-
 ## Install Raspbian
 
 [Raspbian](http://www.raspbian.org/) is a free operating system based
@@ -22,7 +26,6 @@ on Debian, optimized for the Raspberry Pi. Please install Raspbian on
 your Raspberry Pi by following the instructions in the blog post below:
 
 - [Getting Started with Raspberry Pi: Installing Raspbian](http://www.andrewmunsell.com/blog/getting-started-raspberry-pi-install-raspbian)
-
 
 ## Install Fluentd
 
@@ -40,7 +43,6 @@ We'll now install Fluentd and the necessary plugins:
 $ sudo gem install fluentd
 $ sudo fluent-gem install fluent-plugin-td
 ```
-
 
 ## Configure and Launch Fluentd
 
@@ -80,7 +82,6 @@ Finally, please launch Fluentd via your terminal:
 $ fluentd -c fluent.conf
 ```
 
-
 ## Upload Test
 
 To test the configuration, just post a JSON message to Fluentd via HTTP:
@@ -96,11 +97,11 @@ NOTE: If you're using Python, you can use Fluentd's
 Now, access the databases page to confirm that your data has been
 uploaded to the cloud properly.
 
-* [Treasure Data: List of Databases](https://console.treasuredata.com/databases)
+- [Treasure Data: List of Databases](https://console.treasuredata.com/databases)
 
 You can now issue queries against the imported data.
 
-* [Treasure Data: New Query](https://console.treasuredata.com/query_forms/new)
+- [Treasure Data: New Query](https://console.treasuredata.com/query_forms/new)
 
 For example, these queries calculate the average `sensor1` value and
 the sum of `sensor2` values:
@@ -110,15 +111,13 @@ SELECT AVG(sensor1) FROM raspberrypi;
 SELECT SUM(sensor2) FROM raspberrypi;
 ```
 
-
 ## Conclusion
 
 Raspberry Pi is an ideal platform for prototyping data logger hardware.
 Fluentd helps Raspberry Pi transfer the collected data to the cloud
 easily and reliably.
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
 [Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.

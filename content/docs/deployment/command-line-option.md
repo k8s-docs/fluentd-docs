@@ -1,7 +1,12 @@
-# Fluentd Command Line Options
+---
+title: "Fluentd 命令行选项"
+linkTitle: "命令行选项"
+weight: 1
+---
+
+#
 
 This article describes the `fluentd` command line options.
-
 
 ## `fluentd`
 
@@ -42,34 +47,31 @@ Usage: fluentd [options]
     -G, --gem-path GEM_INSTALL_PATH  Gemfile install path (default: $(dirname $gemfile)/vendor/bundle)
 ```
 
-
 ### Important Options
 
--   `-g`, `--gemfile`: Fluentd starts with bundler-managed dependent plugins.
+- `-g`, `--gemfile`: Fluentd starts with bundler-managed dependent plugins.
 
--   `--suppress-config-dump`: Fluentd starts without configuration dump. If you
-    do not want to show the configuration in fluentd logs, e.g. it contains
-    private keys, then this options is useful.
+- `--suppress-config-dump`: Fluentd starts without configuration dump. If you
+  do not want to show the configuration in fluentd logs, e.g. it contains
+  private keys, then this options is useful.
 
--   `--suppress-repeated-stacktrace`: If `true`, suppresses the stacktrace in
-    fluentd logs. Since v0.12, this option is `true` by default.
+- `--suppress-repeated-stacktrace`: If `true`, suppresses the stacktrace in
+  fluentd logs. Since v0.12, this option is `true` by default.
 
--   `--without-source`: Fluentd starts without input plugins. This option is
-    useful for flushing buffers with no new incoming events.
+- `--without-source`: Fluentd starts without input plugins. This option is
+  useful for flushing buffers with no new incoming events.
 
--   `-i`, `--inline-config`: If fluentd is used on XaaS which does not support
-    persistent disks, this option is useful.
+- `-i`, `--inline-config`: If fluentd is used on XaaS which does not support
+  persistent disks, this option is useful.
 
--   `--no-supervisor`: If you want to use your supervisor tools, this option
-    avoids double supervisor.
-
+- `--no-supervisor`: If you want to use your supervisor tools, this option
+  avoids double supervisor.
 
 ### Set via Configuration File
 
 Some options can be set via `<system>` directive via configuration file. See
 [configuration file](/configuration/config-file.md) article for more on
 `<system>` directive.
-
 
 ## `fluent-cat`
 
@@ -91,7 +93,6 @@ Usage: fluent-cat [options] <tag>
         --message-key KEY            key field for none format (default: message)
 ```
 
-
 ### Example
 
 Send JSON message with `debug.log` tag to the local fluentd instance:
@@ -105,7 +106,6 @@ Send JSON message to an instance of fluentd on another machine on the network:
 ```
 echo '{"message":"hello"}' | fluent-cat debug.log --host testserver --port 24225
 ```
-
 
 ## `fluent-plugin-config-format`
 
@@ -132,7 +132,6 @@ Options:
     -p, --plugin=DIR                 Add plugin directory
 ```
 
-
 ### Example
 
 Generate a README style document from plugin's config parameters:
@@ -146,7 +145,6 @@ Generate an old style output from plugin's config parameters:
 ```
 fluent-plugin-config-format -f txt output null
 ```
-
 
 ## `fluent-plugin-generate`
 
@@ -169,8 +167,7 @@ Options:
         --[no-]license=NAME          Specify license name (default: Apache-2.0)
 ```
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
 [Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.

@@ -24,7 +24,7 @@ plugins that support buffered output features.
 </match>
 ```
 
-## Buffer Plugin Type
+## 缓冲插件类型
 
 The `@type` parameter of `<buffer>` section specifies the type of the buffer
 plugin:

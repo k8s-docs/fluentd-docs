@@ -1,8 +1,13 @@
-# Plugin Management
+---
+title: "插件管理"
+linkTitle: ""
+weight: 1
+---
+
+#
 
 This article explains how to manage Fluentd plugins, including adding
 third-party plugins.
-
 
 ## `fluent-gem`
 
@@ -19,13 +24,11 @@ Ruby does not guarantee the C extension API compatibility between its major
 versions. If you update Fluentd's Ruby version, you should reinstall the
 plugins that depend on C extension.
 
-
 ### If Using `td-agent`, Use `/usr/sbin/td-agent-gem`
 
 If you are using `td-agent`, make sure that you use `td-agent-gem` command to
 install gems for it. Otherwise, you won't be able to find the **installed**
-plugins. 
-
+plugins.
 
 ### Gem and Native Extension
 
@@ -56,7 +59,6 @@ Gem files will remain installed in /opt/td-agent/embedded/lib/ruby/gems/2.1.0/ge
 Results logged to /opt/td-agent/embedded/lib/ruby/gems/2.1.0/extensions/x86_64-linux/2.1.0/string-scrub-0.0.3/gem_make.out
 ```
 
-
 ## `-p` option
 
 Fluentd's `-p` option is used to add an extra plugin directory to the load path.
@@ -69,19 +71,16 @@ fluentd -p /path/to/plugin
 
 You can specify the `-p` option more than once.
 
-
 ## Add a Plugin via `/etc/fluent/plugin`
 
 By default, Fluentd adds the `/etc/fluent/plugin` directory to its load path.
 Thus, any additional plugins that are placed in `/etc/fluent/plugin` will be
 loaded automatically.
 
-
 ### If Using `td-agent`, Use `/etc/td-agent/plugin`
 
 For `td-agent`, Fluentd uses the `/etc/td-agent/plugin` directory instead of
 `/etc/fluent/plugin` so put your plugins accordingly.
-
 
 ## Plugin Version Management
 
@@ -97,15 +96,14 @@ Fluentd plugins are rubygems and rubygems installs latest version by
 default. So we don't recommend to execute following commands on
 production:
 
--   `gem install fluentd`
--   `gem install fluent-plugin-elasticsearch`
--   `gem update # This is very dangerous. Update all existing gems`
+- `gem install fluentd`
+- `gem install fluent-plugin-elasticsearch`
+- `gem update # This is very dangerous. Update all existing gems`
 
 You should specify target version with `-v` option.
 
--   `gem install fluentd -v 1.2.1`
--   `gem install fluent-plugin-elasticsearch -v 2.10.3`
-
+- `gem install fluentd -v 1.2.1`
+- `gem install fluent-plugin-elasticsearch -v 2.10.3`
 
 ## `--gemfile` option
 
@@ -136,7 +134,6 @@ from shared gems, and will also prevent unexpected plugin updates.
 In addition, if you update Fluentd's Ruby version, Bundler will
 reinstall the listed gems for the new Ruby version. This allows you to
 avoid the C extension API compatibility problem.
-
 
 ### For `td-agent`
 
@@ -184,9 +181,7 @@ $ sudo systemctl restart td-agent.service
 NOTE: With this approach, you will download all the gems listed in Gemfile even
 if `td-agent` includes them the first time.
 
-
 ## FAQ
-
 
 ### `fluent-gem list` shows multiple plugin versions. Which one is used?
 
@@ -198,8 +193,7 @@ The latest version is used. If command shows the following result:
 
 `2.0.1` version is used.
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
 [Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.

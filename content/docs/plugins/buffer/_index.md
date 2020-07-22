@@ -1,18 +1,23 @@
+---
+title: ""
+linkTitle: ""
+weight: 1
+---
+
 # Buffer Plugin Overview
 
 Fluentd has eight (8) types of plugins:
 
--   [Input](/plugins/input/README.md)
--   [Parser](/plugins/parser/README.md)
--   [Filter](/plugins/filter/README.md)
--   [Output](/plugins/output/README.md)
--   [Formatter](/plugins/formatter/README.md)
--   [Storage](/plugins/storage/README.md)
--   [Service Discovery](/plugins/service_discovery/README.md)
--   [Buffer](/plugins/buffer/README.md)
+- [Input](/plugins/input/README.md)
+- [Parser](/plugins/parser/README.md)
+- [Filter](/plugins/filter/README.md)
+- [Output](/plugins/output/README.md)
+- [Formatter](/plugins/formatter/README.md)
+- [Storage](/plugins/storage/README.md)
+- [Service Discovery](/plugins/service_discovery/README.md)
+- [Buffer](/plugins/buffer/README.md)
 
 This article gives an overview of Buffer Plugin.
-
 
 ## Overview
 
@@ -20,9 +25,8 @@ Buffer plugins are used by output plugins. For example, `out_s3` uses
 `buf_file` by default to store incoming stream temporally before
 transmitting to S3.
 
-Buffer plugins are, as you can tell by the name, *pluggable*. So you can
+Buffer plugins are, as you can tell by the name, _pluggable_. So you can
 choose a suitable backend based on your system requirements.
-
 
 ## How Buffer Works
 
@@ -30,7 +34,6 @@ A buffer is essentially a set of "chunks". A chunk is a collection of events
 concatenated into a single blob. Each chunk is managed one by one in the form of
 files ([`buf_file`](/plugins/buffer/file.md)) or continuous memory blocks
 ([`buf_memory`](/plugins/buffer/memory.md)).
-
 
 ### The Lifecycle of Chunks
 
@@ -40,13 +43,12 @@ sources. If a chunk becomes full, then it gets "shipped" to the
 destination.
 
 Internally, a buffer plugin has two separated places to store its
-chunks: *"stage"* where chunks get filled with events, and *"queue"*
+chunks: _"stage"_ where chunks get filled with events, and _"queue"_
 where chunks wait before the transportation. Every newly-created chunk
-starts from *stage*, then proceeds to *queue* in time (and subsequently
+starts from _stage_, then proceeds to _queue_ in time (and subsequently
 gets transferred to the destination).
 
 [![fluentd-v0.14-plugin-api-overview.png](/images/fluentd-v0.14-plugin-api-overview.png)](/images/fluentd-v0.14-plugin-api-overview.png)
-
 
 ## Control Retry Behavior
 
@@ -54,7 +56,6 @@ A chunk can fail to be written out to the destination for a number of
 reasons. The network can go down, or the traffic volumes can exceed the
 capacity of the destination node. To handle such common failures
 gracefully, buffer plugins are equipped with a built-in retry mechanism.
-
 
 ### How Exponential Backoff Works
 
@@ -75,17 +76,16 @@ x-x---x-------x---------------x-------------------------
 
 Note that, in practice, Fluentd tweaks this algorithm in a few aspects:
 
--   Wait intervals are **randomized** by default. That is, Fluentd
-    diversifies the wait interval by multiplying by a randomly-chosen
-    number between 0.875 and 1.125. You can turn off this behavior by
-    setting `retry_randomize` to `false`.
--   Wait intervals can be **capped** to a certain limit. For example,
-    if you set `retry_max_interval` to 5 seconds in the example above,
-    the 4th retry will wait for 5 seconds, instead of 8 seconds.
+- Wait intervals are **randomized** by default. That is, Fluentd
+  diversifies the wait interval by multiplying by a randomly-chosen
+  number between 0.875 and 1.125. You can turn off this behavior by
+  setting `retry_randomize` to `false`.
+- Wait intervals can be **capped** to a certain limit. For example,
+  if you set `retry_max_interval` to 5 seconds in the example above,
+  the 4th retry will wait for 5 seconds, instead of 8 seconds.
 
 If you want to disable the exponential backoff, set the `retry_type`
 option to `periodic`.
-
 
 ### Handling Successive Failures
 
@@ -99,7 +99,6 @@ following conditions:
 In these events, **all chunks in the queue are discarded.** If you want
 to avoid this, you can enable `retry_forever` to make Fluentd retry
 indefinitely.
-
 
 ### Handling Unrecoverable Errors
 
@@ -124,22 +123,21 @@ section.
 
 The following is the current list of exceptions considered **unrecoverable**:
 
-  | Exception                    | The typical cause of this error |
-  | ---------------------------- | --- |
-  |`Fluent::UnrecoverableError`  | Output plugin can use this exception to suppress further retry attempts for plugin specific unrecoverable error. |
-  |`TypeError`                   | Occurs when an event has unexpected type in its target field. |
-  |`ArgumentError`               | Occurs when the plugin uses the library wrongly. |
-  |`NoMethodError`               | Occurs when events and configuration are mismatched. |
+| Exception                    | The typical cause of this error                                                                                  |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `Fluent::UnrecoverableError` | Output plugin can use this exception to suppress further retry attempts for plugin specific unrecoverable error. |
+| `TypeError`                  | Occurs when an event has unexpected type in its target field.                                                    |
+| `ArgumentError`              | Occurs when the plugin uses the library wrongly.                                                                 |
+| `NoMethodError`              | Occurs when events and configuration are mismatched.                                                             |
 
 Here are the patterns when unrecoverable error happens:
 
--   If the plugin does not have a `secondary`, the chunk is moved to the backup
-    directory.
--   If the plugin has a `secondary` which is of different type from primary,
-    the chunk is moved to `secondary`.
--   If the unrecoverable error happens inside `secondary`, the chunk is
-    moved to backup directory.
-
+- If the plugin does not have a `secondary`, the chunk is moved to the backup
+  directory.
+- If the plugin has a `secondary` which is of different type from primary,
+  the chunk is moved to `secondary`.
+- If the unrecoverable error happens inside `secondary`, the chunk is
+  moved to backup directory.
 
 ### Configuration Example
 
@@ -170,15 +168,12 @@ Normally, you do not need to specify every option as in this example,
 because these options are, in fact, optional. As for the detail of each
 option, please read [this article](/configuration/buffer-section.md/#retries-parameters).
 
-
 ## Parameters
 
--   [Common Parameters](/configuration/plugin-common-parameters.md)
--   [Buffer Section Configurations](/configuration/buffer-section.md)
-
+- [Common Parameters](/configuration/plugin-common-parameters.md)
+- [Buffer Section Configurations](/configuration/buffer-section.md)
 
 ## FAQ
-
 
 ### Buffer's chunk size and output's payload size are sometimes different, why?
 
@@ -196,14 +191,12 @@ This sometimes causes a problem when output destination has the
 payload size limitation. If you have a problem with payload size issue,
 check chunk size configuration and API spec.
 
-
 ## List of Buffer Plugins
 
--   [`buf_memory`](/plugins/buffer/memory.md)
--   [`buf_file`](/plugins/buffer/file.md)
+- [`buf_memory`](/plugins/buffer/memory.md)
+- [`buf_file`](/plugins/buffer/file.md)
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

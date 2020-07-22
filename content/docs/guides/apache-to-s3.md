@@ -1,9 +1,14 @@
+---
+title: ""
+linkTitle: ""
+weight: 1
+---
+
 # Store Apache Logs into Amazon S3
 
 This article explains how to use [Fluentd](http://fluentd.org/)'s Amazon S3
 Output plugin ([`out_s3`](/plugins/output/s3.md)) to aggregate semi-structured
 logs in realtime.
-
 
 ## Background
 
@@ -12,7 +17,6 @@ originally developed at [Treasure Data, Inc](http://www.treasuredata.com/). One 
 
 This article will show you how to use [Fluentd](http://fluentd.org/) to
 import Apache logs into Amazon S3.
-
 
 ## Mechanism
 
@@ -23,32 +27,29 @@ Fluentd does three (3) things:
     `ip`, `path`, etc.) and buffers them.
 3.  It writes the buffered data to Amazon S3 periodically.
 
-
 ## Install
 
 For simplicity, this article will describe how to set up an one-node
 configuration. Please install the following software on the same node:
 
--   [Fluentd](http://fluentd.org/)
--   [Amazon S3 Output Plugin](/plugins/output/s3.md)
--   Your Amazon Web Services Account
--   Apache (with the Combined Log Format)
+- [Fluentd](http://fluentd.org/)
+- [Amazon S3 Output Plugin](/plugins/output/s3.md)
+- Your Amazon Web Services Account
+- Apache (with the Combined Log Format)
 
 The Amazon S3 Output plugin is included in the latest version of
 Fluentd's deb/rpm package. If you want to use RubyGems to install the
 plugin, please use `gem install fluent-plugin-s3`.
 
--   [Debian Package](/install/install-by-deb.md)
--   [RPM Package](/install/install-by-rpm.md)
--   [Ruby gem](/install/install-by-gem.md)
-
+- [Debian Package](/install/install-by-deb.md)
+- [RPM Package](/install/install-by-rpm.md)
+- [Ruby gem](/install/install-by-gem.md)
 
 ## Configuration
 
 Let's start configuring Fluentd. If you used the deb/rpm package,
 Fluentd's config file is located at `/etc/td-agent/td-agent.conf`.
 Otherwise, it is located at `/etc/fluentd/fluentd.conf`.
-
 
 ### Tail Input
 
@@ -86,7 +87,6 @@ Let's go through the configuration line by line:
 That's it! You should now be able to output a JSON-formatted data stream
 for Fluentd to process.
 
-
 ### Amazon S3 Output
 
 The output destination will be Amazon S3. The output configuration
@@ -119,7 +119,6 @@ If a matching tag is found in a log, then the config inside
 config inside). In this example, the `s3.apache.access` tag (generated
 by `tail`) is always used.
 
-
 ## Test
 
 To test the configuration, just ping the Apache server. This example
@@ -139,20 +138,17 @@ no file is created immediately. The file will be created when the
 frequency, please modify the `timekey` value. To write objects
 every minute, please use `timekey 60` with smaller `timekey_wait` like `timekey_wait 10s`.
 
-
 ## Conclusion
 
 Fluentd + Amazon S3 makes real-time log archiving simple.
 
-
 ## Learn More
 
--   [Fluentd Architecture](https://www.fluentd.org/architecture)
--   [Fluentd Get Started](/overview/quickstart.md)
--   [Amazon S3 Output plugin](/plugins/output/s3.md)
+- [Fluentd Architecture](https://www.fluentd.org/architecture)
+- [Fluentd Get Started](/overview/quickstart.md)
+- [Amazon S3 Output plugin](/plugins/output/s3.md)
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
 [Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.

@@ -1,10 +1,15 @@
+---
+title: ""
+linkTitle: ""
+weight: 1
+---
+
 # Aggregate and Analyze Syslog with InfluxDB
 
 This article shows how to collect `syslog` data into
 [InfluxDB](http://github.com/influxdb/influxdb) using Fluentd.
 
 ![syslog-fluentd-influxdb.png](/images/syslog-fluentd-influxdb.png)
-
 
 ## Prerequisites
 
@@ -13,7 +18,6 @@ This article shows how to collect `syslog` data into
 
 **In this guide, we assume we are running `td-agent` (Fluentd package for
 Linux and OSX) on Ubuntu Xenial.**
-
 
 ## Step 1: Install InfluxDB
 
@@ -74,7 +78,6 @@ $ curl -i -X POST 'http://localhost:8086/write?db=test' --data-binary 'task,host
 
 We are done for now.
 
-
 ## Step 2: Install Fluentd and the InfluxDB plugin
 
 On your aggregator server, set up Fluentd.
@@ -118,7 +121,6 @@ Finally, configure `/etc/td-agent/td-agent.conf` as follows:
 
 Restart `td-agent` with `sudo service td-agent restart`.
 
-
 ## Step 3: Configure `rsyslogd`
 
 If remote `rsyslogd` instances are already collecting data into the
@@ -139,7 +141,6 @@ Now, restart `rsyslogd`:
 ```
 $ sudo systemctl restart rsyslog
 ```
-
 
 ## Step 4: Confirm Data Flow
 
@@ -167,8 +168,7 @@ Here is another screenshot just for the `system.daemon.info` series:
 
 ![chronograf-query-2.png](/images/chronograf-query-2.png)
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
 [Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.

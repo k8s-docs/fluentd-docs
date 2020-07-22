@@ -1,4 +1,10 @@
-# Plugin Base API
+---
+title: "Plugin Base API"
+linkTitle: ""
+weight: 1
+---
+
+#
 
 All plugin types are subclass of `Fluent::Plugin::Base` in Fluentd v1
 or later. Base class has some features and methods which provides basic
@@ -60,20 +66,19 @@ module Fluent::Plugin
 end
 ```
 
-
 ## Class methods
 
 Base class has some methods to create configurable parameters for
 plugins, or to provide system configurations to plugins.
 
-#### .config\_param(name, type = nil, \*\*options, &block)
+#### .config_param(name, type = nil, \*\*options, &block)
 
 Define a parameter.
 
--   `name`: parameter name as symbol
--   `type`: parameter type
--   `options`: options for parameter
--   `block`: if block is given, convert value via given block
+- `name`: parameter name as symbol
+- `type`: parameter type
+- `options`: options for parameter
+- `block`: if block is given, convert value via given block
 
 About types and options, see [Types of Configuration Parameters](/developer/api-config-types.md).
 
@@ -95,13 +100,13 @@ config_param :delimiter, default: "\t" do |value|
 end
 ```
 
-#### .config\_set\_default(name, default\_value)
+#### .config_set_default(name, default_value)
 
 Set default value to `name`. If the default value has already been
 existed, raise `ArgumentError`.
 
--   `name`: The name of parameter
--   `default_value`: Default value for the parameter
+- `name`: The name of parameter
+- `default_value`: Default value for the parameter
 
 Code Example:
 
@@ -113,19 +118,19 @@ config_param :chunk_limit_size, :size, default: DEFAULT_CHUNK_LIMIT_SIZE
 config_set_default :chunk_limit_size, DEFAULT_CHUNK_LIMIT_SIZE
 ```
 
-#### .config\_set\_desc(name, description)
+#### .config_set_desc(name, description)
 
 Set description to `name`. If the description has already been existed,
 raise `ArgumentError`. This is for internal API. Use `desc` instead.
 
--   `name`: The name of parameter
--   `description`: Description about the parameter
+- `name`: The name of parameter
+- `description`: Description about the parameter
 
 #### .desc(description)
 
 Set description to immediately following parameter.
 
--   `description`: Description about the parameter
+- `description`: Description about the parameter
 
 Code Example:
 
@@ -134,25 +139,25 @@ desc "description about following parameter"
 config_param :user, :string
 ```
 
-#### .config\_section(name, \*\*options, &block)
+#### .config_section(name, \*\*options, &block)
 
 Define a section to construct structured configuration.
 
--   `name`: The name of section
--   `options`
-    -   `root`: If true, this section is root section. This is only for
-        internal use.
-    -   `param_name`: This section name
-    -   `final`: If true, subclass of this class cannot overwrite this
-        section. e.g. 3rd party plugins cannot overwrite buffer section
-    -   `init`: If true, parameters in this section must have default
-        value. 3rd party plugins don't have to be conscious about this
-        option.
-    -   `required`: If true, this section is required. Fluentd will
-        raise `Fluent::ConfigError` when this section is missing in
-        configuration.
-    -   `multi`: If true, users can write this section in configuration.
-    -   `alias`: Alias of this section
+- `name`: The name of section
+- `options`
+  - `root`: If true, this section is root section. This is only for
+    internal use.
+  - `param_name`: This section name
+  - `final`: If true, subclass of this class cannot overwrite this
+    section. e.g. 3rd party plugins cannot overwrite buffer section
+  - `init`: If true, parameters in this section must have default
+    value. 3rd party plugins don't have to be conscious about this
+    option.
+  - `required`: If true, this section is required. Fluentd will
+    raise `Fluent::ConfigError` when this section is missing in
+    configuration.
+  - `multi`: If true, users can write this section in configuration.
+  - `alias`: Alias of this section
 
 Code Example:
 
@@ -196,13 +201,13 @@ Configuration Example:
 </child>
 ```
 
-#### .configured\_in(section\_name)
+#### .configured_in(section_name)
 
 Inherit section `section_name` defined in super class.
 
--   `section_name`: section name as Symbol
+- `section_name`: section name as Symbol
 
-#### .system\_config
+#### .system_config
 
 Returns `Fluent::SystemConfig` instance.
 
@@ -217,7 +222,7 @@ def configure(conf)
 end
 ```
 
-#### .system\_config\_override(options = {})
+#### .system_config_override(options = {})
 
 Overwrite system config
 
@@ -225,7 +230,7 @@ This is for internal use and plugin testing.
 
 For more details, see [System Configuration](/deployment/system-config.md).
 
--   `options`: system configuration as Hash
+- `options`: system configuration as Hash
 
 Code Example:
 
@@ -238,7 +243,6 @@ test "plugin instance can overwrite system_config if needed" do
   # ...
 end
 ```
-
 
 ## Instance methods
 
@@ -285,13 +289,13 @@ The return value of this method will be ignored.
 
 Returns `Fluent::Log` instance
 
--   Log levels:
-    -   `trace`
-    -   `debug`
-    -   `info`
-    -   `warn`
-    -   `error`
-    -   `fatal`
+- Log levels:
+  - `trace`
+  - `debug`
+  - `info`
+  - `warn`
+  - `error`
+  - `fatal`
 
 For more details about Fluentd's logging mechanism, see [Logging of Fluentd](/deployment/logging.md).
 
@@ -309,13 +313,13 @@ def start
 end
 ```
 
-#### \#has\_router?
+#### \#has_router?
 
 This method returns true or false, which indicates `#router` method is
 provided or not. Default is false. If the plugin uses `event_emitter`
 plugin helper, this method will return true.
 
-Input plugin enables \`\`event\_emitter\`\` plugin helper in default.
+Input plugin enables \`\`event_emitter\`\` plugin helper in default.
 
 #### \#start
 
@@ -371,7 +375,7 @@ end
 `stop`, `before_shutdown`, `shutdown`, `after_shutdown`, `close` and
 `terminate`.
 
-#### \#before\_shutdown
+#### \#before_shutdown
 
 This method is called after `#stop` and before `#shutdown`. Call `super`
 if the plugin overrides this method. There are no need to implement this
@@ -401,7 +405,7 @@ def shutdown
 end
 ```
 
-#### \#after\_shutdown
+#### \#after_shutdown
 
 This method is called after `#shutdown`. Call `super` if the plugin
 overrides this method. There are no need to implement this method by 3rd
@@ -419,7 +423,6 @@ closed in `#shutdown`.
 Call `super` if the plugin overrides this method. The plugin can use
 this method to re-initialize internal states to make it possible to
 reuse plugin instances in tests or others.
-
 
 ## Methods for Input/Filter/Output
 
@@ -450,20 +453,19 @@ It is strongly recommended to call this method at the top of plugin
 class definition (just after calling `#register_foo`) to show which
 plugin helpers this plugin uses explicitly.
 
-#### \#plugin\_id
+#### \#plugin_id
 
 This method provides an id string of plugin instance which is unique in
 Fluentd process. It might be specified by users in configuration files,
 or might be generated automatically. The plugin must not expect any
 fixed formats for return values.
 
-#### \#plugin\_id\_configured?
+#### \#plugin_id_configured?
 
 This method returns true or false to indicate `#plugin_id` is configured
 by users or not.
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
 [Fluentd](http://www.fluentd.org/) is a open source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.

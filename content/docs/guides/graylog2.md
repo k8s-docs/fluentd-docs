@@ -1,18 +1,21 @@
+---
+title: ""
+linkTitle: ""
+weight: 1
+---
+
 # Fluentd and Graylog for End-to-End Log Analysis
 
 This article explains how to set up Fluentd with [Graylog](https://www.graylog.org).
 Graylog is a popular log management server powered by Elasticsearch and MongoDB.
 You can combine Fluentd and Graylog to create a scalable log analytics pipeline.
 
-
 ## Prerequisites
 
- - Basic Understanding of Fluentd
- - Linux Server (Ubuntu 18.04 LTS was used for this guide.)
-
+- Basic Understanding of Fluentd
+- Linux Server (Ubuntu 18.04 LTS was used for this guide.)
 
 ## How to Setup Graylog + Fluentd
-
 
 ### Dependencies
 
@@ -40,7 +43,6 @@ Elasticsearch is ready. Start it with:
 $ ./bin/elasticsearch
 ```
 
-
 ### Graylog
 
 In this article, we will use Graylog 2.4.
@@ -59,9 +61,9 @@ $ sudo apt install graylog-server
 
 Open `/etc/graylog/server/server.conf` and configure the following parameters:
 
- 1. `password_secret`
- 2. `root_password_sha2`.
- 3. `web_enable`
+1.  `password_secret`
+2.  `root_password_sha2`.
+3.  `web_enable`
 
 For `root_password_sha2`, run `echo -n ROOT_PASSWORD | sha256sum` and set the hash.
 Also you need to set `web_enable` to true to access the web interface.
@@ -71,7 +73,6 @@ Now let's start Graylog:
 ```
 $ sudo systemctl start graylog-server
 ```
-
 
 ### Prepare Graylog for Fluentd
 
@@ -155,7 +156,7 @@ When you log back into Graylog, you should be seeing a graph like this
 
 ![graylog2-graph.png](/images/graylog2-graph.png)
 
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
 [Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.

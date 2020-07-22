@@ -1,7 +1,12 @@
-# Monitoring Fluentd
+---
+title: "监控Fluentd"
+linkTitle: ""
+weight: 1
+---
+
+#
 
 This article describes how to monitor Fluentd.
-
 
 ## Fluentd Metrics Monitoring
 
@@ -11,10 +16,9 @@ monitoring tools such as [`Prometheus`](https://prometheus.io/),
 `Prometheus`, since we will be collaborating more in the future under the
 [CNCF (Cloud Native Computing Foundation)](https://www.cncf.io/).
 
--   [Monitoring Fluentd (Prometheus)](/deployment/monitoring-prometheus.md)
--   [Monitoring Fluentd (Datadog)](https://docs.datadoghq.com/integrations/fluentd/)
--   [Monitoring Fluentd (REST API)](/deployment/monitoring-rest-api.md)
-
+- [Monitoring Fluentd (Prometheus)](/deployment/monitoring-prometheus.md)
+- [Monitoring Fluentd (Datadog)](https://docs.datadoghq.com/integrations/fluentd/)
+- [Monitoring Fluentd (REST API)](/deployment/monitoring-rest-api.md)
 
 ## Process Monitoring
 
@@ -29,7 +33,7 @@ Here's an example for `td-agent`:
   --log /var/log/td-agent/td-agent.log
 ```
 
-For `td-agent` on Linux, check the process statuses like this: 
+For `td-agent` on Linux, check the process statuses like this:
 
 ```
 $ ps w -C ruby -C td-agent --no-heading
@@ -39,16 +43,14 @@ $ ps w -C ruby -C td-agent --no-heading
 
 There should be two processes if there is no issue.
 
-
 ## Port Monitoring
 
 Fluentd opens several ports according to the configuration file. We
 recommend checking the availability of these ports. The default port
 settings are shown below:
 
--   TCP 0.0.0.0 9880 (HTTP by default)
--   TCP 0.0.0.0 24224 (Forward by default)
-
+- TCP 0.0.0.0 9880 (HTTP by default)
+- TCP 0.0.0.0 24224 (Forward by default)
 
 ## Debug Port
 
@@ -65,8 +67,7 @@ following configuration will be required for the debug port:
 
 You can attach the process using the `fluent-debug` command through `dRuby`.
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
 [Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.

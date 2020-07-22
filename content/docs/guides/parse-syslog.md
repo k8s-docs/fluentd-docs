@@ -1,3 +1,9 @@
+---
+title: ""
+linkTitle: ""
+weight: 1
+---
+
 # Parse Syslog Messages Robustly
 
 Syslog is a popular protocol that virtually runs on every server. It is
@@ -8,15 +14,13 @@ parse all `syslog` messages effectively.
 In this tutorial, we will show how to use Fluentd to filter and parse
 different `syslog` messages robustly.
 
-
 ## Prerequisites
 
--   A basic understanding of Fluentd
--   A running instance of `rsyslogd`
+- A basic understanding of Fluentd
+- A running instance of `rsyslogd`
 
 In this guide, we assume you are running
 [`td-agent`](https://www.fluentd.org/download) on Ubuntu.
-
 
 ## Setting Up `rsyslogd`
 
@@ -34,11 +38,9 @@ $ sudo systemctl restart syslog
 
 This tells `rsyslogd` to forward logs to port 5140 to which Fluentd will listen.
 
-
 ## Setting up Fluentd
 
 In this section, we will evolve our Fluentd configuration step-by-step.
-
 
 ### Step 1: Listening to `syslog` Messages
 
@@ -72,7 +74,6 @@ Let's confirm data is coming in:
 ```
 $ less /var/log/td-agent/td-agent.log
 ```
-
 
 ### Step 2: Extract `syslog` Messages from `sudo`
 
@@ -117,7 +118,6 @@ come from `sudo` and contain command data:
   @type stdout
 </match>
 ```
-
 
 ### Step 3: Extract Information from Messages
 
@@ -181,16 +181,14 @@ Now, you should have a line like this in `/var/log/td-agent/td-agent.log`:
 
 There it is, as you can see in the line!
 
-
 ## Conclusion
 
 Fluentd makes it easy to ingest `syslog` events. You can immediately send
 data to the output systems like MongoDB and Elasticsearch, but also you
-can do filtering and further parsing *inside Fluentd* before passing the
+can do filtering and further parsing _inside Fluentd_ before passing the
 processed data onto the output destinations.
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
 [Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.

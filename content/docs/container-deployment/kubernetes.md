@@ -1,4 +1,8 @@
-# Kubernetes Logging with Fluentd
+---
+title: "Fluentd的Kubernetes 记录 "
+linkTitle: ""
+weight: 4
+---
 
 ![fluentd_kubernetes.png](/images/fluentd_kubernetes.png)
 
@@ -14,8 +18,7 @@ collection, parsing and distribution: [Fluentd](http://www.fluentd.org).
 This document focuses on how to deploy Fluentd in Kubernetes and extend the
 possibilities to have different destinations for your logs.
 
-
-## Getting Started
+## 入门
 
 This document assumes that you have a Kubernetes cluster running or at least a
 local (single) node that can be used for testing purposes.
@@ -48,36 +51,34 @@ Since applications runs in Pods and multiple Pods might exists across multiple
 nodes, we need a specific Fluentd-Pod that takes care of log collection on each
 node: [Fluentd DaemonSet](/articles/fluentd_daemonset.md).
 
-
 ## Fluentd DaemonSet
 
 For [Kubernetes](https://kubernetes.io), a
 [DaemonSet](https://kubernetes.io/docs/admin/daemons/) ensures that all (or
-some) nodes run a copy of a *pod*. In order to solve log collection, we are
+some) nodes run a copy of a _pod_. In order to solve log collection, we are
 going to implement a Fluentd DaemonSet.
 
 Fluentd is flexible enough and have the proper plugins to distribute logs to
 different third-party applications like databases or cloud services, so the
-principal question is to know: *Where the logs will be stored?*. Once we got
+principal question is to know: _Where the logs will be stored?_. Once we got
 that question answered, we can move forward configuring our DaemonSet.
 
 The following steps will focus on sending the logs to a Elasticsearch Pod:
 
-### Get Fluentd DaemonSet sources
+### 获取 Fluentd DaemonSet 来源
 
 We have created a Fluentd DaemonSet that have the proper rules and container
 image ready to get started:
 
--   <https://github.com/fluent/fluentd-kubernetes-daemonset>
+- <https://github.com/fluent/fluentd-kubernetes-daemonset>
 
 Please grab a copy of the repository from the command line using GIT:
 
-``` {.CodeRay}
+```{.CodeRay}
 $ git clone https://github.com/fluent/fluentd-kubernetes-daemonset
 ```
 
-
-### DaemonSet Content
+### DaemonSet 内容
 
 The cloned repository contains several configurations that allow to deploy
 Fluentd as a DaemonSet. The Docker container image distributed on the repository
@@ -89,10 +90,9 @@ This repository has several presets for alpine/debian with popular outputs:
 - [DaemonSet preset
   settings](https://github.com/fluent/fluentd-kubernetes-daemonset/tree/master/docker-image/v0.12)
 
+## 记录到 Elasticsearch
 
-## Logging to Elasticsearch
-
-### Requirements
+### 要求
 
 From the `fluentd-kubernetes-daemonset/` directory, find the YAML configuration
 file:
@@ -101,7 +101,7 @@ file:
 
 As an example, let's see a part of this file:
 
-``` {.CodeRay}
+```{.CodeRay}
 apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
@@ -129,22 +129,13 @@ spec:
 This YAML file contains two relevant environment variables that are used by
 Fluentd when the container starts:
 
-| Environment Variable                | Description                            | Default               |
-|-------------------------------------|----------------------------------------|:---------------------:|
-| `FLUENT_ELASTICSEARCH_HOST`         | Specify the host name or IP address.   | `elasticsearch-logging` |
-| `FLUENT_ELASTICSEARCH_PORT`         | Elasticsearch TCP port                 | 9200                  |
-| `FLUENT_ELASTICSEARCH_SSL_VERIFY`  | Whether verify SSL certificates or not.| `true`                  |
-| `FLUENT_ELASTICSEARCH_SSL_VERSION` | Specify the version of TLS.            | `TLSv1_2`               |
+| Environment Variable               | Description                             |         Default         |
+| ---------------------------------- | --------------------------------------- | :---------------------: |
+| `FLUENT_ELASTICSEARCH_HOST`        | Specify the host name or IP address.    | `elasticsearch-logging` |
+| `FLUENT_ELASTICSEARCH_PORT`        | Elasticsearch TCP port                  |          9200           |
+| `FLUENT_ELASTICSEARCH_SSL_VERIFY`  | Whether verify SSL certificates or not. |         `true`          |
+| `FLUENT_ELASTICSEARCH_SSL_VERSION` | Specify the version of TLS.             |        `TLSv1_2`        |
 
 Any relevant change needs to be done in the YAML file before deployment. The
 defaults assume that at least one Elasticsearch Pod **elasticsearch-logging**
 exists in the cluster.
-
-
-------------------------------------------------------------------------
-
-If this article is incorrect or outdated, or omits critical information, please
-[let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
-[Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native
-Computing Foundation (CNCF)](https://cncf.io/). All components are available
-under the Apache 2 License.

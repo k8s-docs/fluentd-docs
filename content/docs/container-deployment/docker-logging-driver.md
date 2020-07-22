@@ -1,4 +1,8 @@
-# Docker Logging Driver and Fluentd
+---
+title: "Docker日志驱动和Fluentd"
+linkTitle: "Docker日志驱动"
+weight: 2
+---
 
 The article describes how to implement a unified logging system for your
 [Docker](http://www.docker.com) containers. An application in a production
@@ -23,18 +27,17 @@ high performance of [Fluentd](http://fluentd.org).
 
 NOTE: Currently, Fluentd logging driver doesn't support sub-second precision.
 
-
-## Getting Started
+## 入门
 
 Using the Docker logging mechanism with [Fluentd](http://www.fluentd.org) is a
 straightforward step. To get started, make sure you have the following
 prerequisites:
 
--   A basic understanding of [Fluentd](http://www.fluentd.org)
--   A basic understanding of Docker
--   A basic understanding of [Docker logging
-    drivers](https://docs.docker.com/engine/admin/logging/overview/)
--   Docker v1.8+
+- A basic understanding of [Fluentd](http://www.fluentd.org)
+- A basic understanding of Docker
+- A basic understanding of [Docker logging
+  drivers](https://docs.docker.com/engine/admin/logging/overview/)
+- Docker v1.8+
 
 For simplicity, the Fluentd is launched as a standard process, not as a
 container.
@@ -43,7 +46,7 @@ Please refer to [Docker Logging via EFK (Elasticsearch + Fluentd + Kibana) Stack
 with Docker Compose](/articles/docker-logging-efk-compose.md) for a fully
 containerized tutorial.
 
-### Step 1: Create the Fluentd Configuration File
+### Step 1: 创建 Fluentd 配置文件
 
 The first step is to prepare Fluentd to listen for the messages coming from the
 Docker containers. For demonstration purposes, we will instruct Fluentd to write
@@ -52,7 +55,7 @@ same by aggregating the logs into a MongoDB instance.
 
 Create `demo.conf` with the following configuration:
 
-``` {.CodeRay}
+```{.CodeRay}
 <source>
   @type forward
   port 24224
@@ -64,17 +67,17 @@ Create `demo.conf` with the following configuration:
 </match>
 ```
 
-### Step 2: Start Fluentd
+### Step 2: 开始 Fluentd
 
 Now, start an instance of Fluentd like this:
 
-``` {.CodeRay}
+```{.CodeRay}
 $ docker run -it -p 24224:24224 -v $(pwd)/demo.conf:/fluentd/etc/demo.conf -e FLUENTD_CONF=demo.conf fluent/fluentd:latest
 ```
 
 On successful start, you should see the Fluentd startup logs:
 
-``` {.CodeRay}
+```{.CodeRay}
 2019-08-21 00:51:02 +0000 [info]: parsing config file is succeeded path="/fluentd/etc/demo.conf"
 2019-08-21 00:51:02 +0000 [info]: using configuration file: <ROOT>
   <source>
@@ -96,7 +99,7 @@ On successful start, you should see the Fluentd startup logs:
 2019-08-21 00:51:02 +0000 [info]: #0 fluentd worker is now running worker=0
 ```
 
-### Step 3: Start Docker Container with Fluentd Driver
+### Step 3: 启动带 Fluentd 驱动程序 Docker 容器
 
 By default, the Fluentd logging driver will try to find a local Fluentd instance
 (Step # 2) listening for connections on the TCP port `24224`. Note that the
@@ -107,7 +110,7 @@ container will not start if it cannot connect to the Fluentd instance.
 The following command will run a base Ubuntu container and print some messages
 to the standard output:
 
-``` {.CodeRay}
+```{.CodeRay}
 $ docker run --log-driver=fluentd ubuntu echo "Hello Fluentd!"
 Hello Fluentd!
 ```
@@ -115,12 +118,11 @@ Hello Fluentd!
 Note that we have launched the container specifying the Fluentd logging driver
 i.e. `--log-driver=fluentd`.
 
-
-### Step 4: Confirm
+### Step 4: 确认
 
 Now, you should see the incoming messages from the container in Fluentd logs:
 
-``` {.CodeRay}
+```{.CodeRay}
 2019-08-21 00:52:28.000000000 +0000 ece4524df531: {"source":"stdout","log":"Hello Fluentd!","container_id":"ece4524df531ed6ded4253c145a53bead9b049241aa12c5a59ab83e3a14a96b4","container_name":"/inspiring_montalcini"}
 ```
 
@@ -128,14 +130,13 @@ At this point, you will notice that the incoming messages are in JSON format,
 have a timestamp, are tagged with the `container_id` and contain general
 information from the source container along with the message.
 
-
-### Additional Step 1: Parse Log Message
+### Additional Step 1: 解析日志消息
 
 Application log is stored in the `"log"` field in the record. You can parse this
 log before sending it to the destinations by using
 [`filter_parser`](/plugins/filter/parser.md).
 
-``` {.CodeRay}
+```{.CodeRay}
 <filter docker.**>
   @type parser
   key_name log
@@ -148,25 +149,24 @@ log before sending it to the destinations by using
 
 Original Event:
 
-``` {.CodeRay}
+```{.CodeRay}
 2019-07-22 03:36:39.000000000 +0000 6e8a14315069: {"log":"{\"key\":\"value\"}","container_id":"6e8a1431506936b8568a284f2b0dd4853c250ad85ab7a497f05c4d371f6c3ae6","container_name":"/laughing_beaver","source":"stdout"}
 ```
 
 Filtered Event:
 
-``` {.CodeRay}
+```{.CodeRay}
 2019-07-22 03:35:59.395952500 +0000 bac5426337a6: {"container_id":"bac5426337a611fc3b7a0b318c3c45981d2acd80f5c5651088bebb8f1f962583","container_name":"/nostalgic_euler","source":"stdout","log":"{\"key\":\"value\"}","key":"value"}
 ```
 
-
-### Additional Step 2: Concatenate Multiple Lines Log Messages
+### Additional Step 2: 连接多个行日志消息
 
 Application log is stored in the `log` field of the record. You can concatenate
 these logs by using
 [`fluent-plugin-concat`](https://github.com/fluent-plugins-nursery/fluent-plugin-concat)
 filter before sending it to the destinations.
 
-``` {.CodeRay}
+```{.CodeRay}
 <filter docker.**>
   @type concat
   key log
@@ -178,7 +178,7 @@ filter before sending it to the destinations.
 
 Original Events:
 
-``` {.CodeRay}
+```{.CodeRay}
 2016-04-13 14:45:55 +0900 docker.28cf38e21204: {"container_id":"28cf38e212042225f5f80a56fac08f34c8f0b235e738900c4e0abcf39253a702","container_name":"/romantic_dubinsky","source":"stdout","log":"-e:2:in `/'"}
 2016-04-13 14:45:55 +0900 docker.28cf38e21204: {"source":"stdout","log":"-e:2:in `do_division_by_zero'","container_id":"28cf38e212042225f5f80a56fac08f34c8f0b235e738900c4e0abcf39253a702","container_name":"/romantic_dubinsky"}
 2016-04-13 14:45:55 +0900 docker.28cf38e21204: {"source":"stdout","log":"-e:4:in `<main>'","container_id":"28cf38e212042225f5f80a56fac08f34c8f0b235e738900c4e0abcf39253a702","container_name":"/romantic_dubinsky"}
@@ -186,14 +186,12 @@ Original Events:
 
 Filtered Events:
 
-``` {.CodeRay}
+```{.CodeRay}
 2016-04-13 14:45:55 +0900 docker.28cf38e21204: {"container_id":"28cf38e212042225f5f80a56fac08f34c8f0b235e738900c4e0abcf39253a702","container_name":"/romantic_dubinsky","source":"stdout","log":"-e:2:in `/'\n-e:2:in `do_division_by_zero'\n-e:4:in `<main>'"}
 ```
 
-If the logs are typical stacktraces, consider using [`detect-exceptions
-plugin`](https://github.com/GoogleCloudPlatform/fluent-plugin-detect-exceptions)
+If the logs are typical stacktraces, consider using [`detect-exceptions plugin`](https://github.com/GoogleCloudPlatform/fluent-plugin-detect-exceptions)
 instead.
-
 
 ## Driver Options
 
@@ -204,17 +202,15 @@ following options through the `--log-opt` Docker command line argument:
 - `fluentd-address`
 - `tag`
 
-
 #### `fluentd-address`
 
 Specifies the optional address (`<ip>:<port>`) for Fluentd.
 
 Example:
 
-``` {.CodeRay}
+```{.CodeRay}
 $ docker run --log-driver=fluentd --log-opt fluentd-address=192.168.2.4:24225 ubuntu echo "..."
 ```
-
 
 #### `tag`
 
@@ -224,19 +220,18 @@ data and take routing decisions. By default, the Fluentd logging driver uses the
 `container_id` as a tag (64 character ID). You can change its value with the
 `tag` option like this:
 
-``` {.CodeRay}
+```{.CodeRay}
 $ docker run --log-driver=fluentd --log-opt tag=docker.my_new_tag ubuntu echo "..."
 ```
 
 Additionally, this option allows to specify some internal variables such as
 `{{.ID}}`, `{{.FullID}}` or `{{.Name}}` like this:
 
-``` {.CodeRay}
+```{.CodeRay}
 $ docker run --log-driver=fluentd --log-opt tag=docker.{{.ID}} ubuntu echo "..."
 ```
 
-
-## Development Environments
+## 开发环境
 
 For a real-world use-case, you would want to use something other than the
 Fluentd standard output to store Docker container messages, such as
@@ -248,8 +243,7 @@ EFK (Elasticsearch, Fluentd, Kibana) with Docker Compose.
 - [Docker Logging via EFK (Elasticsearch + Fluentd + Kibana) Stack with Docker
   Compose](/container-deployment/docker-compose.md)
 
-
-## Production Environments
+## 生产环境
 
 In a production environment, you must use one of the container orchestration
 tools. Currently, Kubernetes has better integration with Fluentd, and we're
@@ -258,8 +252,7 @@ working on making better integrations with other tools as well.
 - [Kubernetes Logging
   Overview](https://kubernetes.io/docs/user-guide/logging/overview/)
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

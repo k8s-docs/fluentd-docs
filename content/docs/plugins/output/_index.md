@@ -1,31 +1,36 @@
+---
+title: ""
+linkTitle: ""
+weight: 1
+---
+
 # Output Plugin Overview
 
 Fluentd has eight (8) types of plugins:
 
--   [Input](/plugins/input/README.md)
--   [Parser](/plugins/parser/README.md)
--   [Filter](/plugins/filter/README.md)
--   [Output](/plugins/output/README.md)
--   [Formatter](/plugins/formatter/README.md)
--   [Storage](/plugins/storage/README.md)
--   [Service Discovery](/plugins/service_discovery/README.md)
--   [Buffer](/plugins/buffer/README.md)
+- [Input](/plugins/input/README.md)
+- [Parser](/plugins/parser/README.md)
+- [Filter](/plugins/filter/README.md)
+- [Output](/plugins/output/README.md)
+- [Formatter](/plugins/formatter/README.md)
+- [Storage](/plugins/storage/README.md)
+- [Service Discovery](/plugins/service_discovery/README.md)
+- [Buffer](/plugins/buffer/README.md)
 
 This article gives an overview of Output Plugin.
-
 
 ## Overview
 
 Fluentd v1.0 output plugins have three (3) buffering and flushing modes:
 
--   **Non-Buffered** mode does not buffer data and write out results
-    immediately.
--   **Synchronous Buffered** mode has "staged" buffer chunks (a chunk is a
-    collection of events) and a queue of chunks, and its behavior can be
-    controlled by `<buffer>` section (See the diagram below).
--   **Asynchronous Buffered** mode also has "stage" and "queue", but
-    output plugin will not commit writing chunks in methods
-    synchronously, but commit later.
+- **Non-Buffered** mode does not buffer data and write out results
+  immediately.
+- **Synchronous Buffered** mode has "staged" buffer chunks (a chunk is a
+  collection of events) and a queue of chunks, and its behavior can be
+  controlled by `<buffer>` section (See the diagram below).
+- **Asynchronous Buffered** mode also has "stage" and "queue", but
+  output plugin will not commit writing chunks in methods
+  synchronously, but commit later.
 
 ![Fluentd v1.0 Plugin API Overview](/images/fluentd-v0.14-plugin-api-overview.png)
 
@@ -43,28 +48,25 @@ values for chunk keys. The output plugin's buffer behavior (if any) is
 defined by a separate [Buffer plugin](/plugins/buffer/README.md). Different
 buffer plugins can be chosen for each output plugin.
 
-
 ## List of Output Plugins
 
--   [`out_copy`](/plugins/output/copy.md)
--   [`out_null`](/plugins/output/null.md)
--   [`out_roundrobin`](/plugins/output/roundrobin.md)
--   [`out_stdout`](/plugins/output/stdout.md)
--   [`out_exec_filter`](/plugins/output/exec_filter.md)
--   [`out_forward`](/plugins/output/forward.md)
--   [`out_mongo`](/plugins/output/mongo.md) / [`out_mongo_replset`](/plugins/output/mongo_replset.md)
--   [`out_exec`](/plugins/output/exec.md)
--   [`out_file`](/plugins/output/file.md)
--   [`out_s3`](/plugins/output/s3.md)
--   [`out_webhdfs`](/plugins/output/webhdfs.md)
-
+- [`out_copy`](/plugins/output/copy.md)
+- [`out_null`](/plugins/output/null.md)
+- [`out_roundrobin`](/plugins/output/roundrobin.md)
+- [`out_stdout`](/plugins/output/stdout.md)
+- [`out_exec_filter`](/plugins/output/exec_filter.md)
+- [`out_forward`](/plugins/output/forward.md)
+- [`out_mongo`](/plugins/output/mongo.md) / [`out_mongo_replset`](/plugins/output/mongo_replset.md)
+- [`out_exec`](/plugins/output/exec.md)
+- [`out_file`](/plugins/output/file.md)
+- [`out_s3`](/plugins/output/s3.md)
+- [`out_webhdfs`](/plugins/output/webhdfs.md)
 
 ## Other Plugins
 
 See this list of available plugins to find out more about other Output plugins:
 
--   [other plugins](http://fluentd.org/plugin/)
-
+- [other plugins](http://fluentd.org/plugin/)
 
 ## Difference between v1.0 and v0.12
 
@@ -106,26 +108,23 @@ See buffer section in [Compat Parameters Plugin Helper
 API](/developer/api-plugin-helper-compat_parameters.md)
 for parameter name changes between v1 and v0.12.
 
-
 ## Buffering/Retrying Parameters
 
 See [Buffer Section Configurations](/configuration/buffer-section.md).
-
 
 ### Control Flushing
 
 See [Buffer Plugin Overview](/plugins/buffer/README.md) for the basic
 behavior of buffer.
 
-
 #### `flush_mode`
 
 Default: `default`
 
 Supported types: `default`, `lazy`, `interval`, `immediate`
+
 - `interval` flushes per `flush_interval`
 - `immediate` flushes just after event arrives
-
 
 #### `flush_interval`
 
@@ -133,13 +132,11 @@ The interval between buffer chunk flushes.
 
 Default: `60`
 
-
 #### `flush_thread_count`
 
 The number of threads to flush the buffer.
 
 Default: `1`
-
 
 #### `flush_thread_interval`
 
@@ -147,20 +144,17 @@ Seconds to sleep between checks for buffer flushes in flush threads.
 
 Default: `1.0`
 
-
 #### `flush_thread_burst_interval`
 
 Seconds to sleep between flushes when many buffer chunks are queued.
 
 Default: `1.0`
 
-
 #### `delayed_commit_timeout`
 
 Seconds of timeout for buffer chunks to be committed by plugins later.
 
 Default: `60`
-
 
 #### `slow_flush_log_threshold`
 
@@ -177,39 +171,37 @@ message like this:
 2016-12-19 12:00:00 +0000 [warn]: buffer flush took longer time than slow_flush_log_threshold: elapsed_time=15.0031226690043695 slow_flush_log_threshold=10.0 plugin_id="foo"
 ```
 
-
 #### `overflow_action`
 
-Controls the buffer behavior when the queue becomes full. 
+Controls the buffer behavior when the queue becomes full.
 
 Supported modes:
 
--   `throw_exception` (default)
+- `throw_exception` (default)
 
-    This mode throws `BufferOverflowError` exception to the input plugin. How
-    `BufferOverflowError` is handled depends on the input plugins, e.g. tail
-    input stops reading new lines, forward input returns an error to forward
-    output. This action fits for streaming manner.
+  This mode throws `BufferOverflowError` exception to the input plugin. How
+  `BufferOverflowError` is handled depends on the input plugins, e.g. tail
+  input stops reading new lines, forward input returns an error to forward
+  output. This action fits for streaming manner.
 
--   `block`
+- `block`
 
-    This mode stops input plugin thread until buffer full issue is resolved.
-    This action is good for batch-like use-cases. This is mainly for `in_tail`
-    plugin. Other input plugins, e.g. socket based plugin, don't assume this
-    action.
+  This mode stops input plugin thread until buffer full issue is resolved.
+  This action is good for batch-like use-cases. This is mainly for `in_tail`
+  plugin. Other input plugins, e.g. socket based plugin, don't assume this
+  action.
 
-    We do not recommend using `block` action to avoid `BufferOverflowError`.
-    Please consider improving destination settings to resolve
-    `BufferOverflowError` or use `@ERROR` label for routing overflowed events to
-    another backup destination (or `secondary` with lower `retry_limit`). If you
-    hit `BufferOverflowError` frequently, it means your destination capacity is
-    insufficient for your traffic.
+  We do not recommend using `block` action to avoid `BufferOverflowError`.
+  Please consider improving destination settings to resolve
+  `BufferOverflowError` or use `@ERROR` label for routing overflowed events to
+  another backup destination (or `secondary` with lower `retry_limit`). If you
+  hit `BufferOverflowError` frequently, it means your destination capacity is
+  insufficient for your traffic.
 
--   `drop_oldest_chunk`
+- `drop_oldest_chunk`
 
-    This mode drops oldest chunks. This mode is useful for monitoring system
-    destinations. For monitoring, newer events are important than older.
-
+  This mode drops oldest chunks. This mode is useful for monitoring system
+  destinations. For monitoring, newer events are important than older.
 
 ### Control Retrying
 
@@ -224,7 +216,6 @@ limit (`queue_limit_length`), new events are rejected.
 Writing out the bottom chunk is considered to be a failure if `Output#write` or
 `Output#try_write` method throws an exception.
 
-
 #### `retry_type`
 
 Specifies how to wait for next retry to flush buffer.
@@ -234,14 +225,12 @@ Supported types:
 - `exponential_backoff` (default)
 - `periodic`
 
-
 #### `retry_forever`
 
 If `true`, plugin will ignore `retry_timeout` and `retry_max_times` options
 and retry flushing forever.
 
 Default: `false`
-
 
 #### `retry_timeout`
 
@@ -250,7 +239,6 @@ discards buffer chunks.
 
 Default: `72` (hours)
 
-
 #### `retry_max_times`
 
 The maximum number of times to retry to flush while failing. If `retry_timeout`
@@ -258,13 +246,11 @@ is the default, the number is 17 with exponential backoff.
 
 Default: `nil`
 
-
 #### `retry_secondary_threshold`
 
 The ratio of `retry_timeout` to switch to use secondary while failing.
 
 Default: `0.8`
-
 
 #### `retry_wait`
 
@@ -273,13 +259,11 @@ exponential backoff.
 
 Default: `1`
 
-
 #### `retry_exponential_backoff_base`
 
 The base number of exponential backoff for retries.
 
 Default: `2`
-
 
 #### `retry_max_interval`
 
@@ -287,7 +271,6 @@ The maximum interval (seconds) for exponential backoff between retries while
 failing.
 
 Default: `nil`
-
 
 #### `retry_randomize`
 
@@ -299,13 +282,12 @@ Default: `true`
 For other configuration parameters available in `<buffer>` section, see
 [Buffer Plugin Overview](/plugins/buffer/README.md).
 
-
 ## Secondary Output
 
 In `buffered` mode, the user can specify `<secondary>` with any output plugin in
 `<match>` configuration. If plugins continue to fail writing buffer chunks and
 exceeds the timeout threshold for retries, then output plugins will delegate the
-writing of the buffer chunk to  the secondary plugin.
+writing of the buffer chunk to the secondary plugin.
 
 `<secondary>` is useful for backup when destination servers are unavailable,
 e.g. `forward`, `mongo`, etc. We strongly recommend `out_secondary_file` plugin
@@ -336,8 +318,7 @@ This example sends logs to Elasticsearch using a file buffer
 NOTE: `<secondary>` plugin receives the primary's buffer chunk directly.
 So, you need to check if your secondary plugin works with primary setting.
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

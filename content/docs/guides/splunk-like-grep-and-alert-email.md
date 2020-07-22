@@ -1,3 +1,9 @@
+---
+title: ""
+linkTitle: ""
+weight: 1
+---
+
 # Splunk-like Grep-and-Alert-Email System Using Fluentd
 
 [Splunk](http://www.splunk.com/) is a great tool for searching logs. One
@@ -12,7 +18,6 @@ access log.
 If you want a more general introduction to use Fluentd as a free
 alternative to Splunk, see the article
 ["Free Alternative to Splunk Using Fluentd"](/guides/free-alternative-to-splunk-by-fluentd.md).
-
 
 ## Installing the Requisites
 
@@ -33,9 +38,7 @@ $ sudo /usr/sbin/td-agent-gem install fluent-plugin-mail
 Note: If you installed Fluentd using RubyGems, use `gem` command
 instead of `td-agent-gem`.
 
-
 ## Configuration
-
 
 ### Full Configuration Example
 
@@ -86,11 +89,10 @@ Fluentd without `td-agent`, save the content as `alert-email.conf` instead).
 
 Before proceeding, please confirm:
 
--   The SMTP configuration is correct. You need a working mail server
-    and a proper recipient address to run this example.
--   The access log file has a proper file permission. You need to make
-    the file readable to the `td-agent`/`fluentd` daemon.
-
+- The SMTP configuration is correct. You need a working mail server
+  and a proper recipient address to run this example.
+- The access log file has a proper file permission. You need to make
+  the file readable to the `td-agent`/`fluentd` daemon.
 
 ### How this Configuration Works
 
@@ -110,7 +112,6 @@ The configuration above consists of three main parts:
 
 In this way, fluentd now works as an email alerting system that monitors
 the web service for you.
-
 
 ## Test the Configuration
 
@@ -136,7 +137,6 @@ manually will produce the same result.
 
 Now you will receive an alert email titled "HTTP SERVER ERROR".
 
-
 ## What's next?
 
 Admittedly, this is a contrived example. In reality, you would set the
@@ -146,13 +146,12 @@ syslogs, or any single- or multi-lined logs.
 
 You can learn more about Fluentd and its plugins by:
 
--   exploring other [plugins](http://fluentd.org/plugin/)
--   asking questions on the [mailing
-    list](https://groups.google.com/forum/#!forum/fluentd)
--   [signing up for our newsletters](https://www.fluentd.org/newsletter)
+- exploring other [plugins](http://fluentd.org/plugin/)
+- asking questions on the [mailing
+  list](https://groups.google.com/forum/#!forum/fluentd)
+- [signing up for our newsletters](https://www.fluentd.org/newsletter)
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
 [Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.

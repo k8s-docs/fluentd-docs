@@ -1,3 +1,9 @@
+---
+title: ""
+linkTitle: ""
+weight: 1
+---
+
 # Collect Log Files into Kinesis Stream in Real-Time
 
 This article explains how to use [Fluentd](http://fluentd.org/)'s
@@ -7,7 +13,6 @@ to aggregate semi-structured logs in real-time. Kinesis plugin is
 developed and published by Amazon Web Services officially.
 
 ![fluentd-kinesis.png](/images/fluentd-kinesis.png)
-
 
 ## Background
 
@@ -24,7 +29,6 @@ applications for specialized needs.
 This article will show you how to use [Fluentd](http://fluentd.org/) to
 import Apache logs into Amazon Kinesis.
 
-
 ## Mechanism
 
 In this example, Fluentd does three (3) things:
@@ -34,21 +38,19 @@ In this example, Fluentd does three (3) things:
     `ip`, `path`, etc.) and buffers them.
 3.  It writes the buffered data to Amazon Kinesis periodically.
 
-
 ## Install
 
 For simplicity, this article will describe how to set up a one-node
 configuration. Please install the following software on the same node:
 
--   [Fluentd](http://fluentd.org/)
--   Apache (with the Combined Log Format)
+- [Fluentd](http://fluentd.org/)
+- Apache (with the Combined Log Format)
 
 You can install Fluentd via major packaging systems.
 
--   [Debian Package](/install/install-by-deb.md)
--   [RPM Package](/install/install-by-rpm.md)
--   [Ruby gem](/install/install-by-gem.md)
-
+- [Debian Package](/install/install-by-deb.md)
+- [RPM Package](/install/install-by-rpm.md)
+- [Ruby gem](/install/install-by-gem.md)
 
 ## Install Kinesis Plugin
 
@@ -59,13 +61,11 @@ install it manually:
 $ sudo /usr/sbin/td-agent-gem install fluent-plugin-kinesis
 ```
 
-
 ## Configuration
 
 Let's start configuring Fluentd. If you used the deb/rpm package,
 Fluentd's config file is located at `/etc/td-agent/td-agent.conf`.
 Otherwise, it is located at `/etc/fluentd/fluentd.conf`.
-
 
 ### Tail Input
 
@@ -101,7 +101,6 @@ Let's go through the configuration line by line:
 
 That's it! You should now be able to output a JSON-formatted data stream
 for Fluentd to process.
-
 
 ### Amazon Kinesis Output
 
@@ -161,7 +160,6 @@ Fluentd and Amazon Kinesis are done via HTTPS. If you do not want to
 have AES keys in the configuration file, [IAM Role based authentication](http://docs.aws.amazon.com/kinesis/latest/dev/controlling-access.html)
 is available too for EC2 nodes.
 
-
 ## Test
 
 Please restart `td-agent` process first, to make the configuration change
@@ -181,7 +179,6 @@ server. This example uses the `ab` (Apache Bench) program:
 $ ab -n 100 -c 10 http://localhost/
 ```
 
-
 ## FAQs
 
 #### Why we need Fluentd, while Kinesis also offers client libraries?
@@ -193,22 +190,19 @@ lot more community contributed plugins and libraries. For outputs, you
 can send not only Kinesis, but multiple destinations like Amazon S3,
 local file storage, etc.
 
-
 ## Conclusion
 
 Fluentd + Amazon Kinesis makes real-time log collection simple, easy,
 and robust.
 
-
 ## Learn More
 
--   [Fluentd Architecture](https://www.fluentd.org/architecture)
--   [Fluentd Get Started](/overview/quickstart.md)
--   [Amazon Kinesis](https://aws.amazon.com/kinesis/)
--   [Amazon Kinesis Output Plugin](https://github.com/awslabs/aws-fluent-plugin-kinesis) (Made by Amazon Web Services)
+- [Fluentd Architecture](https://www.fluentd.org/architecture)
+- [Fluentd Get Started](/overview/quickstart.md)
+- [Amazon Kinesis](https://aws.amazon.com/kinesis/)
+- [Amazon Kinesis Output Plugin](https://github.com/awslabs/aws-fluent-plugin-kinesis) (Made by Amazon Web Services)
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
 [Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.

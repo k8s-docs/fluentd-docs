@@ -1,4 +1,10 @@
-# Writing Filter Plugins
+---
+title: "Writing Filter Plugins"
+linkTitle: ""
+weight: 1
+---
+
+#
 
 This section shows how to write custom filters in addition to [the core filter plugins](/plugins/filter/README.md). The plugin files whose names
 start with "filter\_" are registered as filter plugins. See [Plugin Base Class API](/developer/api-plugin-base.md) to show details of common API for all plugin
@@ -42,7 +48,6 @@ module Fluent::Plugin
 end
 ```
 
-
 ## Methods
 
 Filter plugins have a method to be implemented.
@@ -55,7 +60,6 @@ a Hash with String keys.
 
 The return value of this method should be a Hash of modified record, or
 nil. Fluentd will ignore the event which the filter returns nil.
-
 
 ## Writing Tests
 
@@ -137,14 +141,13 @@ class YourOwnFilterTest < Test::Unit::TestCase
 end
 ```
 
-
 ### Overview of Tests
 
 Testing for filter plugins are mainly for:
 
--   Configuration/Validation checks for invalid configurations (about
-    `#configure`)
--   Checks for filtered records by filter plugins
+- Configuration/Validation checks for invalid configurations (about
+  `#configure`)
+- Checks for filtered records by filter plugins
 
 Plugin test driver provides dummy router, logger and feature to override
 system configurations, and configuration parser and others to make it
@@ -165,8 +168,7 @@ skipped by optional arguments of `#run`. See [Testing API for plugins](/develope
 For configuration tests, repeat 1-2. For full feature tests, repeat 1-5.
 Test drivers and helper methods will support it.
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
 [Fluentd](http://www.fluentd.org/) is a open source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.

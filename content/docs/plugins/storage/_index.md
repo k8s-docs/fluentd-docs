@@ -1,18 +1,23 @@
+---
+title: ""
+linkTitle: ""
+weight: 1
+---
+
 # Storage Plugin Overview
 
 Fluentd has eight (8) types of plugins:
 
--   [Input](/plugins/input/README.md)
--   [Parser](/plugins/parser/README.md)
--   [Filter](/plugins/filter/README.md)
--   [Output](/plugins/output/README.md)
--   [Formatter](/plugins/formatter/README.md)
--   [Storage](/plugins/storage/README.md)
--   [Service Discovery](/plugins/service_discovery/README.md)
--   [Buffer](/plugins/buffer/README.md)
+- [Input](/plugins/input/README.md)
+- [Parser](/plugins/parser/README.md)
+- [Filter](/plugins/filter/README.md)
+- [Output](/plugins/output/README.md)
+- [Formatter](/plugins/formatter/README.md)
+- [Storage](/plugins/storage/README.md)
+- [Service Discovery](/plugins/service_discovery/README.md)
+- [Buffer](/plugins/buffer/README.md)
 
 This article gives an overview of Storage Plugin.
-
 
 ## Overview
 
@@ -20,7 +25,6 @@ Sometimes, the input/filter/output plugin needs to save its internal state in
 memory, storage or key-value store. Fluentd has a pluggable system called
 Storage that lets a plugin store and reuse its internal state as key-value
 pairs.
-
 
 ## How To Use
 
@@ -40,18 +44,15 @@ Here is an example with `in_dummy`:
 </source>
 ```
 
-
 ## List of Built-in Storage
 
--   [`local`](/plugins/storage/local.md)
-
+- [`local`](/plugins/storage/local.md)
 
 ## List of Core Plugins with Storage support
 
--   [`in_dummy`](/plugins/input/dummy.md)
+- [`in_dummy`](/plugins/input/dummy.md)
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

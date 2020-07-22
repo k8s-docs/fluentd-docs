@@ -1,3 +1,9 @@
+---
+title: ""
+linkTitle: ""
+weight: 1
+---
+
 # Easy Data Stream Manipulation using Fluentd
 
 Sometimes, you need to transform the data stream in a certain way. For
@@ -5,7 +11,6 @@ example, you might want to extract a portion of data for error reporting,
 or need to append additional information to events for later inspection.
 
 This article explains common data manipulation techniques in details.
-
 
 ## How to Filter Events by Fields
 
@@ -58,7 +63,6 @@ from the test directory:
 </filter>
 ```
 
-
 ## How to Inject Custom Fields into Events
 
 [`filter_record_transformer`](/plugins/filter/record_transformer.md) is a
@@ -96,8 +100,7 @@ plugin. You can also define a custom variable, or even evaluate
 arbitrary ruby expressions. For details, please read
 [`record_transformer`](/plugins/filter/record_transformer.md)'s manual.
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
 [Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.

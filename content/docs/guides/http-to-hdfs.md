@@ -1,9 +1,14 @@
-# Fluentd + HDFS: Instant Big Data Collection
+---
+title: ""
+linkTitle: ""
+weight: 1
+---
+
+Fluentd + HDFS: Instant Big Data Collection
 
 This article explains how to use [Fluentd](http://fluentd.org/)'s
 [WebHDFS Output plugin](http://github.com/fluent/fluent-plugin-webhdfs/)
 to aggregate semi-structured logs into Hadoop HDFS.
-
 
 ## Background
 
@@ -20,40 +25,36 @@ library.
 This article will show you how to use [Fluentd](http://fluentd.org/) to
 receive data from HTTP and stream it into HDFS.
 
-
 ## Architecture
 
 The figure below shows the high-level architecture:
 
 ![http-to-hdfs.png](/images/http-to-hdfs.png)
 
-
 ## Install
 
 For simplicity, this article will describe how to set up a one-node
 configuration. Please install the following software on the same node:
 
--   [Fluentd](http://fluentd.org/)
--   [WebHDFS Output Plugin](https://github.com/fluent/fluent-plugin-webhdfs/)
-    ([out\_webhdfs](/plugins/output/webhdfs.md))
--   Apache HDFS
+- [Fluentd](http://fluentd.org/)
+- [WebHDFS Output Plugin](https://github.com/fluent/fluent-plugin-webhdfs/)
+  ([out_webhdfs](/plugins/output/webhdfs.md))
+- Apache HDFS
 
 The WebHDFS Output plugin is included in the latest version of Fluentd's
 deb/rpm package (v1.1.10 or later). If you want to use RubyGems to
 install the plugin, please use `gem install fluent-plugin-webhdfs`.
 
--   [Debian Package](/install/install-by-deb.md)
--   [RPM Package](/install/install-by-rpm.md)
--   For CDH, please refer to the [downloads page](https://www.cloudera.com/downloads.html)
--   [Ruby gem](/install/install-by-gem.md)
-
+- [Debian Package](/install/install-by-deb.md)
+- [RPM Package](/install/install-by-rpm.md)
+- For CDH, please refer to the [downloads page](https://www.cloudera.com/downloads.html)
+- [Ruby gem](/install/install-by-gem.md)
 
 ## Fluentd Configuration
 
 Let's start configuring Fluentd. If you used the deb/rpm package,
 Fluentd's config file is located at `/etc/td-agent/td-agent.conf`.
 Otherwise, it is located at `/etc/fluentd/fluentd.conf`.
-
 
 ### HTTP Input
 
@@ -66,7 +67,6 @@ HTTP. The Fluentd configuration file should look like this:
   port 8888
 </source>
 ```
-
 
 ### WebHDFS Output
 
@@ -100,7 +100,6 @@ to the same file, which must be avoided for append operations.
 
 Other options specify HDFS's NameNode host and port.
 
-
 ## HDFS Configuration
 
 Append operations are not enabled by default. Please put these
@@ -127,7 +126,6 @@ cluster:
 Please confirm that the HDFS user has write access to the `path`
 specified as the WebHDFS output.
 
-
 ## Test
 
 To test the configuration, just post the JSON to Fluentd (we use the
@@ -147,7 +145,6 @@ $ sudo -u hdfs hadoop fs -lsr /log/
 drwxr-xr-x   - 1 supergroup          0 2012-10-22 09:40 /log/20121022_14/access.log.dev
 ```
 
-
 ## Conclusion
 
 Fluentd + WebHDFS make realtime log collection simple, robust and
@@ -155,16 +152,14 @@ scalable! [@tagomoris](http://github.com/tagomoris) has already been
 using this plugin to collect 20,000 msgs/sec, 1.5 TB/day without any
 major problems for several months now.
 
-
 ## Learn More
 
--   [Fluentd Architecture](https://www.fluentd.org/architecture)
--   [Fluentd Get Started](/overview/quickstart.md)
--   [WebHDFS Output Plugin](/plugins/output/webhdfs.md)
--   [Slides: Fluentd and WebHDFS](http://www.slideshare.net/tagomoris/fluentd-and-webhdfs)
+- [Fluentd Architecture](https://www.fluentd.org/architecture)
+- [Fluentd Get Started](/overview/quickstart.md)
+- [WebHDFS Output Plugin](/plugins/output/webhdfs.md)
+- [Slides: Fluentd and WebHDFS](http://www.slideshare.net/tagomoris/fluentd-and-webhdfs)
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
 [Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.

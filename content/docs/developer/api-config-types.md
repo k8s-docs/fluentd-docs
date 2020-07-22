@@ -1,11 +1,16 @@
-# Types of Configuration Parameters
+---
+title: "Types of Configuration Parameters"
+linkTitle: ""
+weight: 1
+---
 
+#
 
 ## Common options
 
--   default: Specify default value for this parameter. If omit this
-    option, this parameter is required. Fluentd will check this value on
-    boot when this option is omitted.
+- default: Specify default value for this parameter. If omit this
+  option, this parameter is required. Fluentd will check this value on
+  boot when this option is omitted.
 
 ```
 # Required parameter. The configuration must have this parameter like 'param1 10'
@@ -14,32 +19,31 @@ config_param :param1, :integer
 config_param :param2, :integer, default: 100
 ```
 
--   secret: If true, mask this parameter when Fluentd dumps the configuration.
+- secret: If true, mask this parameter when Fluentd dumps the configuration.
 
 ```
 config_param :secret_param, :string, secret: true
 ```
 
--   deprecated: Specify deprecation warning message. If users use this
-    parameter in their config, they will see deprecation warning on
-    boot.
+- deprecated: Specify deprecation warning message. If users use this
+  parameter in their config, they will see deprecation warning on
+  boot.
 
 ```
 config_param :old_param, :string, deprecated: "Use new_param instead"
 ```
 
--   obsoleted: Specify obsolete error message. If users use this
-    parameter in their config, Fluentd raises `Fluent::ConfigError` and
-    stop.
+- obsoleted: Specify obsolete error message. If users use this
+  parameter in their config, Fluentd raises `Fluent::ConfigError` and
+  stop.
 
 ```
 config_param :dead_param, :string, obsoleted: "This parameter doesn't work anymore"
 ```
 
--   alias: Alias of this parameter as symbol
--   skip\_accessor: If true, skip adding accessor to the plugin. Only
-    for internal use.
-
+- alias: Alias of this parameter as symbol
+- skip_accessor: If true, skip adding accessor to the plugin. Only
+  for internal use.
 
 ## :string
 
@@ -64,7 +68,6 @@ Configuration Example:
 name John Titor
 passowrd very-secret-password
 ```
-
 
 ## :regexp
 
@@ -96,7 +99,6 @@ pattern /^name_/
 pattern ^name_    # Also support pattern without slashes
 ```
 
-
 ## :integer
 
 Define an integer parameter.
@@ -122,7 +124,6 @@ Configuration Example:
 num_children 10
 ```
 
-
 ## :float
 
 Define a float parameter.
@@ -147,7 +148,6 @@ Configuration Example:
 ```
 interval 1.5
 ```
-
 
 ## :size
 
@@ -180,7 +180,6 @@ Configuration Example:
 ```
 limit 10m
 ```
-
 
 ## :time
 
@@ -217,7 +216,6 @@ Configuration Example:
 interval 10m
 ```
 
-
 ## :bool
 
 Define a bool parameter.
@@ -242,7 +240,6 @@ Configuration Example:
 deep_copy true
 ```
 
-
 ## :enum
 
 Define an enumeration type parameter.
@@ -250,8 +247,8 @@ Define an enumeration type parameter.
 Users can choose a value from the list. If user choose the value that
 does not exist in the list, error will occur on boot.
 
--   Available options
-    -   list: Available value list
+- Available options
+  - list: Available value list
 
 Code Example:
 
@@ -274,16 +271,15 @@ Configuration Example:
 protocol_type tcp
 ```
 
-
 ## :array
 
 Define an array type parameter.
 
 Users can set array value to the parameter.
 
--   Available options
-    -   value\_type: Define type of the value. Available type are
-        `:string`, `:integer`, `:float`, `:size`, `:bool`, `:time`.
+- Available options
+  - value_type: Define type of the value. Available type are
+    `:string`, `:integer`, `:float`, `:size`, `:bool`, `:time`.
 
 Code Example:
 
@@ -308,15 +304,14 @@ These configuration will convert to:
 ["user1", "user2", "user3"]
 ```
 
-
 ## :hash
 
 Define a hash type parameter.
 
--   Available options
-    -   symbolize\_keys: If true, symbolize keys.
-    -   value\_type: Define type of the value. Use same type with all
-        values.
+- Available options
+  - symbolize_keys: If true, symbolize keys.
+  - value_type: Define type of the value. Use same type with all
+    values.
 
 Code Example:
 
@@ -343,8 +338,7 @@ These configurations will be converted to:
 { key1: "value1", key2: "value2" }
 ```
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
 [Fluentd](http://www.fluentd.org/) is a open source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.

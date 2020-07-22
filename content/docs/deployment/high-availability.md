@@ -1,8 +1,13 @@
-# Fluentd High Availability Configuration
+---
+title: "Fluentd 高可用性配置"
+linkTitle: "高可用性配置"
+weight: 1
+---
+
+#
 
 For high-traffic websites, we recommend using a high-availability configuration
 for `Fluentd`.
-
 
 ## Message Delivery Semantics
 
@@ -10,14 +15,14 @@ Fluentd is designed primarily for event-log delivery systems.
 
 In such systems, several delivery guarantees are possible:
 
--   **At most once**: Messages are immediately transferred. If the
-    transfer succeeds, the message is never sent out again. However,
-    many failure scenarios can cause lost messages (e.g. no more write
-    capacity).
--   **At least once**: Each message is delivered at least once. In failure
-    cases, messages may be delivered twice.
--   **Exactly once**: Each message is delivered once and only once. This
-    is the most desirable.
+- **At most once**: Messages are immediately transferred. If the
+  transfer succeeds, the message is never sent out again. However,
+  many failure scenarios can cause lost messages (e.g. no more write
+  capacity).
+- **At least once**: Each message is delivered at least once. In failure
+  cases, messages may be delivered twice.
+- **Exactly once**: Each message is delivered once and only once. This
+  is the most desirable.
 
 If the system "**can't lose a single event**", and must also transfer
 "**exactly once**", then the system must stop ingesting events when it
@@ -32,7 +37,6 @@ delivery failures.
 
 However, most failure scenarios are preventable. The following sections
 describe how to set up Fluentd's topology for high-availability.
-
 
 ## Network Topology
 
@@ -53,7 +57,6 @@ Fluentd can act as either a log forwarder or a log aggregator, depending
 on its configuration. The next sections describe the respective setups.
 We assume that the active log aggregator has an IP **192.168.0.1** and
 the backup has IP **192.168.0.2**.
-
 
 ## Log Forwarder Configuration
 
@@ -101,7 +104,6 @@ When the active aggregator (192.168.0.1) dies, the logs will instead be
 sent to the backup aggregator (192.168.0.2). If both servers die, the
 logs are buffered on-disk at the corresponding forwarder nodes.
 
-
 ## Log Aggregator Configuration
 
 Use the following configuration for **log aggregators** to configure the input
@@ -124,9 +126,7 @@ The incoming logs are buffered, then periodically uploaded to the
 cloud. If upload fails, the logs are stored on the local disk until the
 retransmission succeeds.
 
-
 ## Failure Case Scenarios
-
 
 ### Forwarder Failure
 
@@ -141,10 +141,9 @@ breaks, the data transfer is automatically retried.
 
 However, possible message loss scenarios do exist:
 
--   The process dies immediately after receiving the events, but before
-    writing them into the buffer.
--   The forwarder's disk is broken, and the file buffer is lost.
-
+- The process dies immediately after receiving the events, but before
+  writing them into the buffer.
+- The forwarder's disk is broken, and the file buffer is lost.
 
 ### Aggregator Failure
 
@@ -159,13 +158,11 @@ the data transfer is automatically retried.
 
 However, possible message loss scenarios do exist:
 
--   The process dies immediately after receiving the events, but before
-    writing them into the buffer.
--   The aggregator's disk is broken, and the file buffer is lost.
-
+- The process dies immediately after receiving the events, but before
+  writing them into the buffer.
+- The aggregator's disk is broken, and the file buffer is lost.
 
 ## Troubleshooting
-
 
 ### "no nodes are available"
 
@@ -182,8 +179,7 @@ Please note that there is one [known issue](http://kb.vmware.com/selfservice/mic
 where VMware will occasionally lose small UDP packages used for
 heartbeat.
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
 [Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.

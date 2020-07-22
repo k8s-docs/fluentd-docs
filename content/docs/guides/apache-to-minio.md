@@ -1,16 +1,21 @@
+---
+title: ""
+linkTitle: ""
+weight: 1
+---
+
 # Store Apache Logs into Minio
 
 This article explains how to use Fluentd to aggregate and transport
 Apache logs to a [Minio](https://www.minio.io) server.
 
-
 ## Prerequisites
 
 The following services are required to be set up correctly:
 
--   [Fluentd](/overview/installation.md)
--   [Minio](https://minio.io/download/)
--   [Apache](https://httpd.apache.org/)
+- [Fluentd](/overview/installation.md)
+- [Minio](https://minio.io/download/)
+- [Apache](https://httpd.apache.org/)
 
 Also, if you have installed Fluentd through RubyGems (without
 `td-agent`), please install the [`out_s3`](/plugins/output/s3.md) plugin manually:
@@ -19,9 +24,7 @@ Also, if you have installed Fluentd through RubyGems (without
 $ sudo fluent-gem install fluent-plugin-s3
 ```
 
-
 ## Configuration
-
 
 ### Input Settings
 
@@ -44,7 +47,6 @@ NOTE: If you are using the standalone version of Fluentd, use
 Before proceeding, please confirm that the access log file has proper
 file permission. If the log file is not readable by the
 `td-agent`/`fluentd`, the rest of this article will not work.
-
 
 ### Output Settings
 
@@ -77,7 +79,6 @@ server. Since Minio is compatible with Amazon Simple Storage Service
 
 After adding the settings to the conf file, please restart the Fluentd daemon.
 
-
 ## Test the Settings
 
 Use `curl` to generate some log data for testing:
@@ -98,14 +99,12 @@ Then you will see the aggregated log data on Minio:
 
 ![minio-screenshot.png](/images/minio-screenshot.png)
 
-
 ## Learn More
 
--   [Fluentd Architecture](http://www.fluentd.org/architecture)
--   [Amazon S3 Output plugin](/plugins/output/s3.md)
+- [Fluentd Architecture](http://www.fluentd.org/architecture)
+- [Amazon S3 Output plugin](/plugins/output/s3.md)
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
 [Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.

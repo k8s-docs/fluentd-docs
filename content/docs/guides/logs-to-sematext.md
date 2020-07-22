@@ -1,3 +1,9 @@
+---
+title: ""
+linkTitle: ""
+weight: 1
+---
+
 # Send Logs to Sematext
 
 [Sematext](https://sematext.com/) is a tool for managing logs, and considered
@@ -6,7 +12,6 @@ In this article, we present an alternative to Splunk by combining Fluentd with
 the Sematext open Elasticsearch API.
 
 ![sematext-dashboard.png](/images/sematext-dashboard.png)
-
 
 [Elasticsearch](https://www.elastic.co/products/elasticsearch) is an
 open source search engine known for its ease of use.
@@ -21,9 +26,7 @@ In this guide, we'll cover the installation, setup, and basic use of
 this log management solution. This setup was tested on Ubuntu 18.04.
 **If you're not familiar with Fluentd**, please learn more about Fluentd first.
 
-
 ## Prerequisites
-
 
 ### Set Up Sematext
 
@@ -34,9 +37,9 @@ You need to [sign up](https://apps.sematext.com/ui/registration) and create an A
 In this guide you'll install `td-agent`, the stable release of Fluentd.
 Please refer to the guides below for detailed installation steps:
 
--   [Debian Package](/install/install-by-deb.md)
--   [RPM Package](/install/install-by-rpm.md)
--   [Ruby gem](/install/install-by-gem.md)
+- [Debian Package](/install/install-by-deb.md)
+- [RPM Package](/install/install-by-rpm.md)
+- [Ruby gem](/install/install-by-gem.md)
 
 Next, install the Elasticsearch plugin for Fluentd `fluent-plugin-elasticsearch`:
 
@@ -99,7 +102,6 @@ $ sudo /etc/init.d/td-agent start
 $ sudo systemctl start td-agent.service
 ```
 
-
 ## Set Up `rsyslogd`
 
 Finally, configure forwarding logs from your `rsyslogd` to Fluentd.
@@ -116,7 +118,6 @@ Please restart the `rsyslog` service once the modification is complete:
 ```
 $ sudo /etc/init.d/rsyslog restart
 ```
-
 
 ## Store and Search Logs
 
@@ -140,7 +141,6 @@ If you are used to Kibana, you can still use it as well.
 For more details on how to use Kibana, please read [the official manual](https://www.elastic.co/guide/en/kibana/current/index.html).
 
 ![sematext-logs-overview.png](/images/sematext-logs-overview.png)
-
 
 ### Debugging
 
@@ -173,7 +173,6 @@ including errors can be found at `/etc/td-agent/td-agent.log`.
 </match>
 ```
 
-
 ## Conclusion
 
 This how-to guide introduced an alternative SaaS tool to use instead of Splunk.
@@ -185,15 +184,14 @@ You'll get access to storing and searching logs from infrastructure,
 apps, and software. The example provided in this article has been
 tested for the current production environments of Sematext.
 
-
 ## Learn More
 
--   [Fluentd Architecture](https://www.fluentd.org/architecture)
--   [Fluentd Get Started](/overview/quickstart.md)
--   [Downloading Fluentd](http://www.fluentd.org/download)
--   [Set up Fluentd with Sematext](https://apps.sematext.com/ui/howto/Logsene/fluentd?activeSection=fluentd)
+- [Fluentd Architecture](https://www.fluentd.org/architecture)
+- [Fluentd Get Started](/overview/quickstart.md)
+- [Downloading Fluentd](http://www.fluentd.org/download)
+- [Set up Fluentd with Sematext](https://apps.sematext.com/ui/howto/Logsene/fluentd?activeSection=fluentd)
 
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
 [Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.
