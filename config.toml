@@ -1,0 +1,5 @@
+baseURL = "http://example.org/"
+languageCode = "zh-cn"
+title = "Fluentd 文档"
+theme = ["docsy"]
+contentDir = "content"
