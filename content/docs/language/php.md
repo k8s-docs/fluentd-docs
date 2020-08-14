@@ -1,10 +1,8 @@
 ---
-title: ""
-linkTitle: ""
+title: "来 PHP 应用程序集中化日志"
+linkTitle: "PHP"
 weight: 1
 ---
-
-# Centralize Logs from PHP Applications
 
 The [`fluent-logger-php`](http://github.com/fluent/fluent-logger-php)
 library is used to post records from PHP applications to Fluentd.

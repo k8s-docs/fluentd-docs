@@ -1,4 +1,8 @@
-# MongoDB Output Plugin
+---
+title: "MongoDB Output Plugin"
+linkTitle: "MongoDB"
+weight: 1
+---
 
 ![mongo.png](/images/plugins/output/mongo.png)
 
@@ -11,7 +15,6 @@ If you're using `ReplicaSet`, please see the
 This document does not describe all the parameters. For details, check the
 **Further Reading** section.
 
-
 ## Why Fluentd with MongoDB?
 
 Fluentd enables your apps to insert records to MongoDB asynchronously
@@ -20,7 +23,6 @@ This has the following advantages:
 
 1.  less impact on application performance
 2.  higher MongoDB insertion throughput while maintaining JSON record structure
-
 
 ## Install
 
@@ -33,7 +35,6 @@ $ fluent-gem install fluent-plugin-mongo
 ```
 
 For more details, see [Plugin Management](/deployment/plugin-management.md).
-
 
 ## Example Configuration
 
@@ -74,102 +75,90 @@ the basic structure and syntax of the configuration file.
 
 For `<buffer>`, refer to [Buffer Section Configuration](/configuration/buffer-section.md).
 
-
 ## Parameters
-
 
 ### `@type`
 
 The value must be `mongo`.
 
-
 ### `host`
 
 | type   | default     | version |
-|:-------|:------------|:--------|
+| :----- | :---------- | :------ |
 | string | 'localhost' | 1.0.0   |
 
 The MongoDB hostname.
 
-
 ### `port` (required)
 
 | type    | default | version |
-|:--------|:--------|:--------|
+| :------ | :------ | :------ |
 | integer | 27017   | 1.0.0   |
 
 The MongoDB port.
 
-
 ### `database`
 
 | type   | default            | version |
-|:-------|:-------------------|:--------|
+| :----- | :----------------- | :------ |
 | string | required parameter | 1.0.0   |
 
 The database name.
 
-
 ### `collection` (required, if not `tag_mapped`)
 
 | type   | default                                              | version |
-|:-------|:-----------------------------------------------------|:--------|
+| :----- | :--------------------------------------------------- | :------ |
 | string | 'untagged' or required parameter if not `tag_mapped` | 1.0.0   |
 
 The collection name.
 
-
 ### `capped`
 
 | type   | default  | version |
-|:-------|:---------|:--------|
+| :----- | :------- | :------ |
 | string | optional | 1.0.0   |
 
 This option enables capped collection. This is always recommended
 because MongoDB is not suited for storing large amounts of historical
 data.
 
-
 #### `capped_size`
 
 | type | default  | version |
-|:-----|:---------|:--------|
+| :--- | :------- | :------ |
 | size | optional | 1.0.0   |
 
 Sets the capped collection size.
 
-
 ### `user`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | `nil`   | 1.0.0   |
 
 The username to use for authentication.
 
-
 ### `password`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | `nil`   | 1.0.0   |
 
 The password to use for authentication.
 
-
 ### `time_key`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | `time`  | 1.0.0   |
 
 The key name of timestamp.
 
-
 ### `tag_mapped`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | `false` | 1.0.0   |
 
 This option allows `out_mongo` to use Fluentd's tag to determine the destination
@@ -199,21 +188,18 @@ inserted into the `foo` collection within the `fluentd` database:
 
 This option is useful for flexible log collection.
 
-
 ## Common Output / Buffer parameters
 
 For common output / buffer parameters, please check the following articles:
 
--   [Output Plugin Overview](/plugins/output/README.md)
--   [Buffer Section Configuration](/configuration/buffer-section.md)
-
+- [Output Plugin Overview](/plugins/output/README.md)
+- [Buffer Section Configuration](/configuration/buffer-section.md)
 
 ## Further Reading
 
--   [`fluent-plugin-mongo`](https://github.com/fluent/fluent-plugin-mongo)
+- [`fluent-plugin-mongo`](https://github.com/fluent/fluent-plugin-mongo)
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

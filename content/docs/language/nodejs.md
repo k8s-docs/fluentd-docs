@@ -1,10 +1,8 @@
 ---
-title: ""
-linkTitle: ""
+title: "来 Node.js 应用程序集中化日志"
+linkTitle: "Node.js"
 weight: 1
 ---
-
-# Centralize Logs from Node.js Applications
 
 The [`fluent-logger-node`](https://github.com/fluent/fluent-logger-node)
 library is used to post records from Node.js applications to Fluentd.

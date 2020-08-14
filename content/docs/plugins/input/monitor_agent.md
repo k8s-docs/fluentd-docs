@@ -1,12 +1,14 @@
-# Monitoring Agent Input Plugin
+---
+title: "Monitoring Agent 输入插件"
+linkTitle: "Monitoring"
+weight: 11
+description: >
+  `in_monitor_agent` 输入插件使Fluentd通过使用HTTP API导出内部度量.
+---
 
-The `in_monitor_agent` Input plugin enables Fluentd to export internal
-metrics by using HTTP API.
+它包括在 Fluentd 的核心。
 
-It is included in Fluentd's core.
-
-
-## Example Configuration
+## 示例配置
 
 ```
 <source>
@@ -31,74 +33,65 @@ $ curl http://host:24220/api/plugins
 Refer to the [Configuration File](/configuration/config-file.md) article for the
 basic structure and syntax of the configuration file.
 
-
-## Parameters
+## 参数
 
 See [Common Parameters](/configuration/plugin-common-parameters.md).
-
 
 ### `@type` (required)
 
 The value must be `monitor_agent`.
 
-
 ### `port`
 
 | type    | default | version |
-|:--------|:--------|:--------|
+| :------ | :------ | :------ |
 | integer | 24220   | 0.14.0  |
 
 The port to listen to.
 
-
 ### `bind`
 
 | type   | default                 | version |
-|:-------|:------------------------|:--------|
+| :----- | :---------------------- | :------ |
 | string | 0.0.0.0 (all addresses) | 0.14.0  |
 
 The bind address to listen to.
 
-
 ### `tag`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | nil     | 0.14.0  |
 
 If you set this parameter, this plugin emits metrics as records. See
 "Reuse plugins" section.
 
-
 ### `emit_interval`
 
 | type    | default | version |
-|:--------|:--------|:--------|
+| :------ | :------ | :------ |
 | integer | 60      | 0.14.0  |
 
 The interval time between event emits. This will be used when `tag` is
 configured.
 
-
 ### `include_config`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | true    | 0.14.0  |
 
 You can set this option to false to remove `config` field from the response.
 
-
 ### `include_retry`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | true    | 0.14.11 |
 
 You can set this option to false to remove `retry` field from the response.
 
-
-## Configuration Example
+## 配置示例
 
 Here is a configuration example that uses `in_monitor_agent`:
 
@@ -126,8 +119,7 @@ to which plugin much easier. Without `@id`, Fluentd uses `object_id` as
 unique identifier, so you cannot identify a record just by looking at
 its `plugin_id` field.
 
-
-## Output Example
+## 输出例
 
 Here is how the output looks like in JSON:
 
@@ -165,7 +157,6 @@ Here is how the output looks like in JSON:
 If the plugin is an output with buffer settings, the metrics has buffer
 related fields.
 
-
 ### `retry`
 
 If the output plugin is in retry status, additional fields are added to
@@ -175,7 +166,7 @@ buffer.
 Here is the response:
 
 ```
-{ 
+{
   "plugin_id": "out_es",
   "plugin_category": "output",
   "type": "elasticsearch",
@@ -195,9 +186,7 @@ Here is the response:
 3rd try. `retry_count` is the total number of flush failure. This value
 is cleared when fluentd restarts, not when retry succeeded.
 
-
-## Tips and Tricks
-
+## 技巧和窍门
 
 ### How to use query parameters to tune outputs
 
@@ -212,17 +201,16 @@ $ curl http://localhost:24220/api/plugins.json?debug=1
 The following list shows the available query parameters:
 
 | Parameter     | Value          | Explanation                                            |
-|:--------------|:---------------|:-------------------------------------------------------|
+| :------------ | :------------- | :----------------------------------------------------- |
 | `debug`       | Constant       | Expose additional internal metrics                     |
 | `with_ivars`  | Variable names | Expose the specified instance variables of each plugin |
-| `with_config` | Boolean        | Override the configuration option with\_config         |
-| `with_retry`  | Boolean        | Override the configuration option with\_retry          |
+| `with_config` | Boolean        | Override the configuration option with_config          |
+| `with_retry`  | Boolean        | Override the configuration option with_retry           |
 | `tag`         | Event tag      | Only show plugins that matches the specified tag       |
 | `@id`         | Plugin id      | Filter plugins by plugin id                            |
 | `@type`       | Plugin type    | Filter plugins by plugin type                          |
 
-
-### How to emit metrics as events
+### 如何发出指标作为事件
 
 You can emit the internal metrics as events by setting the `tag`.
 
@@ -247,7 +235,6 @@ per minute:
 2018-01-30 22:53:29.591560000 +0900 debug.monitor: { "plugin_id":"out_out","plugin_category":"output","type":"stdout","output_plugin":true,"retry_count":0}
 ```
 
-
 ### Multi-Process Environment
 
 If you use this plugin under multi-process environment, HTTP server will be
@@ -267,15 +254,14 @@ configuration:
 
 Three (3) HTTP servers will be launched with:
 
--   port 24230 for worker 0
--   port 24231 for worker 1
--   port 24232 for worker 2
+- port 24230 for worker 0
+- port 24231 for worker 1
+- port 24232 for worker 2
 
 Note that you may need to set `worker_id` to `@id` parameter. See [config
 article](/configuration/config-file.md#embedded-ruby-code).
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

@@ -1,4 +1,8 @@
-# `stdout` Output Plugin
+---
+title: "`stdout` Output Plugin"
+linkTitle: "stdout"
+weight: 1
+---
 
 ![stdout.png](/images/plugins/output/stdout.png)
 
@@ -6,7 +10,6 @@ The `stdout` output plugin prints events to the standard output (or logs if
 launched as a daemon). This output plugin is useful for debugging purposes.
 
 It is included in Fluentd's core.
-
 
 ## Example Configuration
 
@@ -28,93 +31,80 @@ Sample output:
 where the first part shows the output `time`, the second part shows the `tag`, and
 the third part shows the `record`.
 
-
 ## Supported Modes
 
--   Non-Buffered
--   Synchronous
-
+- Non-Buffered
+- Synchronous
 
 ## Plugin Helpers
 
--   [`inject`](/developer/api-plugin-helper-inject.md)
--   [`formatter`](/developer/api-plugin-helper-formatter.md)
--   [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
-
+- [`inject`](/developer/api-plugin-helper-inject.md)
+- [`formatter`](/developer/api-plugin-helper-formatter.md)
+- [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
 
 ## Parameters
 
 [Common Parameters](/configuration/plugin-common-parameters.md)
 
-
 ### `@type`
 
 The value must be `stdout`.
-
 
 ### `<buffer>` Section
 
 See [Buffer Section Configurations](/configuration/buffer-section.md) for more
 details.
 
-
 #### `chunk_keys`
 
 | type  | default | version |
-|:------|:--------|:--------|
+| :---- | :------ | :------ |
 | array | tag     | 0.14.5  |
 
 Overwrites the default value in this plugin.
 
-
 #### `flush_at_shutdown`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | true    | 0.14.5  |
 
 Overwrites the default value in this plugin.
 
-
 #### `chunk_limit_size`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | size | 10240   | 0.14.5  |
 
 Overwrites the default value in this plugin.
-
 
 ### `<format>` Section
 
 See [Format Section Configurations](/configuration/format-section.md) for more details.
 
-
 #### `@type`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | stdout  | 0.14.5  |
 
 The format of output.
 
-
 #### `output_type`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | json    | 0.14.5  |
 
 This is the option for `stdout` format. Configure the format of record
 (third part). Any formatter plugins can be specified.
 
-
 ### `<inject>` Section
 
 See [Inject Section Configurations](/configuration/inject-section.md) for more details.
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

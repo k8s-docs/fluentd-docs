@@ -1,12 +1,14 @@
-# `msgpack` Parser Plugin
+---
+title: "`msgpack` Parser Plugin"
+linkTitle: "msgpack"
+weight: 1
+---
 
 The `msgpack` parser plugin parses the MessagePack data.
-
 
 ## Parameters
 
 See [Parse Section Configurations](/configuration/parse-section.md).
-
 
 ## Example
 
@@ -26,8 +28,7 @@ record:
 {"message":"Hello msgpack", "num":100}
 ```
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

@@ -1,10 +1,8 @@
 ---
-title: ""
+title: "存储Apache日志到Minio"
 linkTitle: ""
 weight: 1
 ---
-
-# Store Apache Logs into Minio
 
 This article explains how to use Fluentd to aggregate and transport
 Apache logs to a [Minio](https://www.minio.io) server.

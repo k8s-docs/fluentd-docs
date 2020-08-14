@@ -1,13 +1,13 @@
 ---
-title: ""
-linkTitle: ""
-weight: 1
+title: "格式化插件概述"
+linkTitle: "格式化插件"
+weight: 5
 ---
 
-# Formatter Overview
-
-Fluentd has 8 types of plugins: [Input](/plugins/input/README.md),
-[Parser](/plugins/parser/README.md), [Filter](/plugins/filter/README.md),
+Fluentd has 8 types of plugins:
+[Input](/plugins/input/README.md),
+[Parser](/plugins/parser/README.md),
+[Filter](/plugins/filter/README.md),
 [Output](/plugins/output/README.md),
 [Formatter](/plugins/formatter/README.md),
 [Storage](/plugins/storage/README.md),

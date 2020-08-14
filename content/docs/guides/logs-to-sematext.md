@@ -1,10 +1,8 @@
 ---
-title: ""
+title: "日志发送到Sematext"
 linkTitle: ""
 weight: 1
 ---
-
-# Send Logs to Sematext
 
 [Sematext](https://sematext.com/) is a tool for managing logs, and considered
 an alternative to Splunk, but with cheaper and more flexible [pricing](https://sematext.com/pricing).

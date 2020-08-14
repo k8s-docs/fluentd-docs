@@ -1,12 +1,14 @@
-# `nginx` Parser Plugin
+---
+title: "`nginx` Parser Plugin"
+linkTitle: "nginx"
+weight: 1
+---
 
 The `nginx` parser plugin parses the default nginx logs.
-
 
 ## Parameters
 
 See [Parse Section Configurations](/configuration/parse-section.md).
-
 
 ## Regexp Patterns
 
@@ -20,7 +22,6 @@ time_format %d/%b/%Y:%H:%M:%S %z
 `remote`, `user`, `method`, `path`, `code`, `size`, `referer`, `agent`
 and `http_x_forwarded_for` are included in the event record. `time` is
 used for the event time.
-
 
 ## Example
 
@@ -51,8 +52,7 @@ record:
 }
 ```
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

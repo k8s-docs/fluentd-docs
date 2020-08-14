@@ -1,12 +1,10 @@
 ---
-title: ""
-linkTitle: ""
-weight: 1
+title: "服务发现插件概述"
+linkTitle: "服务发现插件"
+weight: 7
 ---
 
-# Service Discovery Plugin Overview
-
-Fluentd has eight (8) types of plugins:
+Fluentd 有八(8)类插件:
 
 - [Input](/plugins/input/README.md)
 - [Parser](/plugins/parser/README.md)

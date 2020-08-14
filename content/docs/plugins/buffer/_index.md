@@ -1,12 +1,10 @@
 ---
-title: ""
-linkTitle: ""
-weight: 1
+title: "缓冲插件概述"
+linkTitle: "缓冲插件"
+weight: 8
 ---
 
-# Buffer Plugin Overview
-
-Fluentd has eight (8) types of plugins:
+Fluentd 有八（8）种插件类型:
 
 - [Input](/plugins/input/README.md)
 - [Parser](/plugins/parser/README.md)
@@ -17,7 +15,7 @@ Fluentd has eight (8) types of plugins:
 - [Service Discovery](/plugins/service_discovery/README.md)
 - [Buffer](/plugins/buffer/README.md)
 
-This article gives an overview of Buffer Plugin.
+本文给出了缓冲插件的概述。
 
 ## Overview
 

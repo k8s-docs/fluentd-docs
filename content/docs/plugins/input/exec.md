@@ -1,16 +1,19 @@
-# `exec` Input Plugin
+---
+title: "exec输入插件"
+linkTitle: "exec"
+weight: 8
+description: >
+  `in_exec` 输入插件执行外部程序来接收或拉事件日志.
+---
 
 ![exec.png](/images/plugins/input/exec.png)
 
-The `in_exec` Input plugin executes external programs to receive or pull
-event logs. It will then read TSV (tab separated values), JSON or
-MessagePack from the standard output of the program.
+然后，它会读取 TSV (tab separated values), 来自程序的标准输出 JSON 或 MessagePack .
 
-You can run a program periodically or permanently. To run periodically,
-please use the `run_interval` parameter.
+可以定期或永久运行的程序。
+要定期运行, 请使用`run_interval`参数.
 
-It is included in Fluentd's core.
-
+它包括在 Fluentd 的核心。
 
 ## Example Configuration
 
@@ -33,14 +36,12 @@ It is included in Fluentd's core.
 Refer to the [Configuration File](/configuration/config-file.md) article for the
 basic structure and syntax of the configuration file.
 
-
 ## Plugin Helpers
 
--   [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
--   [`extract`](/developer/api-plugin-helper-extract.md)
--   [`parser`](/developer/api-plugin-helper-parser.md)
--   [`child_process`](/developer/api-plugin-helper-child_process.md)
-
+- [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
+- [`extract`](/developer/api-plugin-helper-extract.md)
+- [`parser`](/developer/api-plugin-helper-parser.md)
+- [`child_process`](/developer/api-plugin-helper-child_process.md)
 
 ## Parameters
 
@@ -50,112 +51,99 @@ See [Common Parameters](/configuration/plugin-common-parameters.md).
 
 The value must be `exec`.
 
-
 ### `command`
 
 | type   | default            | version |
-|:-------|:-------------------|:--------|
+| :----- | :----------------- | :------ |
 | string | required parameter | 0.14.0  |
 
 The command (program) to execute.
 
-
 ### `tag`
 
-| type   | default                                       | version |
-|:-------|:----------------------------------------------|:--------|
+| type   | default                                          | version |
+| :----- | :----------------------------------------------- | :------ |
 | string | required if `extract`/`tag_key` is not specified | 0.14.0  |
 
 Tag of the output events.
 
-
 ### `run_interval`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | time | nil     | 0.14.0  |
 
 The interval time between periodic program runs. If not specified,
 command script runs only once.
 
-
 ### `read_block_size`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | size | 10240   | 0.14.9  |
 
 The default block size to read if parser requires partial read.
 
-
 ### `<parse>` section
 
 | required | multi | version |
-|:---------|:------|:--------|
+| :------- | :---- | :------ |
 | false    | false | 0.14.9  |
 
 Refer these for more details about `parse` section:
 
--   [Parser Plugin Overview](/plugins/parser/README.md)
--   [Parse Section Configuration](/configuration/parse-section.md)
-
+- [Parser Plugin Overview](/plugins/parser/README.md)
+- [Parse Section Configuration](/configuration/parse-section.md)
 
 #### `@type`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | tsv     | 0.14.9  |
 
 Overwrites the default value in this plugin.
 
-
 #### `time_type`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | float   | 0.14.9  |
 
 Overwrites the default value in this plugin.
-
 
 #### `time_key`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | nil     | 0.14.9  |
 
 Overwrites the default value in this plugin.
 
-
 #### `estimate_current_event`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.9  |
 
 Overwrites the default value in this plugin.
 
-
 ### `<extract>` Section
 
 | required | multi | version |
-|:---------|:------|:--------|
+| :------- | :---- | :------ |
 | false    | false | 0.14.9  |
 
 See [Extract section configurations](/configuration/extract-section.md).
 
-
 #### `time_type`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | float   | 0.14.9  |
 
 Overwrites the default value in this plugin.
 
-
 ## Use Cases
-
 
 ### Monitor Load Averages
 
@@ -182,7 +170,6 @@ This configuration emits events like this one:
 ```
 2018-06-29 17:27:35.115878527 +0900 system.loadavg: {"avg1":"0.30","avg5":"0.20","avg15":"0.05"}
 ```
-
 
 ### Real World Example: Scrape Hacker News Top Page
 
@@ -232,8 +219,7 @@ various backend systems like
 [HDFS](/guides/http-to-hdfs.md), [MongoDB](/guides/apache-to-mongodb.md),
 [AWS](/guides/apache-to-s3.md), etc.
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

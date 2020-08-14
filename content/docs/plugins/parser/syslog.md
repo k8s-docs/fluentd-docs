@@ -1,38 +1,38 @@
-# `syslog` Parser Plugin
+---
+title: "`syslog` Parser Plugin"
+linkTitle: "syslog"
+weight: 1
+---
 
 The `syslog` parser plugin parses `syslog` generated logs. This plugin
 supports two RFC formats, RFC-3164 and RFC-5424.
-
 
 ## Parameters
 
 See [Parse Section Configurations](/configuration/parse-section.md).
 
-
 ### `time_format`
 
-| type   | default         | version |
-|:-------|:----------------|:--------|
-| string | %b %d %H:%M:%S  | 0.14.10 |
+| type   | default        | version |
+| :----- | :------------- | :------ |
+| string | %b %d %H:%M:%S | 0.14.10 |
 
 Specifies the time format for event time. Default is `"%b %d %H:%M:%S"` for
 RFC-3164 protocol. If your log uses sub-second timestamp, change this parameter
 to `"%b %d %H:%M:%S.%N"`.
 
-
 ### `rfc5424_time_format`
 
-| type   | default                 | version |
-|:-------|:------------------------|:--------|
-| string | %Y-%m-%dT%H:%M:%S.%L%z  | 0.14.14 |
+| type   | default                | version |
+| :----- | :--------------------- | :------ |
+| string | %Y-%m-%dT%H:%M:%S.%L%z | 0.14.14 |
 
 Specifies the event time format for RFC-5424 protocol.
-
 
 ### `message_format`
 
 | type | default | available values     | version |
-|:-----|:--------|:---------------------|:--------|
+| :--- | :------ | :------------------- | :------ |
 | enum | rfc3164 | rfc3164/rfc5424/auto | 0.14.14 |
 
 Specifies the protocol format. Supported values are `rfc3164`, `rfc5424` and
@@ -42,11 +42,10 @@ instead.
 `auto` is useful when this parser receives both `rfc3164` and `rfc5424`
 message. `syslog` parser detects message format by using message prefix.
 
-
 ### `with_priority`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.0  |
 
 If the incoming logs have priority prefix e.g. `<9>`, set `true`.
@@ -55,11 +54,10 @@ Default is `false`.
 This parameter is used inside `in_syslog` plugin because the file logs
 via `syslog` do not have `<9>` like priority prefix.
 
-
 ### `parser_type`
 
-| type | default | available values | version |
-|:-----|:--------|:-----------------|:--------|
+| type | default | available values | version                                |
+| :--- | :------ | :--------------- | :------------------------------------- |
 | enum | regexp  | regexp/string    | 1.7.1(for rfc3164)/1.11.0(for rfc5424) |
 
 Specifies the internal parser type for `rfc3164`/`rfc5424` format. Supported
@@ -72,11 +70,10 @@ We recommend using `string` parser because it is 2x faster than `regexp`. The
 default is `regexp` for existing users. Fluentd v2 will change the default to
 `string` parser.
 
-
 ### `support_colonless_ident`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | true    | 1.7.1   |
 
 This parameter is used when `parser_type` is `string`. If your message does not
@@ -93,11 +90,9 @@ Feb  5 17:32:18 10.0.0.99 Use the BFG!
 {"host":"10.0.0.99","message":"Use the BFG!"}
 ```
 
-
 ## Regexp Patterns
 
 Show regexp patterns for parsing logs.
-
 
 ### RFC-3164 Pattern
 
@@ -114,7 +109,6 @@ time_format "%b %d %H:%M:%S"
 If `with_priority` is `false`, `^\<(?<pri>[0-9]+)\>` is removed from the
 pattern.
 
-
 ### RFC-5424 Pattern
 
 ```
@@ -130,9 +124,7 @@ in the event record. `time` is used for the event time.
 If `with_priority` is `false`, `\<(?<pri>[0-9]{1,3})\>[1-9]\d{0,2}` is removed
 from the pattern.
 
-
 ## Example
-
 
 ### RFC-3164 Log
 
@@ -157,7 +149,6 @@ record:
   "message": "[error] Syslog test"
 }
 ```
-
 
 ### rfc5424 log
 
@@ -185,8 +176,7 @@ record:
 }
 ```
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

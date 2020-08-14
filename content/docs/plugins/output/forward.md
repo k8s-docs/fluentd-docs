@@ -1,4 +1,8 @@
-# `forward` Output Plugin
+---
+title: "`forward` Output Plugin"
+linkTitle: "forward"
+weight: 1
+---
 
 ![forward.png](/images/plugins/output/forward.png)
 
@@ -16,7 +20,6 @@ The `out_forward` plugin supports **at-most-once** and **at-least-once**
 semantics. The default is **at-most-once**.
 
 It is included in Fluentd's core.
-
 
 ## Example Configuration
 
@@ -51,111 +54,100 @@ It is included in Fluentd's core.
 Please see the [Configuration File](/configuration/config-file.md) article for
 the basic structure and syntax of the configuration file.
 
-
 ## Supported Modes
 
--   Synchronous
--   Asynchronous
+- Synchronous
+- Asynchronous
 
 See [Output Plugin Overview](/plugins/output/README.md) for more details.
 
-
 ## Plugin Helpers
 
--   [`socket`](/developer/api-plugin-helper-socket.md)
--   [`server`](/developer/api-plugin-helper-server.md)
--   [`timer`](/developer/api-plugin-helper-timer.md)
--   [`thread`](/developer/api-plugin-helper-thread.md)
--   [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
-
+- [`socket`](/developer/api-plugin-helper-socket.md)
+- [`server`](/developer/api-plugin-helper-server.md)
+- [`timer`](/developer/api-plugin-helper-timer.md)
+- [`thread`](/developer/api-plugin-helper-thread.md)
+- [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
 
 ## Parameters
 
 [Common Parameters](/configuration/plugin-common-parameters.md)
 
-
 ### `@type`
 
 The value must be `forward`.
 
-
 ### `<server>` (at least one is required)
 
 | required | multi | version |
-|:---------|:------|:--------|
+| :------- | :---- | :------ |
 | true     | true  | 0.14.5  |
 
 The destination servers. Each server has the following parameters:
 
--   `host`
--   `name`
--   `port`
--   `shared_key`
--   `username`
--   `password`
--   `standby`
--   `weight`
- 
+- `host`
+- `name`
+- `port`
+- `shared_key`
+- `username`
+- `password`
+- `standby`
+- `weight`
+
 #### `host`
 
 | type   | default            | version |
-|:-------|:-------------------|:--------|
+| :----- | :----------------- | :------ |
 | string | required parameter | 0.14.5  |
 
 The IP address or host name of the server.
 
-
 #### `name`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | nil     | 0.14.5  |
 
 The name of the server. Used for logging and certificate verification in
 TLS transport (when host is the address).
 
-
 #### `port`
 
 | type    | default | version |
-|:--------|:--------|:--------|
+| :------ | :------ | :------ |
 | integer | 24224   | 0.14.5  |
 
 The port number of the host. Note that both TCP packets (event stream)
 and UDP packets (heartbeat message) are sent to this port.
 
-
 #### `shared_key`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | nil     | 0.14.5  |
 
 The shared key per server.
 
-
 #### `username`
 
 | type   | default           | version |
-|:-------|:------------------|:--------|
+| :----- | :---------------- | :------ |
 | string | "" (empty string) | 0.14.5  |
 
 The username for authentication.
 
-
 #### `password`
 
 | type   | default           | version |
-|:-------|:------------------|:--------|
+| :----- | :---------------- | :------ |
 | string | "" (empty string) | 0.14.5  |
 
 The password for authentication.
 
-
 #### `standby`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.5  |
 
 Marks a node as the standby node for an Active-Standby model between
@@ -183,32 +175,29 @@ promoted to an active node. The standby node is not used by the
 </match>
 ```
 
-
 #### `weight`
 
 | type    | default | version |
-|:--------|:--------|:--------|
+| :------ | :------ | :------ |
 | integer | 60      | 0.14.5  |
 
 The load balancing weight. If the weight of one server is 20 and the
 weight of the other server is 30, events are sent in a 2:3 ratio. The
 default weight is 60.
 
-
 ### `require_ack_response`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.0  |
 
 Changes the protocol to **at-least-once**. The plugin waits the ack from
 destination's `in_forward` plugin.
 
-
 ### `ack_response_timeout`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | time | 190     | 0.14.0  |
 
 This option is used when `require_ack_response` is `true`. This default
@@ -216,66 +205,59 @@ value is based on popular `tcp_syn_retries`.
 
 If set `0`, this plugin does not wait for the ack response.
 
-
 ### `send_timeout`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | time | 60      | 0.14.0  |
 
 The timeout time when sending event logs.
 
-
 ### `connect_timeout`
 
-| type | default | version |
-|:-----|:--------|:--------|
-| time | nil(no timeout) | 1.6.0 |
+| type | default         | version |
+| :--- | :-------------- | :------ |
+| time | nil(no timeout) | 1.6.0   |
 
 The timeout time for socket connect. When the connection is timed out during
 establishment, `Errno::ETIMEDOUT` error is raised.
 
-
 ### `recover_wait`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | time | 10      | 0.14.0  |
 
 The wait time before accepting a server fault recovery.
 
-
 ### `heartbeat_type`
 
 | type | default   | available                 | version |
-|:-----|:----------|:--------------------------|:--------|
+| :--- | :-------- | :------------------------ | :------ |
 | enum | transport | transport, tcp, udp, none | 0.14.12 |
 
 The transport protocol to use for heartbeats. Set `none` to disable heartbeat.
 
-
 ### `heartbeat_interval`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | time | 1       | 0.14.0  |
 
 The interval of the heartbeat packer.
 
-
 ### `phi_failure_detector`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | true    | 0.14.0  |
 
 Use the "Phi accrual failure detector" to detect server failure.
 
-
 ### `phi_threshold`
 
 | type    | default | version |
-|:--------|:--------|:--------|
+| :------ | :------ | :------ |
 | integer | 16      | 0.14.0  |
 
 The threshold parameter used to detect server faults.
@@ -285,30 +267,27 @@ longer `heartbeat_interval`, please use the larger `phi_threshold`. Otherwise,
 you will see frequent detachments of destination servers. The default value 16
 is tuned for `heartbeat_interval` 1s.
 
-
 ### `hard_timeout`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | time | 60      | 0.14.0  |
 
 The hard timeout used to detect server failure. The default value is
 equal to the `send_timeout` parameter.
 
-
 ### `expire_dns_cache`
 
 | type | default                | version |
-|:-----|:-----------------------|:--------|
+| :--- | :--------------------- | :------ |
 | time | nil (persistent cache) | 0.14.0  |
 
 Sets TTL to expire DNS cache in seconds. Set 0 not to use DNS Cache.
 
-
 ### `dns_round_robin`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.0  |
 
 Enable client-side DNS round robin. Uniform randomly pick an IP address
@@ -316,150 +295,134 @@ to send data when a hostname has several IP addresses.
 
 `heartbeat_type udp` is not available with `dns_round_robintrue`. Use `heartbeat_type tcp` or `heartbeat_type none`.
 
-
 ### `ignore_network_errors_at_startup`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.12 |
 
 Ignores DNS resolution and errors at startup time.
 
-
 ### `tls_version`
 
 | type | default   | available            | version |
-|:-----|:----------|:---------------------|:--------|
+| :--- | :-------- | :------------------- | :------ |
 | enum | `TLSv1_2` | `TLSv1_1`, `TLSv1_2` | 0.14.12 |
 
 The default version of TLS transport.
 
-
 ### `tls_ciphers`
 
 | type   | default                                             | version |
-|:-------|:----------------------------------------------------|:--------|
+| :----- | :-------------------------------------------------- | :------ |
 | string | ALL:!aNULL:!eNULL:!SSLv2 (OpenSSL \> 1.0.0 default) | 0.14.12 |
 
 The cipher configuration of TLS transport.
 
-
 ### `tls_insecure_mode`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.12 |
 
 Skips all verification of certificates or not.
 
-
 ### `tls_allow_self_signed_cert`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.12 |
 
 Allows self-signed certificates or not.
 
-
 ### `tls_verify_hostname`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | true    | 0.14.12 |
 
 Verifies hostname of servers and certificates or not in TLS transport.
 
-
 ### `tls_cert_path`
 
 | type            | default | version |
-|:----------------|:--------|:--------|
+| :-------------- | :------ | :------ |
 | array of string | nil     | 0.14.12 |
 
 The additional CA certificate path for TLS.
 
-
 ### `tls_client_cert_path`
 
-| type   | default | version |
-|:------:|:-------:|:-------:|
-| string | nil     | 1.3.2   |
+|  type  | default | version |
+| :----: | :-----: | :-----: |
+| string |   nil   |  1.3.2  |
 
 The client certificate path for TLS.
 
-
 ### `tls_client_private_key_path`
 
-| type   | default | version |
-|:------:|:-------:|:-------:|
-| string | nil     | 1.3.2   |
+|  type  | default | version |
+| :----: | :-----: | :-----: |
+| string |   nil   |  1.3.2  |
 
 The client private key path for TLS.
 
-
 ### `tls_client_private_key_passphrase`
 
-| type   | default | version |
-|:------:|:-------:|:-------:|
-| string | nil     | 1.3.2   |
+|  type  | default | version |
+| :----: | :-----: | :-----: |
+| string |   nil   |  1.3.2  |
 
 The client private key passphrase for TLS.
 
-
 ### `tls_cert_thumbprint`
 
-| type   | default | version |
-|:------:|:-------:|:-------:|
-| string | nil     | 1.7.1   |
+|  type  | default | version |
+| :----: | :-----: | :-----: |
+| string |   nil   |  1.7.1  |
 
 The certificate thumbprint for searching from Windows system certstore
 This parameter is for Windows only.
 
-
 ### `tls_cert_logical_store_name`
 
-| type   | default | version |
-|:------:|:-------:|:-------:|
-| string | nil     | 1.7.1   |
+|  type  | default | version |
+| :----: | :-----: | :-----: |
+| string |   nil   |  1.7.1  |
 
 The certificate logical store name on Windows system certstore.
 This parameter is for Windows only.
 
-
 ### `tls_cert_use_enterprise_store`
 
-| type   | default | version |
-|:------:|:-------:|:-------:|
-| string | true    | 1.7.1   |
+|  type  | default | version |
+| :----: | :-----: | :-----: |
+| string |  true   |  1.7.1  |
 
 Enables to use certificate enterprise store on Windows system certstore.
 This parameter is for Windows only.
 
-
 ### `keepalive`
 
 | type | default | version |
-|:----:|:-------:|:-------:|
-| bool | false   | 1.5.0   |
+| :--: | :-----: | :-----: |
+| bool |  false  |  1.5.0  |
 
 Enables the keepalive connection.
-
 
 ### `keepalive_timeout`
 
 | type | default | version |
-|:----:|:-------:|:-------:|
-| time | nil     | 1.5.0   |
+| :--: | :-----: | :-----: |
+| time |   nil   |  1.5.0  |
 
 Timeout for keepalive. Default value is `nil`, which means to keep connection
 as long as possible.
 
-
 ### `<security>` Section
 
 | required | multi | version |
-|:---------|:------|:--------|
+| :------- | :---- | :------ |
 | false    | false | 0.14.5  |
 
 This section contains parameters related to authentication:
@@ -467,30 +430,27 @@ This section contains parameters related to authentication:
 - `self_hostname`
 - `shared_key`
 
-
 #### `self_hostname`
 
 | type   | default            | version |
-|:-------|:-------------------|:--------|
+| :----- | :----------------- | :------ |
 | string | required parameter | 0.14.5  |
 
 The hostname.
 
-
 #### `shared_key`
 
 | type   | default            | version |
-|:-------|:-------------------|:--------|
+| :----- | :----------------- | :------ |
 | string | required parameter | 0.14.5  |
 
 Shared key for authentication. If you want to specify `shared_key`
 for specific server, use `<server>` section.
 
-
 ### `<secondary>`
 
 | required | multi | version |
-|:---------|:------|:--------|
+| :------- | :---- | :------ |
 | false    | false | 0.14.0  |
 
 The backup destination that is used when all servers are unavailable.
@@ -500,15 +460,13 @@ For more details, see [Secondary Output](/plugins/output/README.md/#secondary-ou
 ### `verify_connection_at_startup`
 
 | type | default | version |
-|:----:|:-------:|:-------:|
-| bool | false   | 1.3.1   |
+| :--: | :-----: | :-----: |
+| bool |  false  |  1.3.1  |
 
 Verify that a connection can be made with one of `out_forward` nodes
 at the time of startup.
 
-
 ## Tips and Tricks
-
 
 ### How to connect to a TLS/SSL enabled server?
 
@@ -544,27 +502,26 @@ the forwarding server, then add the following settings:
 After updating the settings, please confirm that the forwarded data is
 being received by the destination node properly.
 
-
 ### How to connect to a TLS/SSL enabled server with Windows Certstore Certificate?
 
 If you have set up [TLS/SSL encryption](/plugins/input/forward.md/#how-to-enable-tls/ssl-encryption) in the receiving server, you need to tell the output forwarder to use encryption by setting the `transport` parameter.
 
 Valid logical store names are:
 
-* MY
-* CA
-* ROOT
-* AUTHROOT
-* DISALLOWED
-* SPC
-* TRUST
-* TRUSTEDPEOPLE
-* TRUSTEDPUBLISHER
-* CLIENTAUTHISSUER
-* TRUSTEDDEVICES
-* SMARTCARDROOT
-* WEBHOSTING
-* REMOTE DESKTOP
+- MY
+- CA
+- ROOT
+- AUTHROOT
+- DISALLOWED
+- SPC
+- TRUST
+- TRUSTEDPEOPLE
+- TRUSTEDPUBLISHER
+- CLIENTAUTHISSUER
+- TRUSTEDDEVICES
+- SMARTCARDROOT
+- WEBHOSTING
+- REMOTE DESKTOP
 
 Logical store name is case-insensitive. Note that this section configurations
 work only for Windows.
@@ -633,7 +590,6 @@ CertUtil: -store command completed successfully.
 Note that `-enterprise` flag represents to use enterprise certstore. Please pay
 attention to using whether enterprise certificates store or not.
 
-
 ### How to Enable Password Authentication?
 
 If you want to connect to a server that requires [password authentication](/plugins/input/forward.md/#how-to-enable-password-authentication), you need to set your credentials in the configuration file:
@@ -657,7 +613,6 @@ server on which your `out_forward` instance is running. In the current
 implementation, it is considered invalid if your `in_forward` and `out_forward`
 share the same `hostname`.
 
-
 ### How to enable `gzip` compression?
 
 Since v0.14.7, Fluentd supports transparent data compression. You can
@@ -678,7 +633,6 @@ To enable this feature, set the `compress` option as follows:
 
 You do not need any configuration in the receiving server. Data compression is
 auto-detected and handled transparently by the destination node.
-
 
 ### What is a Phi accrual failure detector?
 
@@ -705,9 +659,7 @@ being active when its heartbeat has not been received for the last 10 seconds.
 
 For details, please read the original paper: [Hayashibara, Naohiro, et al. "The φ accrual failure detector." IEEE, 2004.](https://scholar.google.com/scholar?cluster=12946656837229314866)
 
-
 ## Troubleshooting
-
 
 ### "no nodes are available"
 
@@ -724,8 +676,7 @@ Please note that there is one [known issue](http://kb.vmware.com/selfservice/mic
 where VMware will occasionally lose small UDP packets used for
 heartbeat.
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

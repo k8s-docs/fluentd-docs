@@ -1,15 +1,10 @@
 ---
 title: "Fluentd UI"
 linkTitle: ""
-weight: 1
+weight: 11
+description: >
+  [fluentd-ui](https://github.com/fluent/fluentd-ui) 是一个基于浏览器的 [fluentd](http://fluentd.org/) 和 [td-agent](http://docs.treasuredata.com/articles/td-agent) 管理支持以下操作:
 ---
-
-#
-
-[fluentd-ui](https://github.com/fluent/fluentd-ui) is a browser-based
-[fluentd](http://fluentd.org/) and
-[td-agent](http://docs.treasuredata.com/articles/td-agent) manager that
-supports the following operations:
 
 - Install, uninstall, and upgrade Fluentd plugins
 - Start/stop/restart fluentd process

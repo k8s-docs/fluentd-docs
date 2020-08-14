@@ -1,10 +1,8 @@
 ---
-title: ""
-linkTitle: ""
+title: "来自 Ruby 应用程序集中化日志"
+linkTitle: "Ruby"
 weight: 1
 ---
-
-# Centralize Logs from Ruby Applications
 
 The [`fluent-logger-ruby`](http://github.com/fluent/fluent-logger-ruby)
 library is used to post records from Ruby applications to Fluentd.

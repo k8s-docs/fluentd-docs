@@ -1,11 +1,14 @@
-# `copy` Output Plugin
+---
+title: "`copy` Output Plugin"
+linkTitle: "copy"
+weight: 1
+---
 
 ![copy.png](/images/plugins/output/copy.png)
 
 The `copy` output plugin copies events to multiple outputs.
 
 It is included in Fluentd's core.
-
 
 ## Example Configuration
 
@@ -65,15 +68,13 @@ Elasticsearch instance (See [`out_file`](/plugins/output/file.md) and
 </match>
 ```
 
-
 ## Plugin Helpers
 
--   [`formatter`](/developer/api-plugin-helper-formatter.md)
--   [`inject`](/developer/api-plugin-helper-inject.md)
--   [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
+- [`formatter`](/developer/api-plugin-helper-formatter.md)
+- [`inject`](/developer/api-plugin-helper-inject.md)
+- [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
 
--   See also: [Output Plugin Overview](/plugins/output/README.md)
-
+- See also: [Output Plugin Overview](/plugins/output/README.md)
 
 ## Parameters
 
@@ -83,11 +84,10 @@ Elasticsearch instance (See [`out_file`](/plugins/output/file.md) and
 
 The value must be `copy`.
 
-
 ### `copy_mode`
 
 | type | default | available                       | version |
-|:-----|:--------|:--------------------------------|:--------|
+| :--- | :------ | :------------------------------ | :------ |
 | enum | no_copy | no_copy, shallow, deep, marshal | 1.8.1   |
 
 Chooses how to pass the events to `<store>` plugins.
@@ -116,11 +116,10 @@ Supported modes:
   `marshal` internally. This mode is useful when `msgpack-ruby` cannot process
   your events. This mode is very slow.
 
-
 ### `deep_copy`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.0  |
 
 This parameter is deprecated since v1.8.1. Use `copy_mode` instead.
@@ -130,14 +129,12 @@ This parameter is deprecated since v1.8.1. Use `copy_mode` instead.
 If `true`, `out_copy` passes dupped record to each `store` plugin. This behavior
 is similar to `copy_mode shallow`.
 
-
 ### `<store>` Section
 
 Specifies the storage destinations. The format is the same as the `<match>`
 directive.
 
 This section is required at least once.
-
 
 #### `ignore_error` argument
 
@@ -171,8 +168,7 @@ specify `ignore_error` in `<store>`:
 </match>
 ```
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

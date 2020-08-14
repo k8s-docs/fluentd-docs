@@ -1,10 +1,8 @@
 ---
-title: ""
+title: "实时收集日志文件到`Kinesis`流 "
 linkTitle: ""
 weight: 1
 ---
-
-# Collect Log Files into Kinesis Stream in Real-Time
 
 This article explains how to use [Fluentd](http://fluentd.org/)'s
 [Amazon Kinesis](https://aws.amazon.com/kinesis/) Output plugin

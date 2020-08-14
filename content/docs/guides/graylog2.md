@@ -1,10 +1,8 @@
 ---
-title: ""
+title: "Fluentd和Graylog的端至端日志分析"
 linkTitle: ""
 weight: 1
 ---
-
-# Fluentd and Graylog for End-to-End Log Analysis
 
 This article explains how to set up Fluentd with [Graylog](https://www.graylog.org).
 Graylog is a popular log management server powered by Elasticsearch and MongoDB.

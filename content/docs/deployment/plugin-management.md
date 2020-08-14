@@ -1,13 +1,10 @@
 ---
-title: "插件管理"
+title: "管理插件"
 linkTitle: ""
-weight: 1
+weight: 9
+description: >
+  本文介绍如何管理Fluentd插件, 包括添加第三方插件.
 ---
-
-#
-
-This article explains how to manage Fluentd plugins, including adding
-third-party plugins.
 
 ## `fluent-gem`
 

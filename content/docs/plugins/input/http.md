@@ -1,13 +1,16 @@
-# HTTP Input Plugin
+---
+title: "HTTP输入插件"
+linkTitle: "HTTP"
+weight: 6
+description: >
+  `in_http`输入插件允许您通过HTTP请求发送事件
+---
 
 ![http.png](/images/plugins/input/http.png)
 
-The `in_http` Input plugin allows you to send events through HTTP
-requests. Using this plugin, you can trivially launch a REST endpoint to
-gather data.
+使用这个插件, 你可以平凡发动 REST 端点收集数据.
 
-
-## Configuration
+## 组态
 
 Here is a sample configuration:
 
@@ -24,8 +27,7 @@ Here is a sample configuration:
 For the full list of the configurable options, see the [Parameters](#parameters)
 section.
 
-
-## Basic Usage
+## 基本用法
 
 Here is a simple example to post a record using `curl`.
 
@@ -58,66 +60,58 @@ req.send(form);
 For more advanced usage, please read the [Tips and Tricks](#tips-and-tricks)
 section.
 
-
-## Parameters
+## 参数
 
 See [Common Parameters](/configuration/plugin-common-parameters.md).
-
 
 ### `@type` (required)
 
 The value must be `http`.
 
-
 ### `port`
 
 | type    | default | version |
-|:--------|:--------|:--------|
+| :------ | :------ | :------ |
 | integer | 9880    | 0.14.0  |
 
 The port to listen to.
 
-
 ### `bind`
 
 | type   | default                 | version |
-|:-------|:------------------------|:--------|
+| :----- | :---------------------- | :------ |
 | string | 0.0.0.0 (all addresses) | 0.14.0  |
 
 The bind address to listen to.
 
-
 ### `body_size_limit`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | size | 32MB    | 0.14.0  |
 
 The size limit of the POSTed element.
 
-
 ### `keepalive_timeout`
 
 | type | default      | version |
-|:-----|:-------------|:--------|
+| :--- | :----------- | :------ |
 | size | 10 (seconds) | 0.14.0  |
 
 The timeout limit for keeping the connection alive.
 
-
 ### `add_http_headers`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.0  |
 
 Adds `HTTP_` prefix headers to the record.
 
-
 ### `add_remote_addr`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.0  |
 
 Adds `REMOTE_ADDR` field to the record. The value of `REMOTE_ADDR` is the
@@ -134,11 +128,10 @@ X-Forwarded-For: host3
 If the above multiple headers are sent, the value of `REMOTE_ADDR` will be
 `host1`.
 
-
 ### `cors_allow_origins`
 
 | type  | default       | version |
-|:------|:--------------|:--------|
+| :---- | :------------ | :------ |
 | array | nil(disabled) | 0.14.0  |
 
 Whitelist domains for CORS.
@@ -157,21 +150,19 @@ Example:
 </source>
 ```
 
-
 ### `respond_with_empty_img`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.12.0  |
 
 Responds with an empty GIF image of 1x1 pixel (rather than an empty string).
 
-
 ### `<transport>` Section
 
 | type | default | available values | version |
-|:-----|:--------|:-----------------|:--------|
-| enum | tcp     | tls      | 1.5.0  |
+| :--- | :------ | :--------------- | :------ |
+| enum | tcp     | tls              | 1.5.0   |
 
 This section is for using TLS transport.
 
@@ -187,21 +178,17 @@ See **How to Enable TLS Encryption** section for how to use and see
 
 Without `<transport tls>`, `in_http` uses HTTP.
 
-
 ### `<parse>` directive
 
 Use parser plugin to parse incoming data. See also [Handle other formats using parser plugins](#handle-other-formats-using-parser-plugins) section.
-
 
 ### `format` (deprecated)
 
 Deprecated parameter. Use `<parse>` directive instead.
 
+## 技巧和窍门
 
-## Tips and Tricks
-
-
-### How to send data in MessagePack format?
+### 如何 MessagePack 格式发送数据？
 
 You can post data in MessagePack format by adding the `msgpack=` prefix:
 
@@ -211,8 +198,7 @@ $ msgpack=`echo -e "\x81\xa3foo\xa3bar"`
 $ curl -X POST -d "msgpack=$msgpack" http://localhost:9880/app.log
 ```
 
-
-### How to use HTTP Content-Type header?
+### 如何使用 HTTP Content-Type 头？
 
 `in_http` plugin recognizes HTTP `Content-Type` header in the incoming requests.
 For example, you can send a JSON payload without the `json=` prefix:
@@ -230,8 +216,7 @@ $ curl -X POST -d "$msgpack" -H 'Content-Type: application/msgpack' \
   http://localhost:9880/app.log
 ```
 
-
-### Handle Other Formats using Parser Plugins
+### 使用分析器插件处理其他格式
 
 You can handle various input formats by using the `<parse>` directive.
 For example, add the following settings to the configuration file:
@@ -262,11 +247,9 @@ So, if you want to use bulk insertion for handling a large data set, please
 consider keeping the default JSON (or MessagePack) format or write batch mode
 supported parser (return array object).
 
+## 增强性能
 
-## Enhance Performance
-
-
-### Handle Large Data with Batch Mode
+### 处理大量数据批处理模式
 
 You can post multiple records with a single request by packing data into
 a JSON/MessagePack array:
@@ -281,14 +264,13 @@ This significantly improves the throughput since it reduces the number of HTTP
 requests. Here is a simple benchmark on MacBook Pro with Ruby 2.3:
 
 | json            | msgpack         | msgpack array(10 items) |
-|:----------------|:----------------|:------------------------|
+| :-------------- | :-------------- | :---------------------- |
 | 2100 events/sec | 2400 events/sec | 10000 events/sec        |
 
 Tested configuration and Ruby script are
 [here](https://gist.github.com/repeatedly/672ac73abf7cbcb629aaec791838cf6d).
 
-
-### Use Compression to Reduce Bandwidth Overhead
+### 使用压缩来降低带宽开销
 
 Since v1.2.3, Fluentd can handle gzip-compressed payloads. To enable
 this feature, you need to add the `Content-Encoding` header to your
@@ -303,8 +285,7 @@ $ curl --data-binary @json.gz -H "Content-Encoding: gzip" \
 
 You do not need any configuration to enable this feature.
 
-
-### Multi-process Environment
+### 多进程环境
 
 If you use this plugin under multi-process environment, port will be shared.
 
@@ -321,9 +302,7 @@ If you use this plugin under multi-process environment, port will be shared.
 With this configuration, three (3) workers share 9880 port. No need for an
 additional port. Incoming data will be routed to three (3) workers automatically.
 
-
-## Troubleshooting
-
+## 故障排除
 
 ### Why `in_http` removes '+' from my log?
 
@@ -348,15 +327,13 @@ curl -X POST -H 'Content-Type: multipart/form-data' -F 'json={"message":"foo+bar
 curl -X POST -F 'json={"message":"foo+bar"}' http://localhost:9880/app.log
 ```
 
+## 学到更多
 
-## Learn More
+- [输入插件概述](/plugins/input/README.md)
 
--   [Input Plugin Overview](/plugins/input/README.md)
+## 提示
 
-## Tips
-
-
-### How to Enable TLS Encryption?
+### 如何启用 TLS 加密？
 
 Since v1.5.0, `in_http` support TLS transport. Here is a configuration example
 with HTTPS client:
@@ -395,7 +372,6 @@ end
 puts post("/test.http?time=#{Time.now.to_i}", record).body
 ```
 
-
 ### How to Enable TLS Mutual Authentication?
 
 Fluentd supports [TLS mutual authentication](https://en.wikipedia.org/wiki/Mutual_authentication)
@@ -417,8 +393,7 @@ When this feature is enabled, Fluentd will check all the incoming requests for a
 client certificate signed by the trusted CA. Requests with an invalid client
 certificate will fail.
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

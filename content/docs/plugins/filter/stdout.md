@@ -1,10 +1,13 @@
-# `stdout` Filter Plugin
+---
+title: "`stdout` Filter Plugin"
+linkTitle: "stdout"
+weight: 1
+---
 
 The `filter_stdout` filter plugin prints events to the standard output (or logs
 if launched as a daemon). This filter plugin is useful for debugging purposes.
 
 It is included in the Fluentd's core.
-
 
 ## Example Configurations
 
@@ -23,59 +26,50 @@ A sample output is as follows:
 where the first part shows the output **time**, the second part shows the
 **tag**, and the third part shows the **record**.
 
-
 ## Plugin Helpers
 
--   [`formatter`](/developer/api-plugin-helper-formatter.md)
--   [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
--   [`inject`](/developer/api-plugin-helper-inject.md)
-
+- [`formatter`](/developer/api-plugin-helper-formatter.md)
+- [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
+- [`inject`](/developer/api-plugin-helper-inject.md)
 
 ## Parameters
 
 See [Common Parameters](/configuration/plugin-common-parameters.md).
 
-
 ### `@type` (required)
 
 The value must be `stdout`.
-
 
 ### `<format>` Section
 
 See [Format section configurations](/configuration/format-section.md) for more details.
 
-
 #### `@type`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | stdout  | 0.14.5  |
 
 The format of output.
 
-
 #### `output_type`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | json    | 0.14.5  |
 
 This is the option of `stdout` format. Configures the format of record
 (third part). Any formatter plugins can be specified.
 
-
 ### `<inject>` Section
 
 See [Inject Section Configurations](/developer/inject-section) for more details.
 
-
 ## Learn More
 
--   [Filter Plugin Overview](/plugins/filter/README.md)
+- [Filter Plugin Overview](/plugins/filter/README.md)
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

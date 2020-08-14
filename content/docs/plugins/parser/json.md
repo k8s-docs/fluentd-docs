@@ -1,17 +1,19 @@
-# `json` Parser Plugin
+---
+title: "`json` Parser Plugin"
+linkTitle: "json"
+weight: 1
+---
 
 The `json` parser plugin parses JSON logs. One JSON map per line.
-
 
 ## Parameters
 
 See [Parse Section Configurations](/configuration/parse-section.md).
 
-
 ### `json_parser`
 
 | type | default | available      | version |
-|:-----|:--------|:---------------|:--------|
+| :--- | :------ | :------------- | :------ |
 | enum | oj      | oj, yajl, json | 0.14.0  |
 
 Sets the JSON parser. If you have a problem with the configured parser, check
@@ -22,7 +24,6 @@ Here is a simple comparison:
 - `oj`: Faster json parser
 - `yajl`: Mainly for stream parsing
 - `json`: Standard bundled library
-
 
 ### `time_type`
 
@@ -40,7 +41,6 @@ time_format %d/%b/%Y:%H:%M:%S %z
 ```
 
 See also [`parse` Section](/configuration/parse-section.md#time-parameters) article.
-
 
 ## Example
 
@@ -64,8 +64,7 @@ record:
 }
 ```
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

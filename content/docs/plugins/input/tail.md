@@ -1,14 +1,17 @@
-# `tail` Input Plugin
+---
+title: "tail输入插件"
+linkTitle: "tail"
+weight: 1
+description: >
+  `in_tail` 输入插件允许 Fluentd 从文本文件的尾部阅读事件 .
+  其行为类似于`tail -F`命令。
+---
 
 ![tail.png](/images/plugins/input/tail.png)
 
-The `in_tail` Input plugin allows Fluentd to read events from the tail
-of text files. Its behavior is similar to the `tail -F` command.
+它包括在 Fluentd 的核心.
 
-It is included in Fluentd's core.
-
-
-## Example Configuration
+## 示例配置
 
 ```
 <source>
@@ -22,161 +25,140 @@ It is included in Fluentd's core.
 </source>
 ```
 
-Refer to the [Configuration File](/configuration/config-file.md) article for the
-basic structure and syntax of the configuration file.
+请参阅[配置文件](/configuration/config-file.md) 文章 为配置文件的基本结构和语法.
 
-For `<parse>`, see [Parse Section](/configuration/parse-section.md).
+对于 `<parse>`, 见[解析部分](/configuration/parse-section.md).
 
+### 这个怎么运作
 
-### How It Works
+当 Fluentd 用`in_tail`第一次配置 , 它将从**尾部**开始读该日志的, 未开始.
+一旦日志旋转， Fluentd 开始从头开始读取新的文件.
+它跟踪当前索引节点号的.
 
-When Fluentd is first configured with `in_tail`, it will start reading from the
-**tail** of that log, not the beginning. Once the log is rotated, Fluentd starts
-reading the new file from the beginning. It keeps track of the current inode
-number.
+如果 `td-agent` 重新启动, 在重启前它恢复上次阅读位置 .
+这个位置被记录在文件中的位置 由`pos_file`参数指定.
 
-If `td-agent` restarts, it resumes reading from the last position before the
-restart. This position is recorded in the position file specified by the
-`pos_file` parameter.
+## 插件助手
 
+- [`timer`](/developer/api-plugin-helper-timer.md)
+- [`event_loop`](/developer/api-plugin-helper-event_loop.md)
+- [`parser`](/developer/api-plugin-helper-parser.md)
+- [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
 
-## Plugin Helpers
+## 参数
 
- - [`timer`](/developer/api-plugin-helper-timer.md)
- - [`event_loop`](/developer/api-plugin-helper-event_loop.md)
- - [`parser`](/developer/api-plugin-helper-parser.md)
- - [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
-
-
-## Parameters
-
-See [Common Parameters](/configuration/plugin-common-parameters.md).
-
+参见[通用参数](/configuration/plugin-common-parameters.md).
 
 ### `@type` (required)
 
-The value must be `tail`.
-
+该值必须是`tail`.
 
 ### `tag`
 
-| type   | default            | version |
-|:-------|:-------------------|:--------|
-| string | required parameter | 0.14.0  |
+| 类型   | 默认               | 版     |
+| :----- | :----------------- | :----- |
+| string | required parameter | 0.14.0 |
 
-The tag of the event.
+事件的标签.
 
-`*` can be used as a placeholder that expands to the actual file path,
-replacing `'/'` with `'.'`.
+`*` 可被用作占位符 该扩展到实际的文件路径, 用 `'.'` 更换 `'/'` .
 
-With the following configuration:
+用下面的配置:
 
 ```
 path /path/to/file
 tag foo.*
 ```
 
-`in_tail` emits the parsed events with the `foo.path.to.file` tag.
-
+`in_tail` 使用 `foo.path.to.file` 标签 发出解析事件.
 
 ### `path`
 
-| type   | default            | version |
-|:-------|:-------------------|:--------|
-| string | required parameter | 0.14.0  |
+| 类型   | 默认               | 版     |
+| :----- | :----------------- | :----- |
+| string | required parameter | 0.14.0 |
 
-The path(s) to read. Multiple paths can be specified, separated by comma `','`.
+路径（S）来读取。 可以指定多个路径, 由逗号 `','` 分隔.
 
-`*` and `strftime` format can be included to add/remove watch file
-dynamically. At interval of `refresh_interval`, Fluentd refreshes the
-list of watch file.
+`*` 和 `strftime` 格式可包括动态地添加/删除监视文件.
+在`refresh_interval`的间隔, Fluentd 刷新监视文件列表.
 
 ```
 path /path/to/%Y/%m/%d/*
 ```
 
-For multiple paths:
+对于多条路径:
 
 ```
 path /path/to/a/*,/path/to/b/c.log
 ```
 
-If the date is `20140401`, Fluentd starts to watch the files in
-`/path/to/2014/04/01` directory. See also `read_from_head` parameter.
+如果日期 `20140401`, Fluentd 开始监视`/path/to/2014/04/01`里文件. 参见`read_from_head`参数.
 
-You should not use `*` with log rotation because it may cause the log
-duplication. In this case, you should separate `in_tail` plugin configuration.
-
+你不应该使用`*`与日志旋转 因为它可能导致日志复制.
+在这种情况下, 你应该分开`in_tail`插件配置.
 
 ### `path_timezone`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | nil     | 1.8.1   |
 
-This parameter is for `strftime` formatted path like `/path/to/%Y/%m/%d/`.
+此参数是`strftime`格式化路径 喜欢 `/path/to/%Y/%m/%d/`.
 
-`in_tail` uses system timezone by default. This parameter overrides it:
+`in_tail` 默认情况下使用系统时区. 该参数覆盖它:
 
 ```
 path_timezone "+00"
 ```
 
-For timezone format, see [Timezone Section](/configuration/format-section.md/#time-parameters).
-
+对于时区格式, 见[时区部分](/configuration/format-section.md/#time-parameters).
 
 ### `exclude_path`
 
 | type  | default      | version |
-|:------|:-------------|:--------|
+| :---- | :----------- | :------ |
 | array | `[]` (empty) | 0.14.0  |
 
-The paths to exclude the files from watcher list.
+该路径从观察者名单中排除的文件.
 
-For example, to remove the compressed files, you can use the following pattern:
+例如，要删除的压缩文件，可以使用下面的模式:
 
 ```
 path /path/to/*
 exclude_path ["/path/to/*.gz", "/path/to/*.zip"]
 ```
 
-`exclude_path` takes input as an array, unlike `path` which takes as string.
-
+`exclude_path` 取输入作为阵列, 不像 `path` 它需要为字符串.
 
 ### `refresh_interval`
 
 | type | default      | version |
-|:-----|:-------------|:--------|
+| :--- | :----------- | :------ |
 | time | 60 (seconds) | 0.14.0  |
 
-The interval of refreshing the list of watch file. This is used when path
-includes `*`.
-
+刷新监视文件列表中的时间间隔. 这是用来当路径包括`*`.
 
 ### `limit_recently_modified`
 
 | type | default        | version |
-|:-----|:---------------|:--------|
+| :--- | :------------- | :------ |
 | time | nil (disabled) | 0.14.13 |
 
-Limits the watching files that the modification time is within the
-specified time range when using `*` in `path`.
-
+限制看文件 该修饰时间在指定的时间范围内 当`path`使用`*`.
 
 ### `skip_refresh_on_startup`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.13 |
 
-Skips the refresh of watching list on startup. This reduces the startup
-time when using `*` in `path`.
-
+跳过观看启动列表的刷新. 这减少了启动时间 当`path`使用`*`.
 
 ### `read_from_head`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.0  |
 
 Starts to read the logs from the head of file, not tail.
@@ -189,11 +171,10 @@ When this is `true`, `in_tail` tries to read a file during startup phase.
 If target file is large, it takes long time and starting other plugins
 isn't executed until reading file is finished.
 
-
 ### `encoding`, `from_encoding`
 
 | type   | default                               | version |
-|:-------|:--------------------------------------|:--------|
+| :----- | :------------------------------------ | :------ |
 | string | nil (string encoding is `ASCII-8BIT`) | 0.14.0  |
 
 Specifies the encoding of reading lines.
@@ -202,11 +183,11 @@ By default, `in_tail` emits string value as ASCII-8BIT encoding.
 
 These options change it:
 
--   If `encoding` is specified, `in_tail` changes string to `encoding`.
-    This uses Ruby's [`String#force_encoding`](https://docs.ruby-lang.org/en/trunk/String.html#method-i-force_encoding).
--   If `encoding` and `from_encoding` both are specified, `in_tail` tries to
-    encode string from `from_encoding` to `encoding`. This uses Ruby's
-    [`String#encode`](https://docs.ruby-lang.org/en/trunk/String.html#method-i-encode).
+- If `encoding` is specified, `in_tail` changes string to `encoding`.
+  This uses Ruby's [`String#force_encoding`](https://docs.ruby-lang.org/en/trunk/String.html#method-i-force_encoding).
+- If `encoding` and `from_encoding` both are specified, `in_tail` tries to
+  encode string from `from_encoding` to `encoding`. This uses Ruby's
+  [`String#encode`](https://docs.ruby-lang.org/en/trunk/String.html#method-i-encode).
 
 You can get the list of supported encodings with this command:
 
@@ -214,11 +195,10 @@ You can get the list of supported encodings with this command:
 $ ruby -e 'p Encoding.name_list.sort'
 ```
 
-
 ### `read_lines_limit`
 
 | type    | default | version |
-|:--------|:--------|:--------|
+| :------ | :------ | :------ |
 | integer | 1000    | 0.14.0  |
 
 The number of lines to read with each I/O operation.
@@ -226,11 +206,10 @@ The number of lines to read with each I/O operation.
 If you see `chunk bytes limit exceeds for an emitted event stream` or similar log
 with `in_tail`, set smaller value.
 
-
 ### `multiline_flush_interval`
 
 | type | default        | version |
-|:-----|:---------------|:--------|
+| :--- | :------------- | :------ |
 | time | nil (disabled) | 0.14.0  |
 
 The interval of flushing the buffer for multiline format.
@@ -239,11 +218,10 @@ If you set `multiline_flush_interval 5s`, `in_tail` flushes buffered
 event after 5 seconds from last emit. This option is useful when you use
 `format_firstline` option.
 
-
 ### `pos_file` (highly recommended)
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | nil     | 0.14.0  |
 
 Fluentd will record the position it last read from this file:
@@ -265,12 +243,11 @@ files with dynamic path setting.
 This [issue](https://github.com/fluent/fluentd/issues/1126) will be fixed this
 problem in future.
 
-
 ### `pos_file_compaction_interval`
 
-| type   | default | version |
-|:-------|:--------|:--------|
-| time   | nil     | 1.9.2   |
+| type | default | version |
+| :--- | :------ | :------ |
+| time | nil     | 1.9.2   |
 
 The interval of doing compaction of pos file.
 
@@ -281,7 +258,6 @@ use this value when `pos_file` option is set:
 pos_file /var/log/td-agent/tmp/access.log.pos
 pos_file_compaction_interval 72h
 ```
-
 
 ### `<parse>` Directive (required)
 
@@ -307,16 +283,14 @@ Examples:
 
 If `@type` contains `multiline`, `in_tail` works in multiline mode.
 
-
 ### `format`
 
 Deprecated parameter. Use `<parse>` instead.
 
-
 ### `path_key`
 
 | type   | default         | version |
-|:-------|:----------------|:--------|
+| :----- | :-------------- | :------ |
 | string | nil (no assign) | 0.14.0  |
 
 Adds the watching file path to `path_key` field.
@@ -337,7 +311,7 @@ The generated events are like this:
 ### `rotate_wait`
 
 | type | default     | version |
-|:-----|:------------|:--------|
+| :--- | :---------- | :------ |
 | time | 5 (seconds) | 0.14.0  |
 
 `in_tail` actually does a bit more than `tail -F` itself. When rotating a
@@ -352,11 +326,10 @@ from getting lost. By default, this time interval is 5 seconds.
 The `rotate_wait` parameter accepts a single integer representing the
 number of seconds you want this time interval to be.
 
-
 ### `enable_watch_timer`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | true    | 0.14.0  |
 
 Enables the additional watch timer. Setting this parameter to `false`
@@ -374,11 +347,10 @@ Early testing demonstrates that modern `Cool.io` and `in_tail` work properly
 without the additional watch timer. At some point in future, depending on the
 feedback and testing, the additional watch timer may be disabled by default.
 
-
 ### `enable_stat_watcher`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | true    | 1.0.1   |
 
 Enables the additional `inotify`-based watcher. Setting this parameter to
@@ -387,21 +359,19 @@ tailing.
 
 This option is mainly for avoiding stuck issue with `inotify`.
 
-
 ### `open_on_every_update`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.12 |
 
 Opens and closes the file on every update instead of leaving it open until
 it gets rotated.
 
-
 ### `emit_unmatched_lines`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.12 |
 
 Emits unmatched lines when `<parse>` format is not matched for incoming logs.
@@ -409,16 +379,14 @@ Emits unmatched lines when `<parse>` format is not matched for incoming logs.
 Emitted record is `{"unmatched_line" : incoming line}`, e.g.
 `{"unmatched_line" : "Non JSON format!"}`.
 
-
 ### `ignore_repeated_permission_error`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.0  |
 
 If you have to exclude the non-permission files from watching list, set this
 parameter to `true`. It suppresses the repeated permission error logs.
-
 
 #### `@log_level`
 
@@ -428,16 +396,13 @@ logging for each plugin. The supported log levels are: `fatal`, `error`,
 
 Refer to the [Logging](/deployment/logging.md) for more details.
 
+## 学到更多
 
-## Learn More
+- [输入插件概述](/plugins/input/README.md)
 
--   [Input Plugin Overview](/plugins/input/README.md)
+## 常问问题
 
-
-## FAQ
-
-
-### What happens when `<parse>` type is not matched for logs?
+### 当`<parse>`类型不为日志匹配，会发生什么?
 
 `in_tail` prints warning message. For example, if you specify
 `@type json` in `<parse>` and your log line is `123,456,str,true`, then
@@ -449,25 +414,22 @@ you will see following message in fluentd logs:
 
 See also `emit_unmatched_lines` parameter.
 
-
-### `in_tail` doesn't start to read the log file, why?
+### `in_tail` 不启动读取日志文件, 为什么?
 
 `in_tail` follows `tail -F` command's behavior by default, so `in_tail`
 reads only the new logs. If you want to read existing lines for batch use
 case, set `read_from_head true`.
 
+### `in_tail` 显示 `/path/to/file unreadable` 日志消息. 为什么?
 
-### `in_tail` shows `/path/to/file unreadable` log message. Why?
-
-If you see this message:
+如果您看到此消息:
 
 > `/path/to/file` unreadable. It is excluded and would be examined next time.
 
-It means fluentd does not have read permission for `/path/to/file`. Check your
-fluentd and target files permission.
+这意味着 fluentd 没有读取`/path/to/file`权限.
+检查 fluentd 文件和目标文件的权限.
 
-
-### `logrotate` Setting
+### `logrotate` 设置
 
 `logrotate` has `nocreate` parameter and it does not create a new file if log
 rotation is triggered. It means `in_tail` cannot find the new file to tail.
@@ -475,22 +437,19 @@ rotation is triggered. It means `in_tail` cannot find the new file to tail.
 This parameter does not fit typical application log use cases, so check your
 `logrotate` setting which doesn't include `nocreate` parameter.
 
-
-### What happens when `in_tail` receives `BufferOverflowError`?
+### 当`in_itial`接收`BufferOverflowError`会发生什么?
 
 `in_tail` stops reading the new lines and pos file updates until
 `BufferOverflowError` is resolved. After resolving `BufferOverflowError`,
 resume emitting new lines and pos file updates.
 
-
-### `in_tail` is sometimes stopped when monitor lots of files. How to avoid it?
+### 当监控大量的文件`in_tail`有时停止. 如何避免它?
 
 Try to set `enable_stat_watcher false` in `in_tail` setting. We got several
 reports that `in_tail` is stopped when `*` is included in `path`, and the
 problem is resolved by disabling `inotify` events.
 
-
-### Wildcard pattern in path does not work on Windows, why?
+### 在路径通配符模式在 Windows 上不工作，为什么呢？
 
 Backslash(`\`) with `*` doesn't work on Windows by internal limitation.
 To avoid this, use slash style instead:
@@ -503,8 +462,7 @@ path C:/path/to/*/foo.log
 path C:\\path\\to\\*\\foo.log
 ```
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

@@ -1,10 +1,13 @@
-# grep Filter Plugin
+---
+title: "grep Filter Plugin"
+linkTitle: "grep"
+weight: 1
+---
 
 The `filter_grep` filter plugin "greps" events by the values of specified
 fields.
 
 It is included in the Fluentd's core.
-
 
 ## Example Configurations
 
@@ -50,16 +53,13 @@ whereas the following examples are filtered out:
 {"message":"It's cool outside today"}
 ```
 
-
 ## Plugin Helpers
 
--   [`record_accessor`](/developer/api-plugin-helper-record_accessor.md)
-
+- [`record_accessor`](/developer/api-plugin-helper-record_accessor.md)
 
 ## Parameters
 
 [Common Parameters](/configuration/plugin-common-parameters.md)
-
 
 ### `<and>` Directive
 
@@ -110,7 +110,6 @@ We can also use `<and>` directive with `<exclude>` directive:
 </and>
 ```
 
-
 ### `<or>` Directive
 
 Specifies the filtering rule. This directive contains either `<regexp>` or
@@ -122,7 +121,7 @@ Specifies the filtering rule. This directive contains either `<regexp>` or
     key status_code
     pattern /^5\d\d$/
   </exclude>
-  
+
   <exclude>
     key url
     pattern /\.css$/
@@ -160,19 +159,17 @@ We can also use `<or>` directive with `<regexp>` directive:
 </or>
 ```
 
-
 ### `<regexp>` Directive
 
 Specifies the filtering rule. This directive contains two parameters:
 
--   `key`
--   `pattern`
-
+- `key`
+- `pattern`
 
 #### `key`
 
 | type   | default            | version |
-|:-------|:-------------------|:--------|
+| :----- | :----------------- | :------ |
 | string | required parameter | 1.0.0   |
 
 The field name to which the regular expression is applied.
@@ -180,11 +177,10 @@ The field name to which the regular expression is applied.
 This parameter supports nested field access via [`record_accessor`
 syntax](/developer/api-plugin-helper-record_accessor.md/#syntax).
 
-
 #### `pattern`
 
 | type   | default            | version |
-|:-------|:-------------------|:--------|
+| :----- | :----------------- | :------ |
 | regexp | required parameter | 1.2.0   |
 
 The regular expression.
@@ -256,11 +252,10 @@ You can also write the pattern like this:
 
 Learn regular expressions for more patterns.
 
-
 ### `regexpN`
 
 | type   | version |
-|:-------|:--------|
+| :----- | :------ |
 | string | 1.0.0   |
 
 This is deprecated parameter. Use `<regexp>` instead.
@@ -275,19 +270,18 @@ regexp1 price [1-9]\d*
 regexp2 item_name ^book_
 ```
 
-
 ### `<exclude>` Directive
 
 Specifies the filtering rule to reject events. This directive contains two
 parameters:
 
--   `key`
--   `pattern`
+- `key`
+- `pattern`
 
 #### `key`
 
 | type   | default            | version |
-|:-------|:-------------------|:--------|
+| :----- | :----------------- | :------ |
 | string | required parameter | 1.0.0   |
 
 The field name to which the regular expression is applied.
@@ -295,11 +289,10 @@ The field name to which the regular expression is applied.
 This parameter supports nested field access via [`record_accessor`
 syntax](/developer/api-plugin-helper-record_accessor.md/#syntax).
 
-
 #### `pattern`
 
 | type   | default            | version |
-|:-------|:-------------------|:--------|
+| :----- | :----------------- | :------ |
 | regexp | required parameter | 1.2.0   |
 
 The regular expression.
@@ -332,11 +325,10 @@ The `grep` filter filters out if any `<exclude>` is matched. Hence, if you have:
 Then, any event with `status_code` of `5xx` OR `url` ending with `.css` is
 filtered out.
 
-
 ### `excludeN`
 
 | type   | version |
-|:-------|:--------|
+| :----- | :------ |
 | string | 1.0.0   |
 
 This is deprecated parameter. Use `<exclude>` instead.
@@ -353,14 +345,12 @@ exclude2 url \.css$
 
 If `<regexp>` and `<exclude>` are used together, both are applied.
 
-
 ## Learn More
 
--   [Filter Plugin Overview](/plugins/filter/README.md)
--   [`record_transformer` Filter Plugin](/plugins/filter/record_transformer.md)
+- [Filter Plugin Overview](/plugins/filter/README.md)
+- [`record_transformer` Filter Plugin](/plugins/filter/record_transformer.md)
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

@@ -1,12 +1,10 @@
 ---
-title: "Fluentd 命令行选项"
+title: "命令行选项"
 linkTitle: "命令行选项"
-weight: 1
+weight: 12
+description: >
+  本文介绍了`fluentd`命令行选项.
 ---
-
-#
-
-This article describes the `fluentd` command line options.
 
 ## `fluentd`
 

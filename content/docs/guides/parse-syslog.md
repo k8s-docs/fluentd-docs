@@ -1,10 +1,8 @@
 ---
-title: ""
+title: "解析Syslog消息鲁棒"
 linkTitle: ""
 weight: 1
 ---
-
-# Parse Syslog Messages Robustly
 
 Syslog is a popular protocol that virtually runs on every server. It is
 used to collect all kinds of logs. The problem with `syslog` is that

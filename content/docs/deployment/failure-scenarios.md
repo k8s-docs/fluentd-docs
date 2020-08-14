@@ -1,13 +1,12 @@
 ---
-title: "Failure 方案"
-linkTitle: "方案"
-weight: 1
+title: "故障场景"
+linkTitle: ""
+weight: 8
+description: >
+  本文介绍了各种Fluentd故障场景.
 ---
 
-#
-
-This article describes various Fluentd failure scenarios. We will assume
-that you have configured Fluentd for [High Availability](/deployment/high-availability.md), so that each app node has its own local
+We will assume that you have configured Fluentd for [High Availability](/deployment/high-availability.md), so that each app node has its own local
 **forwarders** and all logs are aggregated into multiple **aggregators**.
 
 ## Apps Cannot Post Records to Forwarder

@@ -1,10 +1,13 @@
-# `roundrobin` Output Plugin
+---
+title: "`roundrobin` Output Plugin"
+linkTitle: "roundrobin"
+weight: 1
+---
 
 The `roundrobin` Output plugin distributes events to multiple outputs
 using a weighted round-robin algorithm.
 
 It is included in Fluentd's core.
-
 
 ## Example Configuration
 
@@ -36,11 +39,9 @@ It is included in Fluentd's core.
 Please see the [Configuration File](/configuration/config-file.md) article for
 the basic structure and syntax of the configuration file.
 
-
 ## Supported Modes
 
--   Non-Buffered
-
+- Non-Buffered
 
 ## Parameters
 
@@ -50,23 +51,20 @@ the basic structure and syntax of the configuration file.
 
 The value must be `roundrobin`.
 
-
 ### `<store>`
 
 Specifies the storage destinations. The format is the same as the `<match>`
 directive.
 
-
 #### `weight`
 
 | type    | default | version |
-|:--------|:--------|:--------|
+| :------ | :------ | :------ |
 | integer | 1       | 0.14.1  |
 
 Weight to distribute events to multiple outputs.
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

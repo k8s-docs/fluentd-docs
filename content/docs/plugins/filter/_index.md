@@ -1,12 +1,10 @@
 ---
-title: ""
-linkTitle: ""
-weight: 1
+title: "过滤插件概述"
+linkTitle: "过滤插件"
+weight: 3
 ---
 
-# Filter Plugin Overview
-
-Fluentd has eight (8) types of plugins:
+Fluentd 有八(8)类插件:
 
 - [Input](/plugins/input/README.md)
 - [Parser](/plugins/parser/README.md)

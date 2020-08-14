@@ -1,17 +1,15 @@
 ---
-title: "Fluentd的记录"
-linkTitle: "记录"
-weight: 1
+title: "日志机制"
+linkTitle: ""
+weight: 2
+description: >
+  本文介绍Fluentd日志机制。
 ---
 
-#
+Fluentd 有两个记录层: 全局和每个插件.
+不同的日志级别可以为全局日志和插件级别的日志记录设置.
 
-This article describes Fluentd logging mechanism.
-
-Fluentd has two logging layers: global and per plugin. Different log levels
-can be set for global logging and plugin level logging.
-
-## Log Level
+## 日志级别
 
 Here is the list of supported levels in increasing order of verbosity:
 
@@ -25,14 +23,14 @@ Here is the list of supported levels in increasing order of verbosity:
 The default log level is `info`, and Fluentd outputs `info`, `warn`, `error` and
 `fatal` logs by default.
 
-## Global Logs
+## 全局日志
 
 Global logging is used by Fluentd core and plugins that do not set their
 own log levels. The global log level can be adjusted up or down.
 
-### By Command Line Option
+### 通过命令行选项
 
-#### Increase Verbosity Level
+#### 增加详细级别
 
 The `-v` option sets the verbosity to `debug` while the `-vv` option
 sets the verbosity to `trace`.
@@ -44,7 +42,7 @@ $ fluentd -vv ... # trace log level
 
 These options are useful for debugging purposes.
 
-#### Decrease Verbosity Level
+#### 减少详细级别
 
 The `-q` option sets the verbosity to `warn` while the `-qq` option sets
 the verbosity to `error`:
@@ -54,7 +52,7 @@ $ fluentd -q  ... # warn log level
 $ fluentd -qq ... # error log level
 ```
 
-### By Config File
+### 通过配置文件
 
 You can also change the logging level with `<system>` section in the config file:
 
@@ -66,7 +64,7 @@ You can also change the logging level with `<system>` section in the config file
 </system>
 ```
 
-## Per Plugin Log
+## 每插件日志
 
 The `@log_level` option sets different levels of logging for each
 plugin. It can be set in each plugin's configuration file.
@@ -92,7 +90,7 @@ their respective `@log_level` options should be set as follows:
 If you do not specify the `@log_level` parameter, the plugin will use the global
 log level.
 
-## Log Format
+## 日志格式
 
 Following format are supported:
 
@@ -122,7 +120,7 @@ is changed to:
 {"time":"2017-07-27","level":"info","message":"fluentd worker is now running worker=0","worker_id":0}
 ```
 
-## Output to Log File
+## 输出到日志文件
 
 By default, Fluentd outputs to the standard output. Use `-o` command line option
 to specify the file instead:
@@ -131,7 +129,7 @@ to specify the file instead:
 $ fluentd -o /path/to/log_file
 ```
 
-### Log Rotation Setting
+### 日志旋转设置
 
 By default, Fluentd does not rotate log files. You can configure this behavior
 via command line options:
@@ -164,7 +162,7 @@ into `log-supervisor-0.log`, `log-0.log`, ..., `log-N.log` where `N` is
 `generation - 1` due to the system limitation. Windows does not permit delete
 and rename files simultaneously owned by another process.
 
-## Capture Fluentd logs
+## 捕捉 Fluentd 日志
 
 Fluentd marks its own logs with the `fluent` tag. You can process
 Fluentd logs by using `<match fluent.**>`(Of course, `**` captures other
@@ -192,7 +190,7 @@ Then, Fluentd outputs `fluent.info` logs to stdout like this:
 2014-02-27 00:00:01 +0900 [info]: process finished code = 0
 ```
 
-### Case 1: Send Fluentd Logs to Monitoring Service
+### 情况 1: 发送 Fluentd 日志到监控服务
 
 You can send Fluentd logs to a monitoring service by plugins e.g. datadog,
 sentry, irc, etc.
@@ -215,7 +213,7 @@ sentry, irc, etc.
 <label>
 ```
 
-### Case 2: Use Aggregation/Monitoring Server
+### 案例 2：使用聚合/监控服务器
 
 You can use [`out_forward`](/plugins/output/forward.md) to send Fluentd logs to a
 monitoring server. The monitoring server can then filter and send the
@@ -287,12 +285,7 @@ If an error occurs, you will get a notification message in your Slack `notify` c
 01:01  fluentd: [11:10:24] notice: fluent.warn [2014/02/27 01:00:00] @leaf.server.domain detached forwarding server 'server.name'
 ```
 
-### Deprecate Top-Level Match
+### 废弃 Top-Level Match
 
 You can still use [v0.12 way](https://fluentd.gitbook.io/manual/v/0.12/deployment/logging#capture-fluentd-logs) without `<label @FLUENT_LOG>` but
 this feature is deprecated. This feature will be removed in fluentd v2.
-
----
-
-If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
-[Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.

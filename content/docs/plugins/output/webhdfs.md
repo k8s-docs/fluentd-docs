@@ -1,4 +1,8 @@
-# HDFS (WebHDFS) Output Plugin
+---
+title: "HDFS (WebHDFS) Output Plugin"
+linkTitle: "WebHDFS"
+weight: 1
+---
 
 ![webhdfs.png](/images/plugins/output/webhdfs.png)
 
@@ -13,7 +17,6 @@ change the output frequency, please modify the `timekey` value.
 This document does not describe all the parameters. For more details, see the
 **Further Reading** section.
 
-
 ## Install
 
 `out_webhdfs` is included in `td-agent` by default (v1.1.10 or later).
@@ -23,7 +26,6 @@ using the following command:
 ```
 $ fluent-gem install fluent-plugin-webhdfs
 ```
-
 
 ## HDFS Configuration
 
@@ -48,7 +50,6 @@ cluster:
 </property>
 ```
 
-
 ## Example Configuration
 
 ```
@@ -70,33 +71,27 @@ Please see the [Configuration File](/configuration/config-file.md) article for
 the basic structure and syntax of the configuration file. For `<buffer>`, please
 check [Buffer Section Configuration](/configuration/buffer-section.md).
 
-
 ## Plugin Helpers
 
--   [`inject`](/developer/api-plugin-helper-inject.md)
--   [`formatter`](/developer/api-plugin-helper-formatter.md)
--   [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
-
+- [`inject`](/developer/api-plugin-helper-inject.md)
+- [`formatter`](/developer/api-plugin-helper-formatter.md)
+- [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
 
 ## Parameters
 
 [Common Parameters](/configuration/plugin-common-parameters.md)
 
-
 ### `@type` (required)
 
 The value must be `webhfds`.
-
 
 ### `host` (required)
 
 The node hostname.
 
-
 ### `port` (required)
 
 The node port number.
-
 
 ### `path` (required)
 
@@ -107,23 +102,21 @@ instances. This conflict could result in data loss.
 Path value can contain time placeholders. The following characters are
 replaced with actual values when the file is created:
 
--   `%Y`: year including the century (at least 4 digits)
--   `%m`: month of the year (01..12)
--   `%d`: Day of the month (01..31)
--   `%H`: Hour of the day, 24-hour clock (00..23)
--   `%M`: Minute of the hour (00..59)
--   `%S`: Second of the minute (00..60)
+- `%Y`: year including the century (at least 4 digits)
+- `%m`: month of the year (01..12)
+- `%d`: Day of the month (01..31)
+- `%H`: Hour of the day, 24-hour clock (00..23)
+- `%M`: Minute of the hour (00..59)
+- `%S`: Second of the minute (00..60)
 
 Although it is possible to contain time placeholder with `path`
 configuration, it is recommended to specify the format using `<format>`
 section.
 
-
 ## Output Parameters (and overwritten values by `out_webhdfs`)
 
 For advanced usage, you can tune Fluentd's internal buffering mechanism
 with these parameters.
-
 
 ### `timekey`
 
@@ -133,7 +126,6 @@ placeholders), which creates one file per day.
 
 This parameter is specified by `path` configuration. For example, when
 `path` contains `%H`, the value is `3600` and creates one file per hour.
-
 
 ### `timekey_wait`
 
@@ -149,7 +141,6 @@ uploaded together with all the other logs from 1:00 to 1:59 in one
 transaction, avoiding extra overhead. Larger values can be set as
 needed.
 
-
 ### `queue_limit_length`, `chunk_limit_size`
 
 The length of the chunk queue and the size of each chunk, respectively.
@@ -158,19 +149,16 @@ for the basic buffer structure. The default values are `64` and `8m`,
 respectively. The suffixes `k` (KB), `m` (MB), and `g` (GB) can be used
 for `chunk_limit_size`.
 
-
 ### `flush_interval`
 
 The interval between data flushes. The default is unspecified, and
 buffer chunks will be flushed at the end of time slices. The suffixes
 `s` (seconds), `m` (minutes), and `h` (hours) can be used.
 
-
 ### `flush_at_shutdown`
 
 The boolean value to specify whether to flush buffer chunks on shutdown, or not.
 The default is `true`. Specify `true` if you use `memory` buffer type.
-
 
 ### `retry_wait`, `retry_max_interval`
 
@@ -183,7 +171,6 @@ Since `td-agent` will retry `17` times before giving up by default (see the
 to approximately 131072 seconds (roughly 36 hours) in the default
 configurations.
 
-
 ### `retry_max_times`, `retry_forever`
 
 The limit on the number of retries before buffered data is discarded,
@@ -193,13 +180,11 @@ are `17` and `false` (not disabled). If the limit is reached, buffered data
 is discarded and the retry interval is reset to its initial value
 (`retry_wait`).
 
-
 ### `flush_thread_count`
 
 The number of threads to flush the buffer. This option can be used to
 parallelize writes into the output(s) designated by the output plugin.
 The default is `1`.
-
 
 #### `@log_level`
 
@@ -210,23 +195,20 @@ Supported log levels: `fatal`, `error`, `warn`, `info`, `debug`, `trace`
 
 Please see the [logging](/deployment/logging.md) article for further details.
 
-
 ## Common Output / Buffer parameters
 
 For common output / buffer parameters, please check the following
 articles:
 
--   [Output Plugin Overview](/plugins/output/README.md)
--   [Buffer Section Configuration](/configuration/buffer-section.md)
-
+- [Output Plugin Overview](/plugins/output/README.md)
+- [Buffer Section Configuration](/configuration/buffer-section.md)
 
 ## Further Reading
 
--   [`fluent-plugin-webhdfs`](https://github.com/fluent/fluent-plugin-webhdfs)
--   [Slides: Fluentd and WebHDFS](http://www.slideshare.net/tagomoris/fluentd-and-webhdfs)
+- [`fluent-plugin-webhdfs`](https://github.com/fluent/fluent-plugin-webhdfs)
+- [Slides: Fluentd and WebHDFS](http://www.slideshare.net/tagomoris/fluentd-and-webhdfs)
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

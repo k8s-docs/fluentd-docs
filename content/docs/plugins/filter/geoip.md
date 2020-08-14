@@ -1,11 +1,14 @@
-# GeoIP Filter Plugin
+---
+title: "GeoIP Filter Plugin"
+linkTitle: "GeoIP"
+weight: 1
+---
 
 The `filter_geoip` Filter plugin adds geographic location information to
 logs using the Maxmind GeoIP databases.
 
 This document does not describe all the parameters. If you want to know full
 features, check the Further Reading section.
-
 
 ## Prerequisites
 
@@ -26,7 +29,6 @@ $ brew install geoip
 
 `libmaxminddb` for GeoIP2 is bundled with `geoip2_c`.
 
-
 ## Install
 
 `filter_geoip` is not included in `td-agent`. All users must install the
@@ -38,7 +40,6 @@ $ sudo /usr/sbin/td-agent-gem install fluent-plugin-geoip
 ```
 
 For more details, see [Plugin Management](/deployment/plugin-management.md).
-
 
 ## Example Configuration
 
@@ -79,41 +80,36 @@ See [fluent-plugin-geoip
 README](https://github.com/y-ken/fluent-plugin-geoip#readme) for further
 details.
 
-
 ## Plugin helpers
 
--   [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
--   [`inject`](/developer/api-plugin-helper-inject.md)
-
+- [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
+- [`inject`](/developer/api-plugin-helper-inject.md)
 
 ## Parameters
 
 See [Common Parameters](/configuration/plugin-common-parameters.md).
 
-
 ### `geoip_database`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | bundled | 1.0.0   |
 
 Path to GeoIP database file.
 
-
 ### `geoip2_database`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | bundled | 1.0.0   |
 
 Path to GeoIP2 database file.
 
-
 ### `geoip_lookup_keys`
 
 | type  | default  | version |
-|:-----:|:--------:|:-------:|
-| array | ["host"] | 1.2.0   |
+| :---: | :------: | :-----: |
+| array | ["host"] |  1.2.0  |
 
 Specifies one or more geoip lookup fields containing the IP address.
 
@@ -122,40 +118,35 @@ about nested attributes.
 
 **NOTE**: Since v1.3.0 does not interpret `host.ip` as nested attribute.
 
-
 ### `geoip_lookup_key`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | host    | 1.0.0   |
 
 Specifies one or more geoip lookup fields containing the ip address.
 
 This parameter has been deprecated since v1.2.0.
 
-
 ### `skip_adding_null_record`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 1.0.0   |
 
 Set to `true` to skip adding field with `[null, null]` array.
 
 This is useful for ElasticSearch.
 
-
 ### `backend_library`
 
-| type | default   | available values                 | version |
-|:-----|:----------|:---------------------------------|:--------|
-| enum | geoip2\_c | geoip, geoip2\_compat, geoip2\_c | 1.0.0   |
+| type | default  | available values               | version |
+| :--- | :------- | :----------------------------- | :------ |
+| enum | geoip2_c | geoip, geoip2_compat, geoip2_c | 1.0.0   |
 
 Set backend library.
 
-
 ## Use cases
-
 
 #### Plot Realtime Access Statistics on a World Map using Elasticsearch and Kibana
 
@@ -164,8 +155,8 @@ world map using [Kibana](http://www.elasticsearch.org/overview/kibana/).
 
 Required plugins:
 
--   `fluent-plugin-geoip`
--   `fluent-plugin-elasticsearch`
+- `fluent-plugin-geoip`
+- `fluent-plugin-elasticsearch`
 
 ```
 <filter apache.access>
@@ -192,13 +183,11 @@ Required plugins:
 </match>
 ```
 
-
 ## Further Reading
 
--   [`fluent-plugin-geoip`](https://github.com/y-ken/fluent-plugin-geoip)
+- [`fluent-plugin-geoip`](https://github.com/y-ken/fluent-plugin-geoip)
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

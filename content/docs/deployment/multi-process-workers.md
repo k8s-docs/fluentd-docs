@@ -1,16 +1,13 @@
 ---
 title: "多进程工作"
 linkTitle: ""
-weight: 1
+weight: 7
+description: >
+  本文介绍 对于高流量如何使用Fluentd的多工处理功能 .
+  此功能的推出两个或两个以上fluentd工作进程利用多个CPU的力量.
 ---
 
-#
-
-This article describes how to use Fluentd's multi process workers
-feature for high traffic. This feature launches two or more fluentd
-workers to utilize multiple CPU powers.
-
-This feature can simply replace `fluent-plugin-multiprocess`.
+这个功能可以简单地替换 `fluent-plugin-multiprocess`.
 
 ## How It Works
 

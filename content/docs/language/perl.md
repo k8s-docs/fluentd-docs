@@ -1,10 +1,8 @@
 ---
-title: ""
-linkTitle: ""
+title: "来 Perl 应用程序集中化日志"
+linkTitle: "Perl"
 weight: 1
 ---
-
-# Centralize Logs from Perl Applications
 
 The [`Fluent::Logger`](http://github.com/fluent/fluent-logger-perl) library is
 used to post records from Perl applications to Fluentd.

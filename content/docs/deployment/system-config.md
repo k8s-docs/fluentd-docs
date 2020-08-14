@@ -2,19 +2,15 @@
 title: "系统配置"
 linkTitle: ""
 weight: 1
+description: >
+  本文介绍该Fluentd的系统配置 用于`<system>`部分和命令行选项.
 ---
 
-#
+## 概观
 
-This article describes the Fluentd's system configurations for `<system>`
-section and command line options.
+系统配置是建立全系统配置的一种方式如启用 RPC, 多工, 等等.
 
-## Overview
-
-System Configuration is one way to set up system-wide configuration such as
-enabling RPC, multiple workers, etc.
-
-## Parameters
+## 参数
 
 ### `workers`
 

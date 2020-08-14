@@ -1,20 +1,18 @@
 ---
-title: "Fluentd的信号处理"
-linkTitle: "信号处理"
-weight: 1
+title: "信号处理"
+linkTitle: ""
+weight: 3
+description: >
+  本文介绍`Fluentd`如何处理UNIX信号.
 ---
 
-#
-
-This article explains how `Fluentd` handles UNIX signals.
-
-## Process Model
+## 流程模型
 
 When you launch Fluentd, it creates two processes: supervisor and
 worker. The supervisor process controls the life cycle of the worker
 process. Make sure to send signals to the supervisor process only.
 
-## Signals
+## 信号
 
 ### SIGINT or SIGTERM
 

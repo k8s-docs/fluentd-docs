@@ -1,10 +1,8 @@
 ---
-title: ""
+title: "使用Fluentd简单的数据流操作"
 linkTitle: ""
 weight: 1
 ---
-
-# Easy Data Stream Manipulation using Fluentd
 
 Sometimes, you need to transform the data stream in a certain way. For
 example, you might want to extract a portion of data for error reporting,

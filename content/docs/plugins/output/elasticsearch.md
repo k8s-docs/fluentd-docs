@@ -1,4 +1,8 @@
-# Elasticsearch Output Plugin
+---
+title: "Elasticsearch Output Plugin"
+linkTitle: "Elasticsearch"
+weight: 1
+---
 
 ![elasticsearch.png](/images/plugins/output/elasticsearch.png)
 
@@ -14,7 +18,6 @@ and specify `timekey` value in configuration.
 This document does not describe all the parameters. For details, refer to the
 **Further Reading** section.
 
-
 ## Installation
 
 Since `out_elasticsearch` has been included in the standard distribution
@@ -27,7 +30,6 @@ plugin using `fluent-gem`:
 ```
 $ fluent-gem install fluent-plugin-elasticsearch
 ```
-
 
 ## Example Configuration
 
@@ -45,30 +47,24 @@ point for most users:
 
 For more details on each option, read the section on [Parameters](#parameters).
 
-
 ## Plugin Helpers
 
--   [`event_emitter`](/developer/api-plugin-helper-event_emitter.md)
--   [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
-
+- [`event_emitter`](/developer/api-plugin-helper-event_emitter.md)
+- [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
 
 ## Parameters
-
 
 ### `@type` (required)
 
 This option must be always `elasticsearch`.
 
-
 ### `host` (optional)
 
 The hostname of your Elasticsearch node (default: `localhost`).
 
-
 ### `port` (optional)
 
 The port number of your Elasticsearch node (default: `9200`).
-
 
 ### `hosts` (optional)
 
@@ -83,7 +79,6 @@ hosts https://customhost.com:443/path,https://username:password@host-failover.co
 
 If you use this option, the `host` and `port` options are ignored.
 
-
 ### `user`, `password` (optional)
 
 The login credentials to connect to the Elasticsearch node (default: `nil`):
@@ -93,16 +88,13 @@ user fluent
 password mysecret
 ```
 
-
 ### `scheme` (optional)
 
 Specify `https` if your Elasticsearch endpoint supports SSL (default: `http`).
 
-
 ### path (optional)
 
 The REST API endpoint of Elasticsearch to post write requests (default: `nil`).
-
 
 ### `index_name` (optional)
 
@@ -131,12 +123,10 @@ specify timekey for time slice of chunk:
 </buffer>
 ```
 
-
 ### `logstash_format` (optional)
 
 If `true`, Fluentd uses the conventional index name format `logstash-%Y.%m.%d`
 (default: `false`). This option supersedes the `index_name` option.
-
 
 #### `@log_level` option
 
@@ -147,12 +137,10 @@ Supported log levels: `fatal`, `error`, `warn`, `info`, `debug`, `trace`.
 
 Please see the [logging article](/deployment/logging.md) for further details.
 
-
 ### `logstash_prefix` (optional)
 
 The logstash prefix index name to write events when `logstash_format` is `true`
 (default: `logstash`).
-
 
 ## Miscellaneous
 
@@ -179,26 +167,22 @@ user demo+
 password @secret
 ```
 
-
 ## Common Output / Buffer parameters
 
 For common output / buffer parameters, please check the following articles:
 
--   [Output Plugin Overview](/plugins/output/README.md)
--   [Buffer Section Configuration](/configuration/buffer-section.md)
-
+- [Output Plugin Overview](/plugins/output/README.md)
+- [Buffer Section Configuration](/configuration/buffer-section.md)
 
 ## Troubleshooting
 
 Please refer to the [Elasticsearch's troubleshooting](https://github.com/uken/fluent-plugin-elasticsearch#troubleshooting) section.
 
-
 ## Further Reading
 
--   [`fluent-plugin-elasticsearch`](https://github.com/uken/fluent-plugin-elasticsearch)
+- [`fluent-plugin-elasticsearch`](https://github.com/uken/fluent-plugin-elasticsearch)
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

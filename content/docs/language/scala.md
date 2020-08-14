@@ -1,10 +1,8 @@
 ---
-title: ""
-linkTitle: ""
+title: "来自 Scala 应用集中式日志"
+linkTitle: "Scala"
 weight: 1
 ---
-
-# Centralize Logs from Scala Applications
 
 The [`fluent-logger-scala`](https://github.com/fluent/fluent-logger-scala)
 library is used to post records from Scala applications to Fluentd.

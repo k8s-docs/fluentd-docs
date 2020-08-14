@@ -1,14 +1,16 @@
-# Unix Domain Socket Input Plugin
+---
+title: "Unix域套接字输入插件"
+linkTitle: "Unix"
+weight: 5
+description: >
+  `in_unix`输入插件能使Fluentd从Unix域套接字检索记录.
+---
 
-The `in_unix` Input plugin enables Fluentd to retrieve records from
-the Unix Domain Socket. The wire protocol is the same as
-[`in_forward`](/plugins/input/forward.md), but the transport layer is
-different.
+线协议是相同的[`in_forward`](/plugins/input/forward.md), 但是，传输层是不同.
 
-It is included in Fluentd's core.
+它包括在 Fluentd 的核心。
 
-
-## Example Configuration
+## 示例配置
 
 ```
 <source>
@@ -20,46 +22,40 @@ It is included in Fluentd's core.
 Refer to the [Configuration File](/configuration/config-file.md) article for the
 basic structure and syntax of the configuration file.
 
-
-## Parameters
-
+## 参数
 
 ### `@type` (required)
 
 The value must be `unix`.
 
-
 ### `path`
 
-| type   | default                                   | version |
-|:------:|:-----------------------------------------:|:-------:|
+|  type  |                  default                  | version |
+| :----: | :---------------------------------------: | :-----: |
 | string | `/var/run/fluent/fluent.sock` (see below) | 0.14.0  |
 
 The path to your Unix Domain Socket.
 
 Fluentd will use the environment variable `FLUENT_SOCKET` if defined.
 
-
 ### `backlog`
 
-| type    | default | version |
-|:-------:|:-------:|:-------:|
-| integer | 1024    | 0.14.0  |
+|  type   | default | version |
+| :-----: | :-----: | :-----: |
+| integer |  1024   | 0.14.0  |
 
 The backlog of Unix Domain Socket.
-
 
 ### `tag`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | nil     | 1.11.0  |
 
 `in_unix` uses incoming event's tag by default. If `tag` parameter is set, its
 value is used instead.
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

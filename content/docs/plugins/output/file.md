@@ -1,4 +1,8 @@
-# `file` Output Plugin
+---
+title: "`file` Output Plugin"
+linkTitle: "file"
+weight: 1
+---
 
 ![file.png](/images/plugins/output/file.png)
 
@@ -10,7 +14,6 @@ The file will be created when the `timekey` condition has been met. To
 change the output frequency, please modify the `timekey` value.
 
 It is included in Fluentd's core.
-
 
 ## Example Configuration
 
@@ -32,28 +35,24 @@ the basic structure and syntax of the configuration file.
 
 For `<buffer>`, refer to [Buffer Section Configuration](/configuration/buffer-section.md).
 
-
 ## Plugin Helpers
 
--   [`formatter`](/developer/api-plugin-helper-formatter.md)
--   [`inject`](/developer/api-plugin-helper-inject.md)
--   [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
-
+- [`formatter`](/developer/api-plugin-helper-formatter.md)
+- [`inject`](/developer/api-plugin-helper-inject.md)
+- [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
 
 ## Parameters
 
 [Common Parameters](/configuration/plugin-common-parameters.md)
 
-
 ### `@type` (required)
 
 The value must be `file`.
 
-
 ### `path`
 
 | type   | default            | version |
-|:-------|:-------------------|:--------|
+| :----- | :----------------- | :------ |
 | string | required parameter | 0.14.0  |
 
 The path of the file. The actual path is path + time + ".log" by default.
@@ -81,11 +80,10 @@ buffer). Once the content of the buffer has been completely
 [flushed](/plugins/buffer/file.md), you will see the output file without the
 trailing identifier.
 
-
 ### `append`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.0  |
 
 The flushed chunk is appended to existing file or not. The default is
@@ -109,7 +107,6 @@ file.20140608.log
 file.20140609.log
 ```
 
-
 ### `<format>` Directive
 
 The format of the file content. The default `@type` is `out_file`.
@@ -124,11 +121,9 @@ JSON example:
 
 See [`formatter`](/plugins/formatter/README.md) article for more detail.
 
-
 ### `format`
 
 Deprecated parameter. Use `<format>` instead.
-
 
 ### `<inject>` Section
 
@@ -136,41 +131,35 @@ Add event `time` and event `tag` to record.
 
 See [Inject Section Configurations](/configuration/inject-section.md) for more details.
 
-
 ### `utc`
 
 Deprecated parameter. Use `timekey_use_utc` in `<buffer>` instead.
 
-
 ### `add_path_suffix`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | true    | 0.14.9  |
 
 Add path suffix or not. See also `path_suffix` parameter.
 
-
 ### `path_suffix`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | ".log"  | 0.14.9  |
 
 The suffix for output result.
 
-
 ### `compress`
 
 Compresses flushed files using `gzip`. No compression is performed by default.
-
 
 ### `recompress`
 
 Executes compression again even when buffer chunk is already compressed.
 
 Default: `false`
-
 
 ### `symlink_path`
 
@@ -179,7 +168,6 @@ symlink is created by default. This is useful for tailing file content to check
 logs.
 
 This is disabled on Windows.
-
 
 #### `@log_level`
 
@@ -190,17 +178,14 @@ Supported log levels: `fatal`, `error`, `warn`, `info`, `debug`, `trace`
 
 Please see the [logging](/deployment/logging.md) article for further details.
 
-
 ## Common Output / Buffer parameters
 
 For common output / buffer parameters, please check the following articles:
 
--   [Output Plugin Overview](/plugins/output/README.md)
--   [Buffer Section Configuration](/configuration/buffer-section.md)
-
+- [Output Plugin Overview](/plugins/output/README.md)
+- [Buffer Section Configuration](/configuration/buffer-section.md)
 
 ## FAQ
-
 
 ### I can see files but placeholders are not replaced, why?
 
@@ -227,7 +212,6 @@ After flushed, you see actual output result:
 ```
 
 See also note in `path` parameter.
-
 
 ### Can I use a placeholder in `symlink_path`?
 
@@ -271,8 +255,7 @@ $ tree /tmp/logs/
 └── current-dummy2 -> /tmp/logs/${tag}/buffer.b57fb1dd96306dd0b308e094f7ec2228f.log
 ```
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

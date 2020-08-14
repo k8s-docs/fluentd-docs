@@ -1,12 +1,10 @@
 ---
-title: ""
-linkTitle: ""
-weight: 1
+title: "分析插件概览"
+linkTitle: "分析插件"
+weight: 2
 ---
 
-# Parser Plugin Overview
-
-Fluentd has eight (8) types of plugins:
+Fluentd 有八(8)类插件:
 
 - [Input](/plugins/input/README.md)
 - [Parser](/plugins/parser/README.md)

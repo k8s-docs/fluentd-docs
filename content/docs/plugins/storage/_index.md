@@ -1,12 +1,10 @@
 ---
-title: ""
-linkTitle: ""
-weight: 1
+title: "存储插件概述"
+linkTitle: "存储插件"
+weight: 6
 ---
 
-# Storage Plugin Overview
-
-Fluentd has eight (8) types of plugins:
+Fluentd 有八(8)类插件:
 
 - [Input](/plugins/input/README.md)
 - [Parser](/plugins/parser/README.md)

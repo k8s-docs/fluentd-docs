@@ -1,9 +1,12 @@
-# `relabel` Output Plugin
+---
+title: "`relabel` Output Plugin"
+linkTitle: "relabel"
+weight: 1
+---
 
 The `relabel` output plugin re-labels events.
 
 It is included in Fluentd's core.
-
 
 ## Example Configuration
 
@@ -27,39 +30,33 @@ directive can take care of these events.
 provided by Fluentd core. The `relabel` plugin is a plugin which
 actually does nothing, but supports only `@label` parameter.
 
-
 ## Supported Modes
 
--   Non-Buffered
+- Non-Buffered
 
--   See also: [Output Plugin Overview](/plugins/output/README.md)
-
+- See also: [Output Plugin Overview](/plugins/output/README.md)
 
 ## Plugin Helpers
 
--   [`event_emitter`](/developer/api-plugin-helper-event_emitter.md)
-
+- [`event_emitter`](/developer/api-plugin-helper-event_emitter.md)
 
 ## Parameters
 
 [Common Parameters](/configuration/plugin-common-parameters.md)
 
-
 ### `@type`
 
 The value must be `relabel`.
-
 
 ### `@label`
 
 The label.
 
 | type   | default            | version |
-|:-------|:-------------------|:--------|
+| :----- | :----------------- | :------ |
 | string | required parameter | 0.14.0  |
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

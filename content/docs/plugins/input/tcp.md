@@ -1,14 +1,17 @@
-# TCP Input Plugin
+---
+title: "TCP输入插件"
+linkTitle: "TCP"
+weight: 4
+description: >
+  `in_tcp` 输入插件能使Fluentd接受TCP有效载荷.
+---
 
 ![tcp.png](/images/plugins/input/tcp.png)
 
-The `in_tcp` Input plugin enables Fluentd to accept TCP payload.
+它包括在 Fluentd 的核心。
 
-It is included in Fluentd's core.
-
-Don't use this plugin for receiving logs from Fluentd client
-libraries. Use `in_forward` for such cases.
-
+不要使用这个插件从 Fluentd 客户端库接收日志。
+对于这样的情况用 `in_forward`.
 
 ## Example Configuration
 
@@ -46,14 +49,12 @@ For `<parse>`, see [Parse Section](/configuration/parse-section.md).
 We have observed drastic performance improvements on Linux, with
 proper kernel parameter settings. If you have high-volume TCP traffic, follow [Before Installing Fluentd](/install/before-install.md) instructions.
 
-
 ## Plugin Helpers
 
--   [`server`](/developer/api-plugin-helper-server.md)
--   [`parser`](/developer/api-plugin-helper-parser.md)
--   [`extract`](/developer/api-plugin-helper-extract.md)
--   [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
-
+- [`server`](/developer/api-plugin-helper-server.md)
+- [`parser`](/developer/api-plugin-helper-parser.md)
+- [`extract`](/developer/api-plugin-helper-extract.md)
+- [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
 
 ## Parameters
 
@@ -63,38 +64,34 @@ See [Common Parameters](/configuration/plugin-common-parameters.md).
 
 The value must be `tcp`.
 
-
 ### `tag`
 
 | type   | default            | version |
-|:-------|:-------------------|:--------|
+| :----- | :----------------- | :------ |
 | string | required parameter | 0.14.0  |
 
 The tag of output events.
 
-
 ### `port`
 
 | type    | default | version |
-|:--------|:--------|:--------|
+| :------ | :------ | :------ |
 | integer | 5170    | 0.14.0  |
 
 The port to listen to.
 
-
 ### `bind`
 
 | type   | default                 | version |
-|:-------|:------------------------|:--------|
+| :----- | :---------------------- | :------ |
 | string | 0.0.0.0 (all addresses) | 0.14.0  |
 
 The bind address to listen to.
 
-
 ### `source_hostname_key`
 
 | type   | default                  | version |
-|:-------|:-------------------------|:--------|
+| :----- | :----------------------- | :------ |
 | string | nil (no adding hostname) | 0.14.10 |
 
 The field name of the client's hostname. If set, the client's hostname will be
@@ -116,12 +113,11 @@ The client's hostname is set to `client_host` field:
 }
 ```
 
-
 ### `source_address_key`
 
-| type   | default                        | version |
-|:------:|:------------------------------:|:-------:|
-| string | nil (no adding source address) | 1.4.2   |
+|  type  |            default             | version |
+| :----: | :----------------------------: | :-----: |
+| string | nil (no adding source address) |  1.4.2  |
 
 The field name for the client's IP address. If set, Fluentd automatically adds
 the remote address to each data record.
@@ -146,11 +142,10 @@ You will get something like below:
 }
 ```
 
-
 ### `<transport>` Section
 
 | type | default | available values | version |
-|:-----|:--------|:-----------------|:--------|
+| :--- | :------ | :--------------- | :------ |
 | enum | udp     | tls              | 0.14.12 |
 
 This section is for using TLS transport.
@@ -164,54 +159,48 @@ This section is for using TLS transport.
 
 Without `<transport tls>`, `in_tcp` uses raw TCP.
 
-
 ### `<security>` Section
 
 | required | multi | version |
-|:---------|:------|:--------|
-| false    | false |  1.7.2  |
+| :------- | :---- | :------ |
+| false    | false | 1.7.2   |
 
 Adds `<security>/<client>` section to allow access by Host/IP/Network.
 
-
 #### `<client>` Section
-
 
 ##### `host`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | nil     | 1.7.2   |
 
 The IP address or host name of the client.
 
 This is exclusive with `network`.
 
-
 ##### `network`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | nil     | 1.7.2   |
 
 Network address specification.
 
 This is exclusive with `host`.
 
-
 ### `<parse>` Section
 
 | required | multi | version |
-|:---------|:------|:--------|
+| :------- | :---- | :------ |
 | true     | false | 0.14.10 |
 
 `in_tcp` uses parser plugin to parse the payload.
 
 For more details:
 
--   [Parser Plugin Overview](/plugins/parser/README.md)
--   [Parse Section Configurations](/configuration/parse-section.md)
-
+- [Parser Plugin Overview](/plugins/parser/README.md)
+- [Parse Section Configurations](/configuration/parse-section.md)
 
 ## Code Example
 
@@ -228,9 +217,7 @@ TCPSocket.open('127.0.0.1', 5170) do |s|
 end
 ```
 
-
 ## Tips
-
 
 ### How to Enable TLS Encryption
 
@@ -252,7 +239,6 @@ Example:
   tag tcp
 </source>
 ```
-
 
 ### How to Enable TLS Mutual Authentication
 
@@ -287,8 +273,7 @@ $ openssl s_client -connect localhost:20001 \
 
 If the connection gets established successfully, your setup is working fine.
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

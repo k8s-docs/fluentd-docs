@@ -1,34 +1,31 @@
-# `local` Storage Plugin
+---
+title: "`local`存储插件"
+linkTitle: "local"
+weight: 1
+---
 
 The `local` storage plugin stores the key-value pair into JSON file on local
 storage.
 
-
 ## Parameters
-
 
 ### `path`
 
 Specifies the path name to save key-value pair. (default: `nil`)
 
-
 ### `mode`
 
 Specifies the file access mode. (default: `0644`)
-
 
 ### `dir_mode`
 
 Specifies the directory access mode. (default: `0755`)
 
-
 ### `pretty_print`
 
 Output human readable formatted JSON. (default: `false`)
 
-
 ## Attributes
-
 
 ### `conf.arg`
 
@@ -50,8 +47,7 @@ The above configuration will save the internal states, which are handled by
 NOTE: Specifying filepath in `path` parameter does not support multi workers
 feature. Instead, you should specify directory there.
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

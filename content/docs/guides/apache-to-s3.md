@@ -1,10 +1,8 @@
 ---
-title: ""
+title: "存储Apache日志到亚马逊S3"
 linkTitle: ""
 weight: 1
 ---
-
-# Store Apache Logs into Amazon S3
 
 This article explains how to use [Fluentd](http://fluentd.org/)'s Amazon S3
 Output plugin ([`out_s3`](/plugins/output/s3.md)) to aggregate semi-structured

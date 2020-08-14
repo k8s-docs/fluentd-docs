@@ -1,10 +1,13 @@
-# `parser` Filter Plugin
+---
+title: "`parser` Filter Plugin"
+linkTitle: "parser"
+weight: 1
+---
 
 The `parser` filter plugin "parses" string field in event records and mutates
 its event record with parsed result.
 
 It is included in the Fluentd's core.
-
 
 ## Example Configurations
 
@@ -42,18 +45,15 @@ record:
 {"host":"192.168.0.1","user":"-","method":"GET","path":"/","code":"200","size":"777"}
 ```
 
-
 ## Plugin Helpers
 
--   [`parser`](/developer/api-plugin-helper-parser.md)
--   [`record_accessor`](/developer/api-plugin-helper-record_accessor.md)
--   [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
-
+- [`parser`](/developer/api-plugin-helper-parser.md)
+- [`record_accessor`](/developer/api-plugin-helper-record_accessor.md)
+- [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
 
 ## Parameters
 
 See [Common Parameters](/configuration/plugin-common-parameters.md).
-
 
 ### `<parse>` Section
 
@@ -62,11 +62,10 @@ This is a required subsection. Specifies the parser type and related parameter.
 For more details, see [Parse Section
 Configurations](/configuration/parse-section.md).
 
-
 ### `key_name`
 
 | type   | default            | version |
-|:-------|:-------------------|:--------|
+| :----- | :----------------- | :------ |
 | string | required parameter | 0.14.9  |
 
 Specifies the field name in the record to parse.
@@ -74,20 +73,18 @@ Specifies the field name in the record to parse.
 This parameter supports nested field access via [`record_accessor`
 syntax](/developer/api-plugin-helper-record_accessor.md/#syntax).
 
-
 ### `reserve_time`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.9  |
 
 Keeps the original event time in the parsed result.
 
-
 ### `reserve_data`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.9  |
 
 Keeps the original key-value pair in the parsed result.
@@ -117,11 +114,10 @@ Without `reserve_data`, the result is:
 # output data: {"user":1,"num":2}
 ```
 
-
-### remove\_key\_name\_field
+### remove_key_name_field
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 1.2.2   |
 
 Removes `key_name` field when parsing is succeeded.
@@ -145,19 +141,17 @@ With above configuration, here is the result:
 # output data: {"key":"value","user":1,"num":2}
 ```
 
-
 ### `replace_invalid_sequence`
 
 | type | default | version |
-|:-----|:--------|:--------||bool | false   | 0.14.9  |
+|:-----|:--------|:--------||bool | false | 0.14.9 |
 
 If `true`, invalid string is replaced with safe characters and re-parse it.
-
 
 ### `inject_key_prefix`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | false   | 0.14.9  |
 
 Stores the parsed values with the specified key name prefix.
@@ -181,11 +175,10 @@ With above configuration, here is the result:
 # output data: {"log":"{\"user\":1,\"num\":2}","data.user":1, "data.num":2}
 ```
 
-
 ### `hash_value_field`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | false   | 0.14.9  |
 
 Stores the parsed values as a hash value in a field.
@@ -208,26 +201,23 @@ With above configuration, result is below:
 # output data: {"parsed":{"user":1,"num":2}}
 ```
 
-
 ### `emit_invalid_record_to_error`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | true    | 0.14.0  |
 
 Emits invalid record to `@ERROR` label. Invalid cases are:
 
--   key not exist
--   format is not matched
--   unexpected error
+- key not exist
+- format is not matched
+- unexpected error
 
 You can rescue unexpected format logs in `@ERROR` label.
 
 If you want to ignore these errors, set `false`.
 
-
 ## FAQ
-
 
 ### `suppress_parse_error_log` is missing. What are the alternatives?
 
@@ -238,13 +228,11 @@ ignore invalid records, set `emit_invalid_record_to_error false`.
 
 See also `emit_invalid_record_to_error` parameter.
 
-
 ## Learn More
 
--   [Filter Plugin Overview](/plugins/filter/README.md)
+- [Filter Plugin Overview](/plugins/filter/README.md)
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

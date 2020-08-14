@@ -1,12 +1,14 @@
-# `apache_error` Parser Plugin
+---
+title: "`apache_error` Parser Plugin"
+linkTitle: "apache_error"
+weight: 1
+---
 
 The `apache_error` parser plugin parses apache error logs.
-
 
 ## Parameters
 
 See [Parse Section Configurations](/configuration/parse-section.md).
-
 
 ## Regexp patterns
 
@@ -18,7 +20,6 @@ expression /^\[[^ ]* (?<time>[^\]]*)\] \[(?<level>[^\]]*)\](?: \[pid (?<pid>[^\]
 
 `level`, `pid`, `client` and `message` are included in the event record.
 `time` is used for the event time.
-
 
 ## Example
 
@@ -42,8 +43,7 @@ record:
 }
 ```
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

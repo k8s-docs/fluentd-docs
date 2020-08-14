@@ -1,10 +1,8 @@
 ---
-title: ""
-linkTitle: ""
+title: "来 Python 应用程序集中化日志"
+linkTitle: "Python"
 weight: 1
 ---
-
-# Centralize Logs from Python Applications
 
 The [`fluent-logger-python`](http://github.com/fluent/fluent-logger-python)
 library is used to post records from Python applications to Fluentd.

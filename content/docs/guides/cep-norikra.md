@@ -1,10 +1,8 @@
 ---
-title: ""
+title: "Fluentd 和 Norikra: 复杂事件处理"
 linkTitle: ""
 weight: 1
 ---
-
-# Fluentd and Norikra: Complex Event Processing
 
 This article explains how to use [Fluentd](https://www.fluentd.org/) and
 [Norikra](https://norikra.github.io) to create a SQL-based realtime

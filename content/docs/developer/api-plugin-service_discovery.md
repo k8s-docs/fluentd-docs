@@ -1,4 +1,0 @@
-# Writing Service Discovery
-
-
-TODO

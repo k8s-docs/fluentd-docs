@@ -1,11 +1,14 @@
-# `record_transformer` Filter Plugin
+---
+title: "`record_transformer` Filter Plugin"
+linkTitle: "record_transformer"
+weight: 1
+---
 
 The `filter_record_transformer` filter plugin mutates/transforms
 incoming event streams in a versatile manner. If there is a need to
 add/delete/modify events, this plugin is the first filter to try.
 
 It is included in the Fluentd's core.
-
 
 ## Example Configurations
 
@@ -105,16 +108,13 @@ So, if an event with the tag `web.auth` and record
 `{"user_id":1, "status":"ok"}` comes in, it transforms it into
 `{"user_id":1, "status":"ok", "service_name":"auth"}`.
 
-
 ## Parameters
 
 See [Common Parameters](/configuration/plugin-common-parameters.md).
 
-
 ### `@type`
 
 The value must be `record_transformer`.
-
 
 ### `<record>` directive
 
@@ -131,19 +131,19 @@ For `NEW_FIELD` and `NEW_VALUE`, a special syntax `${}` allows the user to
 generate a new field dynamically. Inside the curly braces, the following
 variables are available:
 
--   The incoming event's existing values can be referred by their field
-    names. So, if the record is `{"total":100, "count":10}`, then
-    `record["total"]=100` and `record["count"]=10`.
--   `tag` refers to the whole tag.
--   `time` refers to stringified event time.
--   `hostname` refers to machine's hostname. The actual value is result of
-    [`Socket.gethostname`](https://docs.ruby-lang.org/en/trunk/Socket.html#method-c-gethostname).
+- The incoming event's existing values can be referred by their field
+  names. So, if the record is `{"total":100, "count":10}`, then
+  `record["total"]=100` and `record["count"]=10`.
+- `tag` refers to the whole tag.
+- `time` refers to stringified event time.
+- `hostname` refers to machine's hostname. The actual value is result of
+  [`Socket.gethostname`](https://docs.ruby-lang.org/en/trunk/Socket.html#method-c-gethostname).
 
 You can also access to a certain portion of a tag using the following notations:
 
--   `tag_parts[N]` refers to the `Nth` part of the tag.
--   `tag_prefix[N]` refers to the `[0..N]` part of the tag.
--   `tag_suffix[N]` refers to the `[N..]` part of the tag.
+- `tag_parts[N]` refers to the `Nth` part of the tag.
+- `tag_prefix[N]` refers to the `[0..N]` part of the tag.
+- `tag_suffix[N]` refers to the `[N..]` part of the tag.
 
 All indices are zero-based. For example, if you have an incoming event
 tagged `debug.my.app`, then `tag_parts[1]` will represent `my`. Also in
@@ -155,11 +155,10 @@ tag_prefix[1] = debug.my       tag_suffix[1] = my.app
 tag_prefix[2] = debug.my.app   tag_suffix[2] = app
 ```
 
-
 ### `enable_ruby`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.0  |
 
 When set to `true`, the full Ruby syntax is enabled in the `${...}` expression.
@@ -167,8 +166,8 @@ The default value is `false`.
 
 With `true`, additional variables could be used inside `${}`:
 
--   `record` refers to the whole record.
--   `time` refers to event time as Time object, not stringified event time.
+- `record` refers to the whole record.
+- `time` refers to event time as Time object, not stringified event time.
 
 Here is an example:
 
@@ -182,11 +181,10 @@ foo_${record["key"]} bar_${record["value"]}
 nested_value ${record["payload"]["key"]}
 ```
 
-
 ### `auto_typecast`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.0  |
 
 Automatically casts the field types. Default is `false`.
@@ -211,47 +209,43 @@ foo 1
 Internally, this keeps the original value type only when a single
 placeholder is used.
 
-
 ### `renew_record`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.0  |
 
 By default, the record transformer filter mutates the incoming data. However, if
 this parameter is set to `true`, it modifies a new empty hash instead.
 
-
 ### `renew_time_key`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | nil     | 0.14.0  |
 
 `renew_time_key foo` overwrites the time of events with a value of the
 record field `foo` if exists. The value of `foo` must be a Unix timestamp.
 
-
 ### `keep_keys`
 
 | type  | default | version |
-|:------|:--------|:--------|
+| :---- | :------ | :------ |
 | array | nil     | 0.14.0  |
 
 A list of keys to keep. Only relevant if `renew_record` is set to `true`.
 
 `keep_keys` has been supported since 0.14.0.
 
-
 ### `remove_keys`
 
 | type  | default | version |
-|:------|:--------|:--------|
+| :---- | :------ | :------ |
 | array | nil     | 0.14.0  |
 
 A list of keys to delete.
 
-This parameter supports nested field via [record\_accessor syntax](/developer/api-plugin-helper-record_accessor.md/#syntax) since v1.1.0.
+This parameter supports nested field via [record_accessor syntax](/developer/api-plugin-helper-record_accessor.md/#syntax) since v1.1.0.
 
 Example:
 
@@ -286,7 +280,6 @@ The output would be:
 }
 ```
 
-
 ## Need more performance?
 
 [`filter_record_modifier`](https://github.com/repeatedly/fluent-plugin-record-modifier)
@@ -296,7 +289,6 @@ features, but it covers popular cases. If you need better performance for
 mutating records, consider `filter_record_modifier` instead.
 
 ## Tips
-
 
 ### Use `dig` Method for Nested Field
 
@@ -323,9 +315,7 @@ instead of raising error:
 ${record.dig("top", "nest1", "nest2")}
 ```
 
-
 ## FAQ
-
 
 ### What are the differences between `${record["key"]}` and `${key}`?
 
@@ -334,20 +324,17 @@ because `${tag}` is unclear, event tag or `record["tag"]`. So the
 `${key}` syntax was removed since v0.14. v0.12 still supports `${key}`
 but it is not recommended.
 
-
 ### I got `unknown placeholder ${record['msg']} found` error, why?
 
 Without `enable_ruby`, `${}` placeholder supports only double quoted
 string for record field access. So, use `${record["key"]}` instead of
 `${record['key']}`.
 
-
 ## Learn More
 
--   [Filter Plugin Overview](/plugins/filter/README.md)
+- [Filter Plugin Overview](/plugins/filter/README.md)
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

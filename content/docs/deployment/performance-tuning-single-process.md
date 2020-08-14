@@ -1,14 +1,11 @@
 ---
 title: "性能优化 (单一进程)"
 linkTitle: "性能优化"
-weight: 1
+weight: 6
+description: >
+  本文介绍如何优化单个进程中Fluentd性能。
+  如果您的流量高达5,000消息/秒, 下面的技术应该足够.
 ---
-
-#
-
-This article describes how to optimize Fluentd performance within
-single process. If your traffic is up to 5,000 messages/sec, the
-following techniques should be enough.
 
 With more traffic, Fluentd tends to be more CPU bound. In this case, consider
 using [`multi-worker`](/deployment/multi-process-workers.md) feature.

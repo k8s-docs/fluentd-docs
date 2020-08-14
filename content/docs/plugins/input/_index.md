@@ -1,12 +1,10 @@
 ---
-title: ""
-linkTitle: ""
+title: "输入插件概述"
+linkTitle: "输入插件"
 weight: 1
 ---
 
-# Input Plugin Overview
-
-Fluentd has eight (8) types of plugins:
+Fluentd 有八(8)类插件:
 
 - [Input](/plugins/input/README.md)
 - [Parser](/plugins/parser/README.md)
@@ -17,16 +15,15 @@ Fluentd has eight (8) types of plugins:
 - [Service Discovery](/plugins/service_discovery/README.md)
 - [Buffer](/plugins/buffer/README.md)
 
-This article gives an overview of Input Plugin.
+本文给出了输入插件的概述.
 
-## Overview
+## 概观
 
-Input plugins extend Fluentd to retrieve and pull event logs from
-external sources. An input plugin typically creates a thread socket and
-a listen socket. It can also be written to periodically pull data from
-data sources.
+输入插件扩展 Fluentd 从外部来源检索和拉事件日志 .
+输入插件通常创建一个线程套接字和监听套接字.
+它也可以被写入定期从数据源获取数据 .
 
-## List of Input Plugins
+## 输入插件列表
 
 - [`in_tail`](/plugins/input/tail.md)
 - [`in_forward`](/plugins/input/forward.md)
@@ -39,16 +36,8 @@ data sources.
 - [`in_dummy`](/plugins/input/dummy.md)
 - [`in_windows_eventlog`](/plugins/input/windows_eventlog.md)
 
-## Other Input Plugins
+## 其他输入插件
 
-Refer to this list of available plugins to find out about other Input plugins:
+请参阅可用的插件的这个名单，以了解其它的输入插件:
 
 - [Fluentd plugins](http://fluentd.org/plugin/)
-
----
-
-If this article is incorrect or outdated, or omits critical information, please
-[let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
-[Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native
-Computing Foundation (CNCF)](https://cncf.io/). All components are available
-under the Apache 2 License.

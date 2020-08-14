@@ -1,10 +1,8 @@
 ---
-title: ""
+title: "使用`Treasure`数据云计算大数据分析"
 linkTitle: ""
 weight: 1
 ---
-
-# Cloud Big Data Analytics with Treasure Data
 
 This article explains how to use [Treasure Data](http://www.fluentd.org/treasuredata) with [Fluentd](http://fluentd.org/)
 to aggregate semi-structured logs into Treasure Data (TD), which offers

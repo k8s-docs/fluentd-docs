@@ -1,10 +1,8 @@
 ---
-title: ""
-linkTitle: ""
+title: "来 Java 应用程序集中化日志"
+linkTitle: "Java"
 weight: 1
 ---
-
-# Centralize Logs from Java Applications
 
 The [`fluent-logger-java`](http://github.com/fluent/fluent-logger-java)
 library is used to post records from Java applications to Fluentd.

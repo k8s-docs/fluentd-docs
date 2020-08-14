@@ -1,18 +1,16 @@
 ---
 title: "HTTP RPC"
 linkTitle: ""
-weight: 1
+weight: 4
+description: >
+  HTTP RPC 使您可以通过HTTP端点管理Fluentd实例.
+  您可以使用此功能作为[UNIX信号](/deployment/signals.md)的替代.
 ---
 
-#
+这是对环境特别有用其中信号不很好地支持例如 Vindovs.
+这需要 Fluentd 启动 不带 --no-supervisor 命令行选项.
 
-HTTP RPC enables you to manage your Fluentd instance through HTTP
-endpoints. You can use this feature as a replacement of [Unix signals](/deployment/signals.md).
-
-It is especially useful for environments where signals are not supported well
-e.g. Windows. This requires Fluentd to start not with --no-supervisor command-line option.
-
-## Configuration
+## 配置
 
 By default, HTTP RPC is not enabled. To use this feature, set the `rpc_endpoint`
 option:

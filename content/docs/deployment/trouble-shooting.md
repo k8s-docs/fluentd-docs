@@ -1,10 +1,10 @@
 ---
-title: "Fluentd故障排除"
-linkTitle: "故障排除"
-weight: 1
+title: "故障排除"
+linkTitle: ""
+weight: 10
+description: >
+  Fluentd 故障排除
 ---
-
-#
 
 ## Look at Logs
 

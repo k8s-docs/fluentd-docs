@@ -1,4 +1,8 @@
-# `exec` Output Plugin
+---
+title: "`exec` Output Plugin"
+linkTitle: "exec"
+weight: 1
+---
 
 The `out_exec` TimeSliced Output plugin passes events to an external
 program. The program receives the path to a file containing the incoming
@@ -6,7 +10,6 @@ events as its last argument. The file format is tab-separated values
 (TSV) by default.
 
 It is included in Fluentd's core.
-
 
 ## Example Configuration
 
@@ -28,7 +31,6 @@ It is included in Fluentd's core.
 
 Please see the [Configuration File](/configuration/config-file.md) article for
 the basic structure and syntax of the configuration file.
-
 
 ## Example: Running FizzBuzz Against Data Stream
 
@@ -120,21 +122,18 @@ fizz
 fizzbuzz
 ```
 
-
 ## Supported Modes
 
--   Asynchronous
+- Asynchronous
 
 See [Output Plugin Overview](/plugins/output/README.md) for more details.
 
-
 ## Plugin Helpers
 
--   [`inject`](/developer/api-plugin-helper-inject.md)
--   [`formatter`](/developer/api-plugin-helper-formatter.md)
--   [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
--   [`child_process`](/developer/api-plugin-helper-child_process.md)
-
+- [`inject`](/developer/api-plugin-helper-inject.md)
+- [`formatter`](/developer/api-plugin-helper-formatter.md)
+- [`compat_parameters`](/developer/api-plugin-helper-compat_parameters.md)
+- [`child_process`](/developer/api-plugin-helper-child_process.md)
 
 ## Parameters
 
@@ -144,11 +143,10 @@ See [Output Plugin Overview](/plugins/output/README.md) for more details.
 
 The value must be `exec`.
 
-
 ### `command`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | Nothing | 0.14.0  |
 
 The command (program) to execute. The `exec` plugin passes the path of
@@ -169,70 +167,61 @@ cmd arg arg /path/to/file
 If `cmd` does not exist in PATH, you need to specify the absolute path, e.g.
 `/path/to/cmd`.
 
-
 ### `command_timeout`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | time | 270     | 0.14.9  |
 
 Command (program) execution timeout.
-
 
 ### `<format>` Section
 
 See [Format Section](/configuration/format-section.md) for more details.
 
-
 #### `@type`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | tsv     | 0.14.9  |
 
 The format used to map the incoming events to the program input.
 
 Overwrites the default value in this plugin.
 
-
 ### `<inject>` Section
 
 See [Inject Section](/configuration/inject-section.md) for more details.
 
-
 #### `time_type`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | string  | 0.14.9  |
 
 Overwrites the default value in this plugin.
 
-
 #### `localtime`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.9  |
 
 Overwrites the default value in this plugin.
-
 
 ### `<buffer>` Section
 
 See [Buffer Section](/configuration/buffer-section.md) for more details.
 
-
 #### `delayed_commit_timeout`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | time | 300     | 0.14.9  |
 
 Overwrites the default value in this plugin.
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

@@ -1,4 +1,8 @@
-# `regexp` Parser Plugin
+---
+title: "`regexp` Parser Plugin"
+linkTitle: "regexp"
+weight: 1
+---
 
 The `regexp` parser plugin parses logs by given regexp pattern. The
 regexp must have at least one named capture (`?<NAME>`PATTERN). If the
@@ -13,22 +17,19 @@ format using the `time_format` parameter.
 </parse>
 ```
 
-
 ## Parameters
 
 See [Parse Section Configurations](/configuration/parse-section.md) for common
 parameters.
 
-
 ### `expression`
 
 | type   | default            | version |
-|:-------|:-------------------|:--------|
+| :----- | :----------------- | :------ |
 | regexp | required parameter | 1.2.0   |
 
 Specifies the regular expression for matching logs. Regular expression also
 supports `i` and `m` suffix.
-
 
 #### `i` (ignorecase)
 
@@ -38,7 +39,6 @@ Ignores case in matching.
 expression /.../i
 ```
 
-
 #### `m` (multiline)
 
 Build regular expression as a multiline mode. `.` matches newline. See Ruby's
@@ -47,7 +47,6 @@ Build regular expression as a multiline mode. `.` matches newline. See Ruby's
 ```
 expression /.../m
 ```
-
 
 #### `both`
 
@@ -59,22 +58,21 @@ expression /.../im
 
 `expression` is string type before 1.2.0.
 
-
 ### `ignorecase`
+
 `
 | type | default | version |
 |:-----|:--------|:--------|
-| bool | false   | 0.14.2  |
+| bool | false | 0.14.2 |
 
 Ignores case in matching. Use `i` option with expression.
 
 Deprecated since 1.2.0. Use `expression /pattern/i` instead.
 
-
 ### `multiline`
 
 | type | default | version |
-|:-----|:--------|:--------|
+| :--- | :------ | :------ |
 | bool | false   | 0.14.2  |
 
 Builds regular expression in multiline mode. `.` matches newline. See Ruby's
@@ -82,7 +80,6 @@ Builds regular expression in multiline mode. `.` matches newline. See Ruby's
 Use `m` option with expression.
 
 Deprecated since 1.2.0. Use `expression /pattern/m` instead.
-
 
 ## Example
 
@@ -118,9 +115,7 @@ record:
 }
 ```
 
-
 ## FAQ
-
 
 ### How to debug my regexp pattern?
 
@@ -133,8 +128,7 @@ NOTE: You may hit Application Error at Fluentular due to
 [heroku's free plan limitation](https://www.heroku.com/pricing).
 Retry a few hours later or use fluentd-ui instead.
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

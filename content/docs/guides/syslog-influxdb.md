@@ -1,10 +1,8 @@
 ---
-title: ""
+title: "总结与分析 InfluxDB syslog"
 linkTitle: ""
 weight: 1
 ---
-
-# Aggregate and Analyze Syslog with InfluxDB
 
 This article shows how to collect `syslog` data into
 [InfluxDB](http://github.com/influxdb/influxdb) using Fluentd.

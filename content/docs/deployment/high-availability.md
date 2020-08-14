@@ -1,13 +1,10 @@
 ---
-title: "Fluentd 高可用性配置"
-linkTitle: "高可用性配置"
-weight: 1
+title: "高可用性配置"
+linkTitle: ""
+weight: 5
+description: >
+  对于高流量的网站, 我们建议使用`Fluentd`高可用性配置.
 ---
-
-#
-
-For high-traffic websites, we recommend using a high-availability configuration
-for `Fluentd`.
 
 ## Message Delivery Semantics
 

@@ -1,10 +1,8 @@
 ---
-title: ""
+title: "由树莓派云数据记录器"
 linkTitle: ""
 weight: 1
 ---
-
-# Cloud Data Logger by Raspberry Pi
 
 [Raspberry Pi](http://www.raspberrypi.org/) is a credit-card-sized
 single-board computer. Because it is low-cost and easy to equip with

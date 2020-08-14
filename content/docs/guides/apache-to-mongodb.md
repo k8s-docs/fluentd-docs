@@ -1,10 +1,8 @@
 ---
-title: ""
+title: "存储Apache日志到MongoDB"
 linkTitle: ""
 weight: 1
 ---
-
-# Store Apache Logs into MongoDB
 
 This article explains how to use [Fluentd](http://fluentd.org/)'s
 MongoDB Output plugin ([`out_mongo`](/plugins/output/mongo.md)) to aggregate

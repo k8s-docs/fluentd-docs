@@ -1,35 +1,35 @@
-# CSV Parser Plugin
+---
+title: "CSV Parser Plugin"
+linkTitle: "CSV"
+weight: 1
+---
 
 The `csv` parser plugin parses CSV format.
-
 
 ## Parameters
 
 See [Parse Section Configurations](/configuration/parse-section.md).
 
-
 ### `keys`
 
 | type            | default            | version |
-|:----------------|:-------------------|:--------|
+| :-------------- | :----------------- | :------ |
 | array of string | required parameter | 0.14.9  |
 
 The array of names for fields on each line.
 
-
 ### `delimiter`
 
 | type   | default | version |
-|:-------|:--------|:--------|
+| :----- | :------ | :------ |
 | string | ,       | 0.14.2  |
 
 The delimiter (character or string) separating CSV values.
 
-
 ### `parser_type`
 
 | type | default | available values | version |
-|:-----|:--------|:-----------------|:--------|
+| :--- | :------ | :--------------- | :------ |
 | enum | normal  | normal/fast      | 1.7.0   |
 
 The parser type used to parse log line.
@@ -57,7 +57,6 @@ message,"mes,sage","me,ssa,ge",mess age,""
 ```
 
 If your CSV format is not matched with above patterns, use `normal` parser instead.
-
 
 ## Example
 
@@ -94,8 +93,7 @@ record:
 If you set `null_value_pattern '-'` in the configuration, `user` field
 becomes `nil` instead of `"-"`.
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

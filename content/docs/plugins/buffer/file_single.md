@@ -1,9 +1,12 @@
-# `file_single` Buffer Plugin
+---
+title: "`file_single` Buffer Plugin"
+linkTitle: "file_single"
+weight: 1
+---
 
 The `file_single` buffer plugin provides a persistent buffer implementation. It uses files to store buffer chunks on disk.
 
 `file_single` is similar to `file_file` but this plugin does not have metadata file.
-
 
 ## Example Configuration
 
@@ -18,18 +21,16 @@ The `file_single` buffer plugin provides a persistent buffer implementation. It 
 </match>
 ```
 
-
 ## Parameters
 
--   [Common Parameters](/configuration/plugin-common-parameters.md)
--   [Buffer Section Configurations](/configuration/buffer-section.md)
-
+- [Common Parameters](/configuration/plugin-common-parameters.md)
+- [Buffer Section Configurations](/configuration/buffer-section.md)
 
 ### `path`
 
 | type   | required | default | version |
-|:-------|:--------:|:--------|:--------|
-| string |     ✔    |         |   1.7.0 |
+| :----- | :------: | :------ | :------ |
+| string |    ✔     |         | 1.7.0   |
 
 The directory path where buffer chunks are stored. This parameter is required.
 
@@ -61,12 +62,11 @@ Under multi worker environment, `worker_id` and plugin `id` are added.
 Please make sure that you have **enough space in the path directory**.
 Running out of disk space is a problem frequently reported by users.
 
-
 ### `calc_num_records`
 
-| type   | required | default | version |
-|:-------|:--------:|:--------|:--------|
-| bool   |          |   true  |   1.7.0 |
+| type | required | default | version |
+| :--- | :------: | :------ | :------ |
+| bool |          | true    | 1.7.0   |
 
 Calculate the number of records, chunk size, during chunk resume.
 
@@ -79,11 +79,10 @@ you can set `false` to speed-up the fluentd startup time.
 
 This option is mainly for `out_forward`.
 
-
 ### `chunk_format`
 
 | type | default | available values  | version |
-|:-----|:--------|:------------------|:--------|
+| :--- | :------ | :---------------- | :------ |
 | enum | auto    | msgpack/text/auto | 1.7.0   |
 
 Specifies the chunk format for `calc_num_records`.
@@ -92,9 +91,7 @@ With `auto`, the plugin decides the chunk format by
 `formatted_to_msgpack_binary?`. This option is useful when the output plugin
 does not implement `formatted_to_msgpack_binary?` correctly.
 
-
 ## Limitation
-
 
 ### chunk keys
 
@@ -111,7 +108,6 @@ rich metadata. The chunk keys must be the only tag or one field key for now.
 
 This limitation will be removed by adding metadata header in the file.
 
-
 ### Remote File System is Not Supported
 
 Caution: `file_single` buffer implementation depends on the characteristics of
@@ -119,8 +115,7 @@ the local file system. Don't use `file_single` buffer on remote file systems e.g
 NFS, GlusterFS, HDFS and etc. We observed major data loss by using
 remote file system.
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).

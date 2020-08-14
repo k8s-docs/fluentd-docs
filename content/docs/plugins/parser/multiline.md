@@ -1,4 +1,8 @@
-# `multiline` Parser Plugin
+---
+title: "`multiline` Parser Plugin"
+linkTitle: "multiline"
+weight: 1
+---
 
 The `multiline` parser plugin parses multiline logs. This plugin is a
 multiline version of `regexp` parser.
@@ -12,11 +16,9 @@ Unlike other parser plugins, this plugin needs special code in input
 plugin e.g. handle `format_firstline`. So, currently, `in_tail` plugin
 works with `multiline` but other input plugins do not work with it.
 
-
 ## Parameters
 
 See [Parse Section Configurations](/configuration/parse-section.md).
-
 
 ### `format_firstline`
 
@@ -27,20 +29,17 @@ If `format_firstline` is not specified, input plugin should store
 unmatched new lines in temporary buffer and try to match buffered logs
 with each new line.
 
-
 ### `formatN`
 
 | type   | default            | version |
-|:-------|:-------------------|:--------|
+| :----- | :----------------- | :------ |
 | string | required parameter | 0.14.0  |
 
 Specifies the regexp patterns. For readability, you can separate regexp patterns
 into multiple `regexpN` parameters, See Rails Log example below. These patterns
 are joined and construct a regexp pattern with multiline mode.
 
-
 ## Example
-
 
 ### Rails Log
 
@@ -86,7 +85,6 @@ record:
   ...
 }
 ```
-
 
 ### Java Stacktrace Log
 
@@ -141,8 +139,7 @@ record:
 }
 ```
 
-
-------------------------------------------------------------------------
+---
 
 If this article is incorrect or outdated, or omits critical information, please
 [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
