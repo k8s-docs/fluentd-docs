@@ -1,13 +1,11 @@
 ---
-title: "使用 Fluentd 免费替代品S plunk"
-linkTitle: ""
+title: "使用 ELK 免费替代 Splunk"
+linkTitle: "EKF"
 weight: 1
 ---
 
-[Splunk](http://www.splunk.com/) is a great tool for searching logs, but
-its high cost makes it prohibitive for many teams. In this article, we
-present a free and open source alternative to Splunk by combining three
-open source projects: Elasticsearch, Kibana, and Fluentd.
+[Splunk](http://www.splunk.com/) 是一个伟大的搜索日志工具, 但其高昂的成本使得很多团队望而却步.
+在这篇文章中, 我们提出了一个免费的开源替代品的 Splunk 通过组合三个开源项目: Elasticsearch, Kibana, 和 Fluentd.
 
 ![](/images/kibana6-screenshot-visualize.png)
 
@@ -28,9 +26,9 @@ this combined log search solution. This article was tested on Ubuntu
 16.04 and CentOS 7.4. **If you're not familiar with Fluentd**, please
 learn more about Fluentd first.
 
-## Prerequisites
+## 先决条件
 
-### Java for Elasticsearch
+### Java 为 Elasticsearch
 
 Please confirm that your Java version is 8 or higher.
 
@@ -44,7 +42,7 @@ OpenJDK 64-Bit Server VM (build 25.151-b12, mixed mode)
 Now that we've checked for prerequisites, we're now ready to install and
 set up the three open source tools.
 
-## Set Up Elasticsearch
+## 配置 Elasticsearch
 
 To install Elasticsearch, please download and extract the Elasticsearch
 package as shown below.
@@ -64,7 +62,7 @@ $ ./bin/elasticsearch
 Note: You can also install ElasticSearch (and Kibana) using RPM/DEB
 packages. For details, please refer to [the official instructions](https://www.elastic.co/downloads).
 
-## Set Up Kibana
+## 配置 Kibana
 
 To install Kibana, download it via the official webpage and extract it.
 Kibana is a HTML / CSS / JavaScript application. Dowload page is
@@ -88,7 +86,7 @@ $ ./bin/kibana
 
 Access `http://localhost:5601` in your browser.
 
-## Set Up Fluentd (td-agent)
+## 配置 Fluentd (td-agent)
 
 In this guide We'll install td-agent, the stable release of Fluentd.
 Please refer to the guides below for detailed installation steps.
@@ -143,7 +141,7 @@ $ sudo /etc/init.d/td-agent start
 $ sudo systemctl start td-agent.service
 ```
 
-## Set Up rsyslogd
+## 配置 rsyslogd
 
 In our final step, we'll forward the logs from your rsyslogd to Fluentd.
 Please add the following line to your `/etc/rsyslog.conf`, and restart
@@ -163,7 +161,7 @@ $ sudo /etc/init.d/rsyslog restart
 $ sudo systemctl restart rsyslog
 ```
 
-## Store and Search Event Logs
+## 存储和搜索事件日志
 
 Once Fluentd receives some event logs from `rsyslog` and has flushed them
 to Elasticsearch, you can view, search and visualize the log data using
@@ -209,7 +207,7 @@ including errors can be found at `/etc/td-agent/td-agent.log`.
 </match>
 ```
 
-## Conclusion
+## 结论
 
 This article introduced the combination of Fluentd and Kibana (with
 Elasticsearch) which achieves a free alternative to Splunk: storing and
@@ -220,13 +218,8 @@ If you will be using these components in production, you may want to
 modify some of the configurations (e.g. JVM, Elasticsearch, Fluentd
 buffer, etc.) according to your needs.
 
-## Learn More
+## 学到更多
 
-- [Fluentd Architecture](https://www.fluentd.org/architecture)
-- [Fluentd Get Started](/overview/quickstart.md)
-- [Downloading Fluentd](http://www.fluentd.org/download)
-
----
-
-If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
-[Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.
+- [Fluentd 架构](https://www.fluentd.org/architecture)
+- [Fluentd 入门](/overview/quickstart.md)
+- [Fluentd 下载](http://www.fluentd.org/download)

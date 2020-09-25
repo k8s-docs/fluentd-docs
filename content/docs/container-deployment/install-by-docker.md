@@ -4,32 +4,28 @@ linkTitle: "Docker安装"
 weight: 1
 ---
 
-This article explains how to use the official [Fluentd Docker
-image](https://hub.docker.com/r/fluent/fluentd/), maintained by [Treasure Data,
-Inc](http://www.treasuredata.com/).
+本文介绍了如何使用官方[Fluentd Docker 镜像](https://hub.docker.com/r/fluent/fluentd/), [Treasure Data, Inc](http://www.treasuredata.com/)维护.
 
-- [Fluentd official Docker image](https://hub.docker.com/r/fluent/fluentd/)
-- [Fluentd official Docker image
-  (Source)](https://github.com/fluent/fluentd-docker-image)
+- [Fluentd 官方 Docker 镜像](https://hub.docker.com/r/fluent/fluentd/)
+- [Fluentd 官方 Docker 镜像(源)](https://github.com/fluent/fluentd-docker-image)
 
 ## 步 0: 安装 Docker
 
-Please download and install [Docker](https://www.docker.com/) from here:
+请从这里下载并安装[Docker](https://www.docker.com/) :
 
-- [Docker Installation](https://docs.docker.com/engine/installation/)
+- [Docker 安装](https://docs.docker.com/engine/installation/)
 
 ## 步 1: 拉取 Fluentd Docker 镜像
 
-Then, download Fluentd v1.6-debian-1's image by `docker pull` command:
+然后, 通过 `docker pull` 命令下载 Fluentd v1.6-debian-1's 镜像:
 
 ```{.CodeRay}
 $ docker pull fluent/fluentd:v1.6-debian-1
 ```
 
-Debian and Alpine Linux version is available for Fluentd image. Debian version
-is recommended officially since it has
-[`jemalloc`](https://github.com/jemalloc/jemalloc) support. However, the Alpine
-image is smaller.
+Debian 和 Alpine Linux 版 可用于 Fluentd 镜像.
+Debian 版正式推荐 因为它有[`jemalloc`](https://github.com/jemalloc/jemalloc) 支持.
+然而, Alpine 镜像较小.
 
 ## 步 2: 启动 Fluentd 容器
 
@@ -83,8 +79,7 @@ $ docker run -p 9880:9880 -v $(pwd)/tmp:/fluentd/etc -e FLUENTD_CONF=fluentd.con
 $ curl -X POST -d 'json={"json":"message"}' http://localhost:9880/sample.test
 ```
 
-Use `docker ps` command to retrieve container ID and use `docker logs` command
-to check the specific container's log like this:
+用 `docker ps` 命令检索容器 ID 和使用 `docker logs` 命令检查特定容器的日志像这样:
 
 ```{.CodeRay}
 $ docker ps -a
@@ -106,17 +101,16 @@ $ docker logs 775a8e192f2b | tail -n 1
 - [Docker 日志驱动程序 和 Fluentd](/container-deployment/docker-logging-driver.md)
 - [Docker 通过带 Docker Compose 的 EFK Stack 记录 (Elasticsearch + Fluentd + Kibana) ](/container-deployment/docker-compose.md)
 
-Also, refer to the following tutorials to learn how to collect data from various
-data sources:
+也, 参考下面的教程来学习如何收集来自不同数据源的数据:
 
-- Basic Configuration
-  - [Config File](/configuration/config-file.md)
-- Application Logs
+- 基本配置
+  - [配置文件](/configuration/config-file.md)
+- 应用程序日志
   - [Ruby](/language/ruby.md), [Java](/language/java.md),
     [Python](/language/python.md), [PHP](/language/php.md),
     [Perl](/language/perl.md), [Node.js](/language/nodejs.md),
     [Scala](/language/scala.md)
-- Examples
-  - [Store Apache Log into Amazon S3](/guides/apache-to-s3.md)
-  - [Store Apache Log into MongoDB](/guides/apache-to-mongodb.md)
-  - [Data Collection into HDFS](/guides/http-to-hdfs.md)
+- 例子
+  - [商店 Apache 日志到亚马逊 S3](/guides/apache-to-s3.md)
+  - [商店 Apache 日志到 MongoDB 的](/guides/apache-to-mongodb.md)
+  - [数据收集到 HDFS](/guides/http-to-hdfs.md)

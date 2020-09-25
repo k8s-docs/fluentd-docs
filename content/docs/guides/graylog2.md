@@ -1,6 +1,6 @@
 ---
 title: "Fluentd和Graylog的端至端日志分析"
-linkTitle: ""
+linkTitle: "Graylog"
 weight: 1
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "存储Apache日志到Minio"
-linkTitle: ""
+linkTitle: "Minio"
 weight: 1
 ---
 

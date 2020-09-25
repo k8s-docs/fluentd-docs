@@ -1,46 +1,40 @@
 ---
 title: "使用 Fluentd 的 Splunk-like Grep-and-Alert-Email 系统 "
-linkTitle: ""
+linkTitle: "GrepAndAlert"
 weight: 1
 ---
 
-[Splunk](http://www.splunk.com/) is a great tool for searching logs. One
-of its key features is the ability to `grep` logs and send alert emails
-when certain conditions are met.
+[Splunk](http://www.splunk.com/)是一个伟大的搜索日志工具.
+它的一个重要功能是能够`grep`日志，并在满足某些条件时发送警告电子邮件。
 
-In this little how-to article, we will show you how to build a similar
-system using Fluentd. More specifically, we will create a system that
-sends an alert email when it detects a 5xx HTTP status code in an Apache
-access log.
+在这个小的 how-to 文章, 我们将向您介绍如何使用 Fluentd 一个类似的系统.
+进一步来说, 当它在 Apache 访问日志检测到的 5xx HTTP 状态代码，我们将创建发送警报电子邮件系统.
 
-If you want a more general introduction to use Fluentd as a free
-alternative to Splunk, see the article
-["Free Alternative to Splunk Using Fluentd"](/guides/free-alternative-to-splunk-by-fluentd.md).
+如果你想要一个更一般性介绍使用 Fluentd Splunk 的免费替代品, 看文章 ["Free Alternative to Splunk Using Fluentd"](/guides/free-alternative-to-splunk-by-fluentd.md).
 
-## Installing the Requisites
+## 安装要件
 
-[Install](/overview/installation.md) Fluentd if you haven't yet.
+[安装](/overview/installation.md) Fluentd 如果您还没有.
 
-Please install `fluent-plugin-grepcounter` by running:
+请安装 `fluent-plugin-grepcounter` 通过运行:
 
 ```
 $ sudo /usr/sbin/td-agent-gem install fluent-plugin-grepcounter
 ```
 
-Next, please install `fluent-plugin-mail` by running:
+接下来，请安装 `fluent-plugin-mail` 通过运行:
 
 ```
 $ sudo /usr/sbin/td-agent-gem install fluent-plugin-mail
 ```
 
-Note: If you installed Fluentd using RubyGems, use `gem` command
-instead of `td-agent-gem`.
+注意: 如果您使用 RubyGems 安装 Fluentd, 用 `gem` 命令 代替 `td-agent-gem`.
 
-## Configuration
+## 配置
 
-### Full Configuration Example
+### 全配置示例
 
-Here is the full configuration example (copy and edit as needed):
+下面是完整的配置实例 (复制和编辑根据需要):
 
 ```
 <source>
@@ -92,7 +86,7 @@ Before proceeding, please confirm:
 - The access log file has a proper file permission. You need to make
   the file readable to the `td-agent`/`fluentd` daemon.
 
-### How this Configuration Works
+### 这个配置怎么样工作
 
 The configuration above consists of three main parts:
 
@@ -111,7 +105,7 @@ The configuration above consists of three main parts:
 In this way, fluentd now works as an email alerting system that monitors
 the web service for you.
 
-## Test the Configuration
+## 测试配置
 
 After saving the configuration, restart the `td-agent` process:
 
@@ -135,7 +129,7 @@ manually will produce the same result.
 
 Now you will receive an alert email titled "HTTP SERVER ERROR".
 
-## What's next?
+## 下一步是什么？
 
 Admittedly, this is a contrived example. In reality, you would set the
 threshold higher. Also, you might be interested in tracking 4xx pages as
@@ -148,8 +142,3 @@ You can learn more about Fluentd and its plugins by:
 - asking questions on the [mailing
   list](https://groups.google.com/forum/#!forum/fluentd)
 - [signing up for our newsletters](https://www.fluentd.org/newsletter)
-
----
-
-If this article is incorrect or outdated, or omits critical information, please [let us know](https://github.com/fluent/fluentd-docs-gitbook/issues?state=open).
-[Fluentd](http://www.fluentd.org/) is an open-source project under [Cloud Native Computing Foundation (CNCF)](https://cncf.io/). All components are available under the Apache 2 License.

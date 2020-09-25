@@ -1,6 +1,6 @@
 ---
 title: "编写格式化插件"
-linkTitle: ""
+linkTitle: "格式化"
 weight: 5
 description: >
   Fluentd supports [pluggable, customizable formats for output plugins](/plugins/formatter/README.md).

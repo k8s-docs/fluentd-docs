@@ -1,6 +1,6 @@
 ---
 title: "使用`Treasure`数据云计算大数据分析"
-linkTitle: ""
+linkTitle: "Treasure"
 weight: 1
 ---
 

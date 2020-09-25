@@ -1,6 +1,6 @@
 ---
 title: "注射插件助手API"
-linkTitle: ""
+linkTitle: "注射"
 weight: 7
 description: >
   `inject` helper injects values to events according to the configuration.

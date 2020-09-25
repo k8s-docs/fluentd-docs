@@ -1,6 +1,6 @@
 ---
 title: "编写过滤插件"
-linkTitle: ""
+linkTitle: "过滤"
 weight: 4
 description: >
   This section shows how to write custom filters in addition to [the core filter plugins](/plugins/filter/README.md).

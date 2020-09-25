@@ -1,6 +1,6 @@
 ---
 title: "Fluentd + HDFS: 瞬间的大数据集"
-linkTitle: ""
+linkTitle: "HDFS"
 weight: 1
 ---
 

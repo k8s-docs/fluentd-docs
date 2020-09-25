@@ -1,6 +1,6 @@
 ---
 title: "实时收集日志文件到`Kinesis`流 "
-linkTitle: ""
+linkTitle: "Kinesis"
 weight: 1
 ---
 

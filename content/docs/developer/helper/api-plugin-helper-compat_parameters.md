@@ -1,6 +1,6 @@
 ---
 title: "Compat 参数插件助手API"
-linkTitle: ""
+linkTitle: "Compat"
 weight: 2
 description: >
   `compat_parameters` helper convert parameters from v0.12 style to v1.0 style.

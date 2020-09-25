@@ -1,6 +1,6 @@
 ---
 title: "总结与分析 InfluxDB syslog"
-linkTitle: ""
+linkTitle: "InfluxDB"
 weight: 1
 ---
 

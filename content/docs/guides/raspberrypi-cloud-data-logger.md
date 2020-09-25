@@ -1,6 +1,6 @@
 ---
 title: "由树莓派云数据记录器"
-linkTitle: ""
+linkTitle: "树莓派"
 weight: 1
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "编写插件测试代码"
-linkTitle: ""
+linkTitle: "测试代码"
 weight: 10
 description: >
   This article explains how to write Fluentd plugin test code using [test-unit](https://test-unit.github.io/).

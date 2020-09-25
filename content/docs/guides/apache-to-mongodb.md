@@ -1,6 +1,6 @@
 ---
 title: "存储Apache日志到MongoDB"
-linkTitle: ""
+linkTitle: "MongoDB"
 weight: 1
 ---
 

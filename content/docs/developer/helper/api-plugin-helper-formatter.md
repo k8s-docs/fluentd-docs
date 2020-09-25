@@ -1,6 +1,6 @@
 ---
 title: "格式化插件助手API"
-linkTitle: ""
+linkTitle: "格式化"
 weight: 6
 description: >
   `formatter` helper manages formatter plugin life cycle.

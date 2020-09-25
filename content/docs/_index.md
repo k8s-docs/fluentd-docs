@@ -7,6 +7,8 @@ menu:
     weight: 20
 ---
 
+> https://docs.fluentd.org/
+
 ![Fluentd文档图像](/images/logo_documentation_1.0.png)
 
 [Fluentd](https://www.fluentd.org/) 是一个为统一日志记录层的开源数据收集器 .

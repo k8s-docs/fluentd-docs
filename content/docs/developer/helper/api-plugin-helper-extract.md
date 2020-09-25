@@ -1,6 +1,6 @@
 ---
 title: "提取插件助手API"
-linkTitle: ""
+linkTitle: "提取"
 weight: 5
 description: >
   `extract` helper extracts tag or time from event record according to the configuration.

@@ -1,6 +1,6 @@
 ---
 title: "进程插件助手API"
-linkTitle: ""
+linkTitle: "进程"
 weight: 13
 description: >
   `thread` helper manages threads and these threads are integrated with plugins. No need manual run / shutdown in the plugin.

@@ -1,6 +1,6 @@
 ---
 title: "日志发送到Sematext"
-linkTitle: ""
+linkTitle: "Sematext"
 weight: 1
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "事件发射器插件助手API"
-linkTitle: ""
+linkTitle: "事件发射器"
 weight: 3
 description: >
   `event_emitter` helper introduces `router` method to the plugin.

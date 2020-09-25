@@ -1,6 +1,6 @@
 ---
 title: "更新插件从v0.12到 V1"
-linkTitle: ""
+linkTitle: "更新插件"
 weight: 12
 description: >
   This guide is for plugin authors to show how to update input/output/filter plugins written for Fluentd v0.12 or earlier.

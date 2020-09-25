@@ -1,6 +1,6 @@
 ---
 title: "存储插件助手API"
-linkTitle: ""
+linkTitle: "存储"
 weight: 12
 description: >
   `storage` helper manages plugin's internal states.

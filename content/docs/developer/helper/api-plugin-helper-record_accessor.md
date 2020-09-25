@@ -1,6 +1,6 @@
 ---
 title: "记录访问器插件助手API"
-linkTitle: ""
+linkTitle: "记录访问"
 weight: 9
 description: >
   `record_accessor` helper provides the unified access for event record.

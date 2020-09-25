@@ -1,6 +1,6 @@
 ---
 title: "HTTP服务器插件助手API"
-linkTitle: ""
+linkTitle: "HTTP服务器"
 weight: 7
 description: >
   `http_server` helper creates http server. This helper was introduced since v1.6.0.

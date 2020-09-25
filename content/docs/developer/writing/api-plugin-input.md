@@ -1,6 +1,6 @@
 ---
 title: "书写输入插件"
-linkTitle: ""
+linkTitle: "输入"
 weight: 1
 description: >
   Extend the **Fluent::Plugin::Input** class and implement the following methods. See [Plugin Base Class API](/developer/api-plugin-base.md) to show details of common API for all plugin types.

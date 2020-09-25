@@ -1,6 +1,6 @@
 ---
 title: "写作解析器插件"
-linkTitle: ""
+linkTitle: "解析器"
 weight: 7
 description: >
   Fluentd supports [pluggable, customizable formats for input plugins](parser-plugin-overview).

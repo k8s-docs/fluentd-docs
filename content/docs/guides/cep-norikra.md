@@ -1,6 +1,6 @@
 ---
 title: "Fluentd 和 Norikra: 复杂事件处理"
-linkTitle: ""
+linkTitle: "Norikra"
 weight: 1
 ---
 

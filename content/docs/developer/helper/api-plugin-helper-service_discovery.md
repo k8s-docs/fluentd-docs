@@ -1,6 +1,6 @@
 ---
 title: "服务发现助手API"
-linkTitle: ""
+linkTitle: "服务发现"
 weight: 15
 description: >
   `service_discovery` helper provides users with service discovery.

@@ -1,6 +1,6 @@
 ---
 title: "使用Fluentd简单的数据流操作"
-linkTitle: ""
+linkTitle: "数据流操作"
 weight: 1
 ---
 

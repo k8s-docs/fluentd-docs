@@ -1,6 +1,6 @@
 ---
 title: "解析Syslog消息鲁棒"
-linkTitle: ""
+linkTitle: "Syslog"
 weight: 1
 ---
 

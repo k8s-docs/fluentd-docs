@@ -1,6 +1,6 @@
 ---
 title: "编写输出插件"
-linkTitle: ""
+linkTitle: "输出"
 weight: 6
 description: >
   To create an output plugin, you need to define a class inheriting **Fluent::Plugin::Output** and implement a set of methods on it.

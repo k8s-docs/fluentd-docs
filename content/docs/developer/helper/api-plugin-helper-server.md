@@ -1,6 +1,6 @@
 ---
 title: "服务器插件助手API"
-linkTitle: ""
+linkTitle: "服务器"
 weight: 10
 description: >
   `server` helper manages various types of servers.

@@ -1,6 +1,6 @@
 ---
 title: "计时器插件助手API"
-linkTitle: ""
+linkTitle: "计时器"
 weight: 14
 description: >
   `timer` helper manages event timers.
